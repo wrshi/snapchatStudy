@@ -9,11 +9,17 @@
 /* Begin PBXBuildFile section */
 		7FA580951BF02693005BED24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580941BF02693005BED24 /* main.m */; };
 		7FA580981BF02693005BED24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580971BF02693005BED24 /* AppDelegate.m */; };
-		7FA5809B1BF02693005BED24 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5809A1BF02693005BED24 /* ViewController.m */; };
 		7FA5809E1BF02693005BED24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5809C1BF02693005BED24 /* Main.storyboard */; };
 		7FA580A01BF02693005BED24 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5809F1BF02693005BED24 /* Images.xcassets */; };
 		7FA580A31BF02693005BED24 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FA580A11BF02693005BED24 /* LaunchScreen.xib */; };
 		7FA580AF1BF02693005BED24 /* SnapchatStudyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580AE1BF02693005BED24 /* SnapchatStudyTests.m */; };
+		7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580BE1BF02CF1005BED24 /* SWRNavigationController.m */; };
+		7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580C21BF02D3C005BED24 /* SWRWhiteNavigationBar.m */; };
+		7FA580C61BF02D53005BED24 /* SWRGreenNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580C51BF02D53005BED24 /* SWRGreenNavigationBar.m */; };
+		7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580CA1BF02E81005BED24 /* SWRStartViewController.m */; };
+		7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */; };
+		7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */; };
+		7FA580D71BF02F4F005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +38,27 @@
 		7FA580941BF02693005BED24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7FA580961BF02693005BED24 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7FA580971BF02693005BED24 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7FA580991BF02693005BED24 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7FA5809A1BF02693005BED24 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7FA5809D1BF02693005BED24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7FA5809F1BF02693005BED24 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7FA580A21BF02693005BED24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7FA580A81BF02693005BED24 /* SnapchatStudyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapchatStudyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA580AD1BF02693005BED24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA580AE1BF02693005BED24 /* SnapchatStudyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapchatStudyTests.m; sourceTree = "<group>"; };
+		7FA580BD1BF02CF1005BED24 /* SWRNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRNavigationController.h; sourceTree = "<group>"; };
+		7FA580BE1BF02CF1005BED24 /* SWRNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRNavigationController.m; sourceTree = "<group>"; };
+		7FA580C11BF02D3C005BED24 /* SWRWhiteNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRWhiteNavigationBar.h; sourceTree = "<group>"; };
+		7FA580C21BF02D3C005BED24 /* SWRWhiteNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRWhiteNavigationBar.m; sourceTree = "<group>"; };
+		7FA580C41BF02D53005BED24 /* SWRGreenNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRGreenNavigationBar.h; sourceTree = "<group>"; };
+		7FA580C51BF02D53005BED24 /* SWRGreenNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRGreenNavigationBar.m; sourceTree = "<group>"; };
+		7FA580C81BF02DE0005BED24 /* SnapchatStudy_PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnapchatStudy_PrefixHeader.pch; sourceTree = "<group>"; };
+		7FA580C91BF02E81005BED24 /* SWRStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRStartViewController.h; sourceTree = "<group>"; };
+		7FA580CA1BF02E81005BED24 /* SWRStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRStartViewController.m; sourceTree = "<group>"; };
+		7FA580CC1BF02E9F005BED24 /* SWRSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSignupViewController.h; sourceTree = "<group>"; };
+		7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSignupViewController.m; sourceTree = "<group>"; };
+		7FA580D21BF02EDD005BED24 /* SWRConversationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRConversationTableViewController.h; sourceTree = "<group>"; };
+		7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationTableViewController.m; sourceTree = "<group>"; };
+		7FA580D51BF02F4F005BED24 /* SWRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRLoginViewController.h; path = SnapchatStudy/SWRLoginViewController.h; sourceTree = SOURCE_ROOT; };
+		7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRLoginViewController.m; path = SnapchatStudy/SWRLoginViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +100,16 @@
 		7FA580911BF02693005BED24 /* SnapchatStudy */ = {
 			isa = PBXGroup;
 			children = (
+				7FA5809C1BF02693005BED24 /* Main.storyboard */,
 				7FA580961BF02693005BED24 /* AppDelegate.h */,
 				7FA580971BF02693005BED24 /* AppDelegate.m */,
-				7FA580991BF02693005BED24 /* ViewController.h */,
-				7FA5809A1BF02693005BED24 /* ViewController.m */,
-				7FA5809C1BF02693005BED24 /* Main.storyboard */,
-				7FA5809F1BF02693005BED24 /* Images.xcassets */,
+				7FA580B81BF02C34005BED24 /* Navigator */,
+				7FA580BA1BF02C43005BED24 /* Start */,
+				7FA580BC1BF02C61005BED24 /* Login */,
+				7FA580B91BF02C43005BED24 /* Signup */,
+				7FA580BB1BF02C56005BED24 /* ConversationTable */,
 				7FA580A11BF02693005BED24 /* LaunchScreen.xib */,
+				7FA5809F1BF02693005BED24 /* Images.xcassets */,
 				7FA580921BF02693005BED24 /* Supporting Files */,
 			);
 			path = SnapchatStudy;
@@ -98,6 +120,7 @@
 			children = (
 				7FA580931BF02693005BED24 /* Info.plist */,
 				7FA580941BF02693005BED24 /* main.m */,
+				7FA580C81BF02DE0005BED24 /* SnapchatStudy_PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,6 +140,63 @@
 				7FA580AD1BF02693005BED24 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FA580B81BF02C34005BED24 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580BD1BF02CF1005BED24 /* SWRNavigationController.h */,
+				7FA580BE1BF02CF1005BED24 /* SWRNavigationController.m */,
+				7FA580C01BF02D1B005BED24 /* NavigationBar */,
+			);
+			path = Navigator;
+			sourceTree = "<group>";
+		};
+		7FA580B91BF02C43005BED24 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580CC1BF02E9F005BED24 /* SWRSignupViewController.h */,
+				7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		7FA580BA1BF02C43005BED24 /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580C91BF02E81005BED24 /* SWRStartViewController.h */,
+				7FA580CA1BF02E81005BED24 /* SWRStartViewController.m */,
+			);
+			path = Start;
+			sourceTree = "<group>";
+		};
+		7FA580BB1BF02C56005BED24 /* ConversationTable */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580D21BF02EDD005BED24 /* SWRConversationTableViewController.h */,
+				7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */,
+			);
+			path = ConversationTable;
+			sourceTree = "<group>";
+		};
+		7FA580BC1BF02C61005BED24 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580D51BF02F4F005BED24 /* SWRLoginViewController.h */,
+				7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7FA580C01BF02D1B005BED24 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580C11BF02D3C005BED24 /* SWRWhiteNavigationBar.h */,
+				7FA580C21BF02D3C005BED24 /* SWRWhiteNavigationBar.m */,
+				7FA580C41BF02D53005BED24 /* SWRGreenNavigationBar.h */,
+				7FA580C51BF02D53005BED24 /* SWRGreenNavigationBar.m */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +299,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FA5809B1BF02693005BED24 /* ViewController.m in Sources */,
+				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
+				7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,
+				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
+				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
+				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,
+				7FA580D71BF02F4F005BED24 /* SWRLoginViewController.m in Sources */,
+				7FA580C61BF02D53005BED24 /* SWRGreenNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +433,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = SnapchatStudy/SnapchatStudy_PrefixHeader.pch;
 				INFOPLIST_FILE = SnapchatStudy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,7 +445,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = SnapchatStudy/SnapchatStudy_PrefixHeader.pch;
 				INFOPLIST_FILE = SnapchatStudy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

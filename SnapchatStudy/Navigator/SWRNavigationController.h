@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SWRNavigationController.h
 //  SnapchatStudy
 //
 //  Created by Weiran Shi on 2015-11-08.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SWRNavigationController : UINavigationController
 
 @end
-
