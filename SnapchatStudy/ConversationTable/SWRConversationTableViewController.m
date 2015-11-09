@@ -7,6 +7,7 @@
 //
 
 #import "SWRConversationTableViewController.h"
+#import "SWRGreenNavigationBar.h"
 
 @interface SWRConversationTableViewController ()
 
@@ -17,11 +18,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.navigationItem.title = @"snapchat";
+    SWRGreenNavigationBar *navBar = [[SWRGreenNavigationBar alloc] init];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIButton *findFriendButton = [[UIButton alloc] init];
+    [findFriendButton setImage:[UIImage imageNamed:@"profile_mycontacts_icon"] forState:UIControlStateNormal];
+    findFriendButton.bounds = CGRectMake(0, 0, 40, 40);
+    [findFriendButton addTarget:self action:@selector(clickFindFriendButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:findFriendButton];
+    self.navigationItem.leftBarButtonItem = leftButtonItem;
+    
+    UIButton *addFriendButton = [[UIButton alloc] init];
+    [addFriendButton setImage:[UIImage imageNamed:@"Add_Friend_Button"] forState:UIControlStateNormal];
+    addFriendButton.bounds = CGRectMake(0, 0, 40, 40);
+    [addFriendButton addTarget:self action:@selector(clickAddFriendButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addFriendButton];
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+
+}
+
+- (void)clickFindFriendButton
+{
+
+}
+
+- (void)clickAddFriendButton
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {

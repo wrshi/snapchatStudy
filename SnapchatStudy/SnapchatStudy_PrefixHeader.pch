@@ -12,6 +12,11 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+
+#import <Parse/Parse.h>
+
+
+
 #ifdef DEBUG
 #define  MyLog(...) NSLog(__VA_ARGS__)
 #else
@@ -31,6 +36,10 @@
 
 #define tintPurpleColor Color(142, 71, 149)
 #define tintGreenColor Color(21, 150, 117)
+
+
+
+
 
 
 

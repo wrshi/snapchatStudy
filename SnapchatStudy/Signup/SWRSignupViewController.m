@@ -59,6 +59,20 @@
 
 - (void)clickSignUpButton
 {
+    PFUser *user = [PFUser user];
+    user.username = self.userNameText.text;
+    user.password = self.passwordText.text;
+    
+    //do it in asynchronous way
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [self performSegueWithIdentifier:@"signup2Conversations" sender:nil];
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            MyLog(@"signup error: %@", errorString);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"请稍后再试:-D" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        }
+    }];
     
 }
 

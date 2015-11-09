@@ -20,6 +20,19 @@
 		7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */; };
 		7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */; };
 		7FA580D71BF02F4F005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */; };
+		7FA580DB1BF04AD9005BED24 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DA1BF04AD9005BED24 /* AudioToolbox.framework */; };
+		7FA580DD1BF04AEF005BED24 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DC1BF04AEF005BED24 /* CFNetwork.framework */; };
+		7FA580DF1BF04AF6005BED24 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DE1BF04AF6005BED24 /* CoreGraphics.framework */; };
+		7FA580E11BF04AFD005BED24 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580E01BF04AFD005BED24 /* CoreLocation.framework */; };
+		7FA580E31BF04B11005BED24 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580E21BF04B11005BED24 /* libz.1.1.3.dylib */; };
+		7FA580E51BF04B2F005BED24 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580E41BF04B2F005BED24 /* MobileCoreServices.framework */; };
+		7FA580E71BF04B37005BED24 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580E61BF04B37005BED24 /* QuartzCore.framework */; };
+		7FA580E91BF04B46005BED24 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580E81BF04B46005BED24 /* Security.framework */; };
+		7FA580EB1BF04B4D005BED24 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580EA1BF04B4D005BED24 /* StoreKit.framework */; };
+		7FA580ED1BF04B56005BED24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580EC1BF04B56005BED24 /* SystemConfiguration.framework */; };
+		7FA580EF1BF04C66005BED24 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580EE1BF04C66005BED24 /* Parse.framework */; };
+		7FA580F11BF04DBB005BED24 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580F01BF04DBB005BED24 /* Bolts.framework */; };
+		7FA580F31BF04E20005BED24 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580F21BF04E20005BED24 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +72,20 @@
 		7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationTableViewController.m; sourceTree = "<group>"; };
 		7FA580D51BF02F4F005BED24 /* SWRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRLoginViewController.h; path = SnapchatStudy/SWRLoginViewController.h; sourceTree = SOURCE_ROOT; };
 		7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRLoginViewController.m; path = SnapchatStudy/SWRLoginViewController.m; sourceTree = SOURCE_ROOT; };
+		7FA580D81BF049EE005BED24 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		7FA580DA1BF04AD9005BED24 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7FA580DC1BF04AEF005BED24 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7FA580DE1BF04AF6005BED24 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7FA580E01BF04AFD005BED24 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7FA580E21BF04B11005BED24 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		7FA580E41BF04B2F005BED24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		7FA580E61BF04B37005BED24 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7FA580E81BF04B46005BED24 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7FA580EA1BF04B4D005BED24 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		7FA580EC1BF04B56005BED24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7FA580EE1BF04C66005BED24 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../Lib/parse-starter-project-1.9.1/ParseStarterProject/Parse.framework"; sourceTree = "<group>"; };
+		7FA580F01BF04DBB005BED24 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../Lib/parse-starter-project-1.9.1/ParseStarterProject/Bolts.framework"; sourceTree = "<group>"; };
+		7FA580F21BF04E20005BED24 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +93,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA580F31BF04E20005BED24 /* libsqlite3.dylib in Frameworks */,
+				7FA580F11BF04DBB005BED24 /* Bolts.framework in Frameworks */,
+				7FA580EF1BF04C66005BED24 /* Parse.framework in Frameworks */,
+				7FA580EB1BF04B4D005BED24 /* StoreKit.framework in Frameworks */,
+				7FA580ED1BF04B56005BED24 /* SystemConfiguration.framework in Frameworks */,
+				7FA580E91BF04B46005BED24 /* Security.framework in Frameworks */,
+				7FA580E71BF04B37005BED24 /* QuartzCore.framework in Frameworks */,
+				7FA580E51BF04B2F005BED24 /* MobileCoreServices.framework in Frameworks */,
+				7FA580E31BF04B11005BED24 /* libz.1.1.3.dylib in Frameworks */,
+				7FA580DB1BF04AD9005BED24 /* AudioToolbox.framework in Frameworks */,
+				7FA580E11BF04AFD005BED24 /* CoreLocation.framework in Frameworks */,
+				7FA580DF1BF04AF6005BED24 /* CoreGraphics.framework in Frameworks */,
+				7FA580DD1BF04AEF005BED24 /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +122,8 @@
 		7FA580861BF02693005BED24 = {
 			isa = PBXGroup;
 			children = (
+				7FA580F01BF04DBB005BED24 /* Bolts.framework */,
+				7FA580EE1BF04C66005BED24 /* Parse.framework */,
 				7FA580911BF02693005BED24 /* SnapchatStudy */,
 				7FA580AB1BF02693005BED24 /* SnapchatStudyTests */,
 				7FA580901BF02693005BED24 /* Products */,
@@ -118,6 +160,18 @@
 		7FA580921BF02693005BED24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7FA580F21BF04E20005BED24 /* libsqlite3.dylib */,
+				7FA580EC1BF04B56005BED24 /* SystemConfiguration.framework */,
+				7FA580EA1BF04B4D005BED24 /* StoreKit.framework */,
+				7FA580E81BF04B46005BED24 /* Security.framework */,
+				7FA580E61BF04B37005BED24 /* QuartzCore.framework */,
+				7FA580E41BF04B2F005BED24 /* MobileCoreServices.framework */,
+				7FA580E21BF04B11005BED24 /* libz.1.1.3.dylib */,
+				7FA580E01BF04AFD005BED24 /* CoreLocation.framework */,
+				7FA580DE1BF04AF6005BED24 /* CoreGraphics.framework */,
+				7FA580DC1BF04AEF005BED24 /* CFNetwork.framework */,
+				7FA580DA1BF04AD9005BED24 /* AudioToolbox.framework */,
+				7FA580D81BF049EE005BED24 /* Parse.framework */,
 				7FA580931BF02693005BED24 /* Info.plist */,
 				7FA580941BF02693005BED24 /* main.m */,
 				7FA580C81BF02DE0005BED24 /* SnapchatStudy_PrefixHeader.pch */,
@@ -433,6 +487,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SnapchatStudy",
+					"/Users/wrshi/Documents/Lib/parse-starter-project-1.9.1/ParseStarterProject",
+				);
 				GCC_PREFIX_HEADER = SnapchatStudy/SnapchatStudy_PrefixHeader.pch;
 				INFOPLIST_FILE = SnapchatStudy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -445,6 +504,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SnapchatStudy",
+					"/Users/wrshi/Documents/Lib/parse-starter-project-1.9.1/ParseStarterProject",
+				);
 				GCC_PREFIX_HEADER = SnapchatStudy/SnapchatStudy_PrefixHeader.pch;
 				INFOPLIST_FILE = SnapchatStudy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;

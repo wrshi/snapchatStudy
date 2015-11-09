@@ -18,10 +18,15 @@
                                      NSFontAttributeName : [UIFont systemFontOfSize:24],
                                      NSForegroundColorAttributeName : tintPurpleColor
                                      };
-        
+        UIImage *backImage = [UIImage imageNamed:@"Back_Button_black"];
+        [self setBackIndicatorImage:backImage];
+        [self setBackIndicatorTransitionMaskImage:backImage];
+
         
     }
     return self;
 }
+
+
 
 @end

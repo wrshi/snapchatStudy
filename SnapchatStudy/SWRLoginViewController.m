@@ -25,6 +25,9 @@
     
     self.navigationItem.title = @"登录";
     
+    SWRWhiteNavigationBar *navBar = [[SWRWhiteNavigationBar alloc] init];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
@@ -32,8 +35,6 @@
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;
     
-    SWRWhiteNavigationBar *navBar = [[SWRWhiteNavigationBar alloc] init];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
     
     [self.userNameText becomeFirstResponder];
     

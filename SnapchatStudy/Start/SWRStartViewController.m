@@ -11,6 +11,8 @@
 #import "SWRWhiteNavigationBar.h"
 #import "SWRLoginViewController.h"
 
+#import <Parse/Parse.h>
+
 @interface SWRStartViewController ()
 
 @end
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
