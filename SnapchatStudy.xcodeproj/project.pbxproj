@@ -35,8 +35,7 @@
 		7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */; };
 		7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */; };
 		7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */; };
-		7FA581031BF126F2005BED24 /* SWRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581021BF126F2005BED24 /* SWRPageViewController.m */; };
-		7FA581061BF12CC7005BED24 /* SWRPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */; };
+		7FA581091BF1B589005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,10 +93,8 @@
 		7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRManageViewController.m; sourceTree = "<group>"; };
 		7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSettingTableViewController.h; sourceTree = "<group>"; };
 		7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSettingTableViewController.m; sourceTree = "<group>"; };
-		7FA581011BF126F2005BED24 /* SWRPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRPageViewController.h; sourceTree = "<group>"; };
-		7FA581021BF126F2005BED24 /* SWRPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRPageViewController.m; sourceTree = "<group>"; };
-		7FA581041BF12CC7005BED24 /* SWRPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRPageContentViewController.h; sourceTree = "<group>"; };
-		7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRPageContentViewController.m; sourceTree = "<group>"; };
+		7FA581071BF1B589005BED24 /* SWRRightToLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRRightToLeftSegue.h; path = ../SWRRightToLeftSegue.h; sourceTree = "<group>"; };
+		7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRRightToLeftSegue.m; path = ../SWRRightToLeftSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +158,6 @@
 				7FA580BA1BF02C43005BED24 /* Start */,
 				7FA580F51BF066DC005BED24 /* Login */,
 				7FA580B91BF02C43005BED24 /* Signup */,
-				7FA581001BF126D5005BED24 /* PageViewControl */,
 				7FA580BB1BF02C56005BED24 /* ConversationTable */,
 				7FA580F41BF066B9005BED24 /* Manage */,
 				7FA580FC1BF067B5005BED24 /* Setting */,
@@ -264,6 +260,8 @@
 			children = (
 				7FA580F91BF066FC005BED24 /* SWRManageViewController.h */,
 				7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */,
+				7FA581071BF1B589005BED24 /* SWRRightToLeftSegue.h */,
+				7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -284,17 +282,6 @@
 				7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */,
 			);
 			path = Setting;
-			sourceTree = "<group>";
-		};
-		7FA581001BF126D5005BED24 /* PageViewControl */ = {
-			isa = PBXGroup;
-			children = (
-				7FA581011BF126F2005BED24 /* SWRPageViewController.h */,
-				7FA581021BF126F2005BED24 /* SWRPageViewController.m */,
-				7FA581041BF12CC7005BED24 /* SWRPageContentViewController.h */,
-				7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */,
-			);
-			path = PageViewControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,13 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
+				7FA581091BF1B589005BED24 /* SWRRightToLeftSegue.m in Sources */,
 				7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */,
-				7FA581061BF12CC7005BED24 /* SWRPageContentViewController.m in Sources */,
 				7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,
 				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
 				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
-				7FA581031BF126F2005BED24 /* SWRPageViewController.m in Sources */,
 				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
 				7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,

@@ -108,6 +108,7 @@
                     <connections>
                         <outlet property="passwordText" destination="GGm-h5-sT0" id="JIU-hw-N6P"/>
                         <outlet property="userNameText" destination="Ao3-vO-DcH" id="Lsf-06-Te3"/>
+                        <segue destination="6HP-Dk-hAC" kind="push" id="D2S-cL-nUG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vON-4G-r1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -124,7 +125,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vAw-wx-fPF">
-                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAw-wx-fPF" id="E19-ib-A4h">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -139,6 +140,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ncZ-le-C9z"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="ULu-hS-iC9" kind="push" identifier="conversation2Manage" id="fBg-kr-6yG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygG-oB-QvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +201,11 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="G3y-BF-mYh"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="6HP-Dk-hAC" kind="custom" identifier="manage2Conversation" customClass="SWRRightToLeftSegue" id="auJ-Pl-IMC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="811-Ri-WBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -208,7 +216,7 @@
             <objects>
                 <tableViewController id="0Tt-iu-sX5" customClass="SWRSettingTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="tdN-7C-CdS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -307,6 +315,7 @@
                         <outlet property="passwordText" destination="5LX-Pl-c2P" id="QnB-Cb-uTx"/>
                         <outlet property="userNameText" destination="26j-0P-aNH" id="eGa-Bv-kfg"/>
                         <segue destination="bm1-CF-0zm" kind="push" identifier="login2content" id="PZ4-5D-kCC"/>
+                        <segue destination="6HP-Dk-hAC" kind="push" identifier="login2Conversations" id="SoK-KC-lic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTE-3g-ryx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -354,4 +363,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="auJ-Pl-IMC"/>
+    </inferredMetricsTieBreakers>
 </document>

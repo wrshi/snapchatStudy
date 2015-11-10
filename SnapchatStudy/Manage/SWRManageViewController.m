@@ -7,8 +7,9 @@
 //
 
 #import "SWRManageViewController.h"
+#import "SWRConversationTableViewController.h"
 
-@interface SWRManageViewController ()
+@interface SWRManageViewController () <UIGestureRecognizerDelegate>
 
 @end
 
@@ -17,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [leftRecognizer setNumberOfTouchesRequired:1];
+    leftRecognizer.delegate = self;
+    [self.view addGestureRecognizer:leftRecognizer];
+    [self.view setUserInteractionEnabled:YES];
+}
+
+- (void)leftSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self performSegueWithIdentifier:@"manage2Conversation" sender:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

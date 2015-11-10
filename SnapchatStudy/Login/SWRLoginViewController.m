@@ -63,8 +63,7 @@
 
 - (void)clickLoginButton
 {
-//    [self performSegueWithIdentifier:@"login2Conversations" sender:nil];
-    [self performSegueWithIdentifier:@"login2content" sender:nil];
+    [self performSegueWithIdentifier:@"login2Conversations" sender:nil];
 }
 
 /*
