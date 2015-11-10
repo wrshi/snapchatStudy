@@ -9,6 +9,7 @@
 #import "SWRSettingTableViewController.h"
 
 @interface SWRSettingTableViewController ()
+@property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 
 @end
 
@@ -31,16 +32,14 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cellSelected = [self.tableView cellForRowAtIndexPath:indexPath];
+    if (cellSelected == _logoutCell) {
+        [PFUser logOut];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
 }
 
 /*

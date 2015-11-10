@@ -222,11 +222,11 @@
                         <sections>
                             <tableViewSection headerTitle="账户操作" id="ExI-la-Slf">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="VG6-Qy-Rji" style="IBUITableViewCellStyleDefault" id="M27-yA-god">
-                                        <rect key="frame" x="0.0" y="49.5" width="375" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="VG6-Qy-Rji" style="IBUITableViewCellStyleDefault" id="M27-yA-god">
+                                        <rect key="frame" x="0.0" y="49.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M27-yA-god" id="BNT-xy-anS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="黑名单" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VG6-Qy-Rji">
@@ -238,11 +238,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="579-oC-XrS" style="IBUITableViewCellStyleDefault" id="hVQ-Vd-Wfs">
-                                        <rect key="frame" x="0.0" y="93.5" width="375" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="579-oC-XrS" style="IBUITableViewCellStyleDefault" id="hVQ-Vd-Wfs">
+                                        <rect key="frame" x="0.0" y="93.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hVQ-Vd-Wfs" id="hYU-md-dow">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="登出" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="579-oC-XrS">
@@ -263,6 +263,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="FdS-Xj-23r"/>
+                    <connections>
+                        <outlet property="logoutCell" destination="hVQ-Vd-Wfs" id="DFJ-Ku-kON"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5W-It-mdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

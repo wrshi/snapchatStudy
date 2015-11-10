@@ -25,18 +25,30 @@
     
     [self setNavigationBar];
     
+    [self addRightSwipeGestureRecognizer];
     
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        MyLog(@"current user name: %@", currentUser.username);
+    } else {
+        // show the signup or login screen
+    }
+
+}
+
+- (void)addRightSwipeGestureRecognizer
+{
     UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
     [rightRecognizer setNumberOfTouchesRequired:1];
     rightRecognizer.delegate = self;
     [self.view addGestureRecognizer:rightRecognizer];
     [self.view setUserInteractionEnabled:YES];
-    
-
-    
 
 }
+
+
 
 
 
@@ -45,10 +57,6 @@
     [self performSegueWithIdentifier:@"conversation2Manage" sender:nil];
     
 }
-
-
-
-
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     return true;

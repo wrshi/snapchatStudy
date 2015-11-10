@@ -63,7 +63,17 @@
 
 - (void)clickLoginButton
 {
-    [self performSegueWithIdentifier:@"login2Conversations" sender:nil];
+    [PFUser logInWithUsernameInBackground:self.userNameText.text password:self.passwordText.text block:^(PFUser *user, NSError *error){
+        if (user) {
+            [self performSegueWithIdentifier:@"login2Conversations" sender:nil];
+        } else {
+            NSString *errorString = [error userInfo][@"error"];
+            MyLog(@"login error: %@", errorString);
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"用户名或密码不正确喔，再试一下？" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
+    
 }
 
 /*

@@ -35,7 +35,7 @@
 		7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */; };
 		7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */; };
 		7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */; };
-		7FA581091BF1B589005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */; };
+		7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,8 +93,8 @@
 		7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRManageViewController.m; sourceTree = "<group>"; };
 		7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSettingTableViewController.h; sourceTree = "<group>"; };
 		7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSettingTableViewController.m; sourceTree = "<group>"; };
-		7FA581071BF1B589005BED24 /* SWRRightToLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRRightToLeftSegue.h; path = ../SWRRightToLeftSegue.h; sourceTree = "<group>"; };
-		7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRRightToLeftSegue.m; path = ../SWRRightToLeftSegue.m; sourceTree = "<group>"; };
+		7FA581101BF1B8D8005BED24 /* SWRRightToLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRightToLeftSegue.h; sourceTree = "<group>"; };
+		7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRightToLeftSegue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +161,7 @@
 				7FA580BB1BF02C56005BED24 /* ConversationTable */,
 				7FA580F41BF066B9005BED24 /* Manage */,
 				7FA580FC1BF067B5005BED24 /* Setting */,
+				7FA5810F1BF1B8D8005BED24 /* CustomizedSegue */,
 				7FA580A11BF02693005BED24 /* LaunchScreen.xib */,
 				7FA5809F1BF02693005BED24 /* Images.xcassets */,
 				7FA580921BF02693005BED24 /* Supporting Files */,
@@ -260,8 +261,6 @@
 			children = (
 				7FA580F91BF066FC005BED24 /* SWRManageViewController.h */,
 				7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */,
-				7FA581071BF1B589005BED24 /* SWRRightToLeftSegue.h */,
-				7FA581081BF1B589005BED24 /* SWRRightToLeftSegue.m */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -282,6 +281,15 @@
 				7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		7FA5810F1BF1B8D8005BED24 /* CustomizedSegue */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581101BF1B8D8005BED24 /* SWRRightToLeftSegue.h */,
+				7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */,
+			);
+			path = CustomizedSegue;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,7 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
-				7FA581091BF1B589005BED24 /* SWRRightToLeftSegue.m in Sources */,
+				7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */,
 				7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */,
 				7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,

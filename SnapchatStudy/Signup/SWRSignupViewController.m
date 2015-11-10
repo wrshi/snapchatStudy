@@ -71,6 +71,7 @@
             NSString *errorString = [error userInfo][@"error"];
             MyLog(@"signup error: %@", errorString);
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"请稍后再试:-D" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
         }
     }];
     
