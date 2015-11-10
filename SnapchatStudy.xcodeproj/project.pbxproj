@@ -19,7 +19,6 @@
 		7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580CA1BF02E81005BED24 /* SWRStartViewController.m */; };
 		7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */; };
 		7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */; };
-		7FA580D71BF02F4F005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */; };
 		7FA580DB1BF04AD9005BED24 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DA1BF04AD9005BED24 /* AudioToolbox.framework */; };
 		7FA580DD1BF04AEF005BED24 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DC1BF04AEF005BED24 /* CFNetwork.framework */; };
 		7FA580DF1BF04AF6005BED24 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580DE1BF04AF6005BED24 /* CoreGraphics.framework */; };
@@ -33,6 +32,11 @@
 		7FA580EF1BF04C66005BED24 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580EE1BF04C66005BED24 /* Parse.framework */; };
 		7FA580F11BF04DBB005BED24 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580F01BF04DBB005BED24 /* Bolts.framework */; };
 		7FA580F31BF04E20005BED24 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580F21BF04E20005BED24 /* libsqlite3.dylib */; };
+		7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */; };
+		7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */; };
+		7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */; };
+		7FA581031BF126F2005BED24 /* SWRPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581021BF126F2005BED24 /* SWRPageViewController.m */; };
+		7FA581061BF12CC7005BED24 /* SWRPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,8 +74,6 @@
 		7FA580CD1BF02E9F005BED24 /* SWRSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSignupViewController.m; sourceTree = "<group>"; };
 		7FA580D21BF02EDD005BED24 /* SWRConversationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRConversationTableViewController.h; sourceTree = "<group>"; };
 		7FA580D31BF02EDD005BED24 /* SWRConversationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationTableViewController.m; sourceTree = "<group>"; };
-		7FA580D51BF02F4F005BED24 /* SWRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRLoginViewController.h; path = SnapchatStudy/SWRLoginViewController.h; sourceTree = SOURCE_ROOT; };
-		7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRLoginViewController.m; path = SnapchatStudy/SWRLoginViewController.m; sourceTree = SOURCE_ROOT; };
 		7FA580D81BF049EE005BED24 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		7FA580DA1BF04AD9005BED24 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7FA580DC1BF04AEF005BED24 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -86,6 +88,16 @@
 		7FA580EE1BF04C66005BED24 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../Lib/parse-starter-project-1.9.1/ParseStarterProject/Parse.framework"; sourceTree = "<group>"; };
 		7FA580F01BF04DBB005BED24 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../Lib/parse-starter-project-1.9.1/ParseStarterProject/Bolts.framework"; sourceTree = "<group>"; };
 		7FA580F21BF04E20005BED24 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7FA580F61BF066DC005BED24 /* SWRLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRLoginViewController.h; sourceTree = "<group>"; };
+		7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRLoginViewController.m; sourceTree = "<group>"; };
+		7FA580F91BF066FC005BED24 /* SWRManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRManageViewController.h; sourceTree = "<group>"; };
+		7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRManageViewController.m; sourceTree = "<group>"; };
+		7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSettingTableViewController.h; sourceTree = "<group>"; };
+		7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSettingTableViewController.m; sourceTree = "<group>"; };
+		7FA581011BF126F2005BED24 /* SWRPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRPageViewController.h; sourceTree = "<group>"; };
+		7FA581021BF126F2005BED24 /* SWRPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRPageViewController.m; sourceTree = "<group>"; };
+		7FA581041BF12CC7005BED24 /* SWRPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRPageContentViewController.h; sourceTree = "<group>"; };
+		7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRPageContentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +159,12 @@
 				7FA580971BF02693005BED24 /* AppDelegate.m */,
 				7FA580B81BF02C34005BED24 /* Navigator */,
 				7FA580BA1BF02C43005BED24 /* Start */,
-				7FA580BC1BF02C61005BED24 /* Login */,
+				7FA580F51BF066DC005BED24 /* Login */,
 				7FA580B91BF02C43005BED24 /* Signup */,
+				7FA581001BF126D5005BED24 /* PageViewControl */,
 				7FA580BB1BF02C56005BED24 /* ConversationTable */,
+				7FA580F41BF066B9005BED24 /* Manage */,
+				7FA580FC1BF067B5005BED24 /* Setting */,
 				7FA580A11BF02693005BED24 /* LaunchScreen.xib */,
 				7FA5809F1BF02693005BED24 /* Images.xcassets */,
 				7FA580921BF02693005BED24 /* Supporting Files */,
@@ -233,15 +248,6 @@
 			path = ConversationTable;
 			sourceTree = "<group>";
 		};
-		7FA580BC1BF02C61005BED24 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				7FA580D51BF02F4F005BED24 /* SWRLoginViewController.h */,
-				7FA580D61BF02F4F005BED24 /* SWRLoginViewController.m */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		7FA580C01BF02D1B005BED24 /* NavigationBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -251,6 +257,44 @@
 				7FA580C51BF02D53005BED24 /* SWRGreenNavigationBar.m */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		7FA580F41BF066B9005BED24 /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580F91BF066FC005BED24 /* SWRManageViewController.h */,
+				7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
+		7FA580F51BF066DC005BED24 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580F61BF066DC005BED24 /* SWRLoginViewController.h */,
+				7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7FA580FC1BF067B5005BED24 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */,
+				7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7FA581001BF126D5005BED24 /* PageViewControl */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581011BF126F2005BED24 /* SWRPageViewController.h */,
+				7FA581021BF126F2005BED24 /* SWRPageViewController.m */,
+				7FA581041BF12CC7005BED24 /* SWRPageContentViewController.h */,
+				7FA581051BF12CC7005BED24 /* SWRPageContentViewController.m */,
+			);
+			path = PageViewControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,12 +399,16 @@
 			files = (
 				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
 				7FA580D41BF02EDD005BED24 /* SWRConversationTableViewController.m in Sources */,
+				7FA581061BF12CC7005BED24 /* SWRPageContentViewController.m in Sources */,
+				7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,
 				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
 				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
+				7FA581031BF126F2005BED24 /* SWRPageViewController.m in Sources */,
 				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
+				7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,
-				7FA580D71BF02F4F005BED24 /* SWRLoginViewController.m in Sources */,
+				7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */,
 				7FA580C61BF02D53005BED24 /* SWRGreenNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +618,7 @@
 				7FA580B41BF02693005BED24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7FA580B51BF02693005BED24 /* Build configuration list for PBXNativeTarget "SnapchatStudyTests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +627,7 @@
 				7FA580B71BF02693005BED24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,16 +8,80 @@
 
 #import "SWRConversationTableViewController.h"
 #import "SWRGreenNavigationBar.h"
+#import "SWRManageViewController.h"
+#import "SWRPageViewController.h"
 
 @interface SWRConversationTableViewController ()
 
+
+
 @end
 
+
 @implementation SWRConversationTableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    
+//    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
+//    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+//    [rightRecognizer setNumberOfTouchesRequired:1];
+//    rightRecognizer.delegate = self;
+//    [self.view addGestureRecognizer:rightRecognizer];
+//    [self.view setUserInteractionEnabled:YES];
+    
+
+    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setNavigationBar];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    UIBarButtonItem *newButton = [[UIBarButtonItem alloc]
+                                  initWithTitle:@"Whatever" style:UIBarButtonItemStylePlain target:self action:@selector(doSomething)];
+    _navItem.rightBarButtonItem = newButton;
+    self.navigationItem.title = @"...";
+    
+    
+}
+
+
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    //Do moving
+    NSLog(@"动一个啊");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SWRManageViewController *manageController = [storyboard instantiateViewControllerWithIdentifier:@"ManageViewController"];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.75;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromBottom;
+    transition.delegate = self;
+    [self.view.layer addAnimation:transition forKey:nil];
+    [self addChildViewController:manageController];
+    [self.view addSubview:manageController.view];
+}
+
+
+
+
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return true;
+}
+
+- (void)setNavigationBar
+{
     self.navigationItem.title = @"snapchat";
     SWRGreenNavigationBar *navBar = [[SWRGreenNavigationBar alloc] init];
     [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
@@ -35,7 +99,7 @@
     [addFriendButton addTarget:self action:@selector(clickAddFriendButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addFriendButton];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
-
+    
 }
 
 - (void)clickFindFriendButton
@@ -65,6 +129,11 @@
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
 }
 
 /*
