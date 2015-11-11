@@ -8,7 +8,7 @@
 
 #import "SWRSettingTableViewController.h"
 
-@interface SWRSettingTableViewController ()
+@interface SWRSettingTableViewController () <UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *logoutCell;
 
 @end
@@ -30,14 +30,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)logout
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"是否登出？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"登出" otherButtonTitles:nil, nil];
+    
+    [sheet showInView:self.view];
+    
+}
+
+#pragma mark - ActionSheet delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) return;
+    
+    [PFUser logOut];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cellSelected = [self.tableView cellForRowAtIndexPath:indexPath];
+    cellSelected.selectionStyle = UITableViewCellSelectionStyleNone;
     if (cellSelected == _logoutCell) {
-        [PFUser logOut];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self logout];
     }
     
 }

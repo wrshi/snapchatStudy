@@ -30,9 +30,12 @@
     
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        MyLog(@"current user name: %@", currentUser.username);
+        
     } else {
         // show the signup or login screen
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"登录不成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 
 }

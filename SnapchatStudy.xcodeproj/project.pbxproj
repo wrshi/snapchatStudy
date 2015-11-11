@@ -36,6 +36,7 @@
 		7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */; };
 		7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */; };
 		7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */; };
+		7FA581181BF2E6DD005BED24 /* SWRAddFriendTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581171BF2E6DD005BED24 /* SWRAddFriendTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSettingTableViewController.m; sourceTree = "<group>"; };
 		7FA581101BF1B8D8005BED24 /* SWRRightToLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRightToLeftSegue.h; sourceTree = "<group>"; };
 		7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRightToLeftSegue.m; sourceTree = "<group>"; };
+		7FA581161BF2E6DD005BED24 /* SWRAddFriendTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRAddFriendTableViewController.h; sourceTree = "<group>"; };
+		7FA581171BF2E6DD005BED24 /* SWRAddFriendTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRAddFriendTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +282,7 @@
 			children = (
 				7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */,
 				7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */,
+				7FA581151BF2E6A6005BED24 /* AddFriend */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -290,6 +294,15 @@
 				7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */,
 			);
 			path = CustomizedSegue;
+			sourceTree = "<group>";
+		};
+		7FA581151BF2E6A6005BED24 /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581161BF2E6DD005BED24 /* SWRAddFriendTableViewController.h */,
+				7FA581171BF2E6DD005BED24 /* SWRAddFriendTableViewController.m */,
+			);
+			path = AddFriend;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,6 +413,7 @@
 				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
 				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
 				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
+				7FA581181BF2E6DD005BED24 /* SWRAddFriendTableViewController.m in Sources */,
 				7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,
 				7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */,

@@ -15,7 +15,7 @@
     if (self = [super initWithFrame:frame]){
         self.barTintColor = tintGreenColor;
         self.titleTextAttributes = @{
-                                     NSFontAttributeName : [UIFont systemFontOfSize:32],
+                                     NSFontAttributeName : [UIFont systemFontOfSize:28],
                                      NSForegroundColorAttributeName : [UIColor whiteColor]
                                      };
     }
