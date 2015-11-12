@@ -41,6 +41,11 @@
 		7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5812D1BF4353A005BED24 /* SWRConversationModel.m */; };
 		7FA581311BF4365D005BED24 /* SWRConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581301BF4365D005BED24 /* SWRConversationTableViewCell.m */; };
 		7FA581341BF43F68005BED24 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581331BF43F68005BED24 /* UIView+Extension.m */; };
+		7FA5813B1BF46072005BED24 /* SWRMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5813A1BF46072005BED24 /* SWRMessageModel.m */; };
+		7FA5813E1BF46317005BED24 /* SWRMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5813D1BF46317005BED24 /* SWRMessageFrame.m */; };
+		7FA581731BF47644005BED24 /* SWRMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581721BF47644005BED24 /* SWRMessageCell.m */; };
+		7FA581761BF502A2005BED24 /* SWRChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581751BF502A2005BED24 /* SWRChatViewController.m */; };
+		7FA581791BF502BB005BED24 /* SWRMessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581781BF502BB005BED24 /* SWRMessageTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +115,16 @@
 		7FA581301BF4365D005BED24 /* SWRConversationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationTableViewCell.m; sourceTree = "<group>"; };
 		7FA581321BF43F68005BED24 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		7FA581331BF43F68005BED24 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		7FA581391BF46072005BED24 /* SWRMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageModel.h; sourceTree = "<group>"; };
+		7FA5813A1BF46072005BED24 /* SWRMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMessageModel.m; sourceTree = "<group>"; };
+		7FA5813C1BF46317005BED24 /* SWRMessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageFrame.h; sourceTree = "<group>"; };
+		7FA5813D1BF46317005BED24 /* SWRMessageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMessageFrame.m; sourceTree = "<group>"; };
+		7FA581711BF47644005BED24 /* SWRMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageCell.h; sourceTree = "<group>"; };
+		7FA581721BF47644005BED24 /* SWRMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMessageCell.m; sourceTree = "<group>"; };
+		7FA581741BF502A2005BED24 /* SWRChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRChatViewController.h; sourceTree = "<group>"; };
+		7FA581751BF502A2005BED24 /* SWRChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRChatViewController.m; sourceTree = "<group>"; };
+		7FA581771BF502BB005BED24 /* SWRMessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageTableViewController.h; sourceTree = "<group>"; };
+		7FA581781BF502BB005BED24 /* SWRMessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMessageTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +189,7 @@
 				7FA580F51BF066DC005BED24 /* Login */,
 				7FA580B91BF02C43005BED24 /* Signup */,
 				7FA580BB1BF02C56005BED24 /* ConversationTable */,
+				7FA581351BF4604E005BED24 /* ChatTable */,
 				7FA580F41BF066B9005BED24 /* Manage */,
 				7FA580FC1BF067B5005BED24 /* Setting */,
 				7FA5810F1BF1B8D8005BED24 /* CustomizedSegue */,
@@ -357,6 +373,47 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		7FA581351BF4604E005BED24 /* ChatTable */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581361BF4604E005BED24 /* Controller */,
+				7FA581371BF4604E005BED24 /* Model */,
+				7FA581381BF4604E005BED24 /* View */,
+			);
+			path = ChatTable;
+			sourceTree = "<group>";
+		};
+		7FA581361BF4604E005BED24 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581741BF502A2005BED24 /* SWRChatViewController.h */,
+				7FA581751BF502A2005BED24 /* SWRChatViewController.m */,
+				7FA581771BF502BB005BED24 /* SWRMessageTableViewController.h */,
+				7FA581781BF502BB005BED24 /* SWRMessageTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7FA581371BF4604E005BED24 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581391BF46072005BED24 /* SWRMessageModel.h */,
+				7FA5813A1BF46072005BED24 /* SWRMessageModel.m */,
+				7FA5813C1BF46317005BED24 /* SWRMessageFrame.h */,
+				7FA5813D1BF46317005BED24 /* SWRMessageFrame.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7FA581381BF4604E005BED24 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FA581711BF47644005BED24 /* SWRMessageCell.h */,
+				7FA581721BF47644005BED24 /* SWRMessageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -458,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
+				7FA5813E1BF46317005BED24 /* SWRMessageFrame.m in Sources */,
 				7FA581291BF434FF005BED24 /* SWRConversationTableViewController.m in Sources */,
 				7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */,
 				7FA581311BF4365D005BED24 /* SWRConversationTableViewCell.m in Sources */,
@@ -465,9 +523,13 @@
 				7FA581341BF43F68005BED24 /* UIView+Extension.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,
 				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
+				7FA5813B1BF46072005BED24 /* SWRMessageModel.m in Sources */,
+				7FA581791BF502BB005BED24 /* SWRMessageTableViewController.m in Sources */,
 				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
 				7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */,
+				7FA581731BF47644005BED24 /* SWRMessageCell.m in Sources */,
 				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
+				7FA581761BF502A2005BED24 /* SWRChatViewController.m in Sources */,
 				7FA5811C1BF3071F005BED24 /* SWRMyFriendTableViewController.m in Sources */,
 				7FA581181BF2E6DD005BED24 /* SWRAddFriendTableViewController.m in Sources */,
 				7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */,
