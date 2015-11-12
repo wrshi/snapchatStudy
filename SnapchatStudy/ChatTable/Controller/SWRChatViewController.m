@@ -7,16 +7,36 @@
 //
 
 #import "SWRChatViewController.h"
+#import "SWRMessageTableViewController.h"
 
 @interface SWRChatViewController ()
+
+@property (nonatomic, strong) SWRMessageTableViewController *messageController;
 
 @end
 
 @implementation SWRChatViewController
 
+- (SWRMessageTableViewController *)messageController
+{
+    if (_messageController == nil){
+        _messageController = [[SWRMessageTableViewController alloc] init];
+        _messageController.view.y = 66;
+    }
+    return _messageController;
+}
+
+- (void)setUser:(PFUser *)user
+{
+    _user = user;
+    self.navigationItem.title = user.username;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view addSubview:self.messageController.view];
+    
 }
 
 - (void)didReceiveMemoryWarning {

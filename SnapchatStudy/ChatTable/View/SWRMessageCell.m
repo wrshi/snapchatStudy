@@ -38,7 +38,7 @@
     SWRMessageModel *messageModel = messageFrame.messageModel;
     
     self.fromLabel.frame = messageFrame.fromFrame;
-    self.fromLabel.text = messageModel.from.username;
+    self.fromLabel.text = messageModel.from;
 
     self.messageTextLabel.frame = messageFrame.textFrame;
     self.messageTextLabel.text = messageModel.text;
@@ -46,9 +46,11 @@
     self.rimLine.frame = messageFrame.rimLineFrame;
     if (messageModel.senderType == SWRMessageSenderTypeSelf){
         self.rimLine.backgroundColor = tintRedColor;
+        self.fromLabel.textColor = tintRedColor;
     }
     else if (messageModel.senderType == SWRMessageSenderTypeFriend){
         self.rimLine.backgroundColor = tintBlueColor;
+        self.fromLabel.textColor = tintBlueColor;
     }
 
     

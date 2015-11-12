@@ -16,7 +16,7 @@
 {
     _messageModel = messageModel;
     
-    NSString *username = messageModel.from.username;
+    NSString *username = messageModel.from;
     UIFont *usernameFont = [UIFont systemFontOfSize:12.0f];
     CGFloat fromX = 0;
     CGFloat fromY = 0;
@@ -28,7 +28,7 @@
     CGFloat textX = 10;
     CGFloat textY = CGRectGetMaxY(_fromFrame);
     CGSize textMaxSize = CGSizeMake(screenW, MAXFLOAT);
-    CGSize textRealSize = [username boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size;
+    CGSize textRealSize = [messageModel.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size;
     _textFrame = (CGRect){{textX, textY}, textRealSize};
     
     CGFloat rimLineX = 5;

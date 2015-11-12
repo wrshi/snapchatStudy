@@ -11,10 +11,12 @@
 #import "SWRManageViewController.h"
 #import "SWRConversationModel.h"
 #import "SWRConversationTableViewCell.h"
+#import "SWRChatViewController.h"
 
 @interface SWRConversationTableViewController () <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView *background;
+@property (nonatomic, strong) SWRChatViewController *chatViewController;
 
 @end
 
@@ -160,4 +162,25 @@
     return 60;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (_chatViewController == nil){
+        _chatViewController = [[SWRChatViewController alloc] init];
+    }
+    [self.navigationController pushViewController:_chatViewController animated:YES];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+

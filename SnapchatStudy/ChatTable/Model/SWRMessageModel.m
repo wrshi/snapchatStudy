@@ -10,7 +10,7 @@
 
 @implementation SWRMessageModel
 
-- (instancetype)initWithUser:(PFUser *)from textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType
+- (instancetype)initWithUser:(NSString *)from textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType
 {
     if (self = [super init]){
         self.from = from;

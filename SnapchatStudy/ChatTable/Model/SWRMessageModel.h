@@ -16,9 +16,10 @@ typedef NS_ENUM(NSUInteger, SWRMessageSenderType) {
 @interface SWRMessageModel : NSObject
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, strong) PFUser *from;
+//@property (nonatomic, strong) PFUser from;
+@property (nonatomic, copy) NSString *from;
 @property (nonatomic, assign) SWRMessageSenderType senderType;
 
-- (instancetype)initWithUser:(PFUser *)from textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType;
+- (instancetype)initWithUser:(NSString *)from textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType;
 
 @end
