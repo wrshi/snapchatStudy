@@ -11,6 +11,8 @@
 
 @implementation SWRMessageFrame
 
+const CGFloat leftMargin = 8;
+const CGFloat cellPadding = 2;
 
 - (void)setMessageModel:(SWRMessageModel *)messageModel
 {
@@ -18,26 +20,26 @@
     
     NSString *username = messageModel.from;
     UIFont *usernameFont = [UIFont systemFontOfSize:12.0f];
-    CGFloat fromX = 0;
-    CGFloat fromY = 0;
-    CGSize fromMaxSize = CGSizeMake(screenW, MAXFLOAT);
+    CGFloat fromX = leftMargin;
+    CGFloat fromY = cellPadding;
+    CGSize fromMaxSize = CGSizeMake(screenW - leftMargin - cellPadding, MAXFLOAT);
     CGSize fromRealSize = [username boundingRectWithSize:fromMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:usernameFont} context:nil].size;
     _fromFrame = (CGRect){{fromX, fromY}, fromRealSize};
     
     UIFont *textFont = [UIFont systemFontOfSize:15.0f];
-    CGFloat textX = 10;
-    CGFloat textY = CGRectGetMaxY(_fromFrame);
-    CGSize textMaxSize = CGSizeMake(screenW, MAXFLOAT);
+    CGFloat textX = leftMargin + leftMargin;
+    CGFloat textY = CGRectGetMaxY(_fromFrame) + cellPadding;
+    CGSize textMaxSize = CGSizeMake(screenW - 2 * leftMargin - cellPadding, MAXFLOAT);
     CGSize textRealSize = [messageModel.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textFont} context:nil].size;
     _textFrame = (CGRect){{textX, textY}, textRealSize};
     
-    CGFloat rimLineX = 5;
-    CGFloat rimLineY = textY;
-    CGFloat rimLineW = 2;
+    CGFloat rimLineX = leftMargin;
+    CGFloat rimLineY = textY + cellPadding;
+    CGFloat rimLineW = 1;
     CGFloat rimLineH = textRealSize.height;
     _rimLineFrame = CGRectMake(rimLineX, rimLineY, rimLineW, rimLineH);
     
-    _cellHeight = CGRectGetMaxY(_textFrame);
+    _cellHeight = CGRectGetMaxY(_textFrame) + cellPadding;
     
 }
 

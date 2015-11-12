@@ -58,6 +58,12 @@ static NSString *const messageCellIdentifier = @"messageCell";
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SWRMessageFrame *message = self.messages[indexPath.row];
+    return message.cellHeight;
+}
+
 #pragma mark - get fake data
 
 - (NSMutableArray *)messages
