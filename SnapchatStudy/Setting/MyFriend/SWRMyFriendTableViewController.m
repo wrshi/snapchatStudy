@@ -1,35 +1,36 @@
 //
-//  SWRAddFriendTableViewController.m
+//  SWRMyFriendTableViewController.m
 //  SnapchatStudy
 //
 //  Created by Weiran Shi on 2015-11-10.
 //  Copyright (c) 2015 Vera Shi. All rights reserved.
 //
 
-#import "SWRAddFriendTableViewController.h"
+#import "SWRMyFriendTableViewController.h"
 #import <Parse/Parse.h>
 
-@interface SWRAddFriendTableViewController ()
+@interface SWRMyFriendTableViewController ()
 
-@property (nonatomic, strong) NSArray *allUsers;
+@property (nonatomic, strong) PFRelation *friendsRelation;
+@property (nonatomic, strong) NSArray *myFriends;
+
 @property (nonatomic, strong) NSMutableArray *alphabetsArray;
 @property (nonatomic, strong) NSMutableArray *nameArray;
-@property (nonatomic, strong) PFUser *currentUser;
 
 @end
 
-static NSString * const cellReuseIdentifier = @"addFriendCell";
+static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
-@implementation SWRAddFriendTableViewController
+@implementation SWRMyFriendTableViewController
 
 #pragma mark - lazy load
 
-- (NSArray *)allUsers
+- (NSArray *)myFriends
 {
-    if (_allUsers == nil){
-        _allUsers = [NSArray array];
+    if (_myFriends == nil){
+        _myFriends = [NSArray array];
     }
-    return _allUsers;
+    return _myFriends;
 }
 
 - (NSMutableArray *)nameArray
@@ -48,7 +49,6 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     return _alphabetsArray;
 }
 
-
 #pragma mark -
 
 - (void)viewDidLoad {
@@ -56,15 +56,14 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     
     [self setNavigationBar];
     
-    self.currentUser = [PFUser currentUser];
-    
-    PFQuery *query = [PFUser query];
+    self.friendsRelation = [[PFUser currentUser] objectForKey:@"FriendsRelation"];
+    PFQuery *query = [self.friendsRelation query];
     [query orderByAscending:@"username"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            self.allUsers = objects;
-            self.nameArray = [self.allUsers valueForKeyPath:@"username"];
+            self.myFriends = objects;
+            self.nameArray = [self.myFriends valueForKeyPath:@"username"];
             [self createAlphabetArray];
             [self.tableView reloadData];
         } else {
@@ -72,14 +71,11 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
             MyLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
 }
-
-
 
 - (void)setNavigationBar
 {
-    self.navigationItem.title = @"Add Friend";
+    self.navigationItem.title = @"My Friend";
     
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
@@ -117,7 +113,7 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.allUsers count];
+    return [self.myFriends count];
 }
 
 
@@ -125,34 +121,10 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    PFUser *user = self.allUsers[indexPath.row];
+    PFUser *user = self.myFriends[indexPath.row];
     cell.textLabel.text = user.username;
     
-    PFQuery *query = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
-    [query whereKey:@"objectId" equalTo:user.objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if ([objects count] > 0){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PFRelation *friendsRelation = [self.currentUser relationForKey:@"FriendsRelation"];
-    PFUser *user = self.allUsers[indexPath.row];
-    [friendsRelation addObject:user];
-    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if (error){
-            MyLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
@@ -172,7 +144,6 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     }
     return 0;
 }
-
 
 
 

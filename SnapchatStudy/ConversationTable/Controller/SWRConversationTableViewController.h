@@ -10,6 +10,6 @@
 
 @interface SWRConversationTableViewController : UITableViewController
 
-@property (nonatomic, strong) UINavigationItem *navItem;
+@property (nonatomic, strong) NSMutableArray *conversations;
 
 @end

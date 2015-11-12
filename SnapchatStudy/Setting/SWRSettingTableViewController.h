@@ -10,4 +10,6 @@
 
 @interface SWRSettingTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *friends;
+
 @end

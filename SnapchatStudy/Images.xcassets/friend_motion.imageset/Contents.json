@@ -6,13 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "open_box_purple@2x.png"
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "open_box_purple@3x.png"
+      "filename" : "friend_motion@3x.png"
     }
   ],
   "info" : {
