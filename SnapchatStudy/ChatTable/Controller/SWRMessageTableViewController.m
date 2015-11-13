@@ -46,6 +46,12 @@ static NSString *const messageCellIdentifier = @"messageCell";
     }
 }
 
+- (void)addNewMessage:(SWRMessageFrame *)message
+{
+    [self.messages addObject:message];
+    [self.tableView reloadData];
+}
+
 
 
 #pragma mark - Table view data source

@@ -8,9 +8,9 @@
 
 #import "SWRInputBox.h"
 
-@interface SWRInputBox () <UITextViewDelegate>
+@interface SWRInputBox () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) UITextField *textView;
 @property (nonatomic, strong) UIButton *cameraButton;
 @property (nonatomic, strong) UIView *rimLine;
 
@@ -18,15 +18,15 @@
 
 @implementation SWRInputBox
 
-- (UITextView *)textView
+- (UITextField *)textView
 {
     if (_textView == nil){
-        _textView = [[UITextView alloc] init];
+        _textView = [[UITextField alloc] init];
         _textView.frame = CGRectMake(5, 5, self.width - 5 - 48 - 5, self.height - 2 * 5);
         _textView.font = [UIFont systemFontOfSize:16.0f];
+        _textView.placeholder = @"send a chat";
+        _textView.leftViewMode = UITextFieldViewModeAlways;
         _textView.delegate = self;
-        _textView.text = @"send a chat";
-        _textView.textColor = [UIColor lightGrayColor];
     }
     return _textView;
 }
@@ -67,24 +67,16 @@
     [super setFrame:frame];
 }
 
-#pragma mark - UITextView delegate
+#pragma mark - UITextField delegate
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([textView.text isEqualToString:@"send a chat"]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
+    if ([self.delegate respondsToSelector:@selector(SWRInputBox:sendMessage:)]){
+        [self.delegate SWRInputBox:self sendMessage:self.textView.text];
     }
-    [textView becomeFirstResponder];
+    self.textView.text = nil;
+    return YES;
 }
 
-- (void)textViewDidEndEditing:(UITextView *)textView
-{
-    if ([textView.text isEqualToString:@""]) {
-        textView.text = @"send a chat";
-        textView.textColor = [UIColor lightGrayColor];
-    }
-    [textView resignFirstResponder];
-}
 
 @end

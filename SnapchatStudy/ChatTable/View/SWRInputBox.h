@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SWRInputBox;
+
+@protocol SWRInputBoxDelegate <NSObject>
+
+@optional
+- (void)SWRInputBox:(SWRInputBox *)inputBox sendMessage:(NSString *)messageString;
+
+@end
 
 @interface SWRInputBox : UIView
+
+@property (nonatomic, weak) id<SWRInputBoxDelegate> delegate;
 
 @end

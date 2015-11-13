@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class SWRMessageTableViewController;
+@class SWRMessageFrame;
 
 @protocol SWRMessageTableViewControllerDelegate <NSObject>
 
@@ -19,5 +20,7 @@
 @interface SWRMessageTableViewController : UITableViewController
 
 @property (nonatomic, weak) id<SWRMessageTableViewControllerDelegate> delegate;
+
+- (void)addNewMessage:(SWRMessageFrame *)message;
 
 @end

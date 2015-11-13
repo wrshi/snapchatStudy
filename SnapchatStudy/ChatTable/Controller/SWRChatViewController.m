@@ -10,7 +10,7 @@
 #import "SWRMessageTableViewController.h"
 #import "SWRInputBoxController.h"
 
-@interface SWRChatViewController () <SWRMessageTableViewControllerDelegate>
+@interface SWRChatViewController () <SWRMessageTableViewControllerDelegate, SWRInputBoxControllerDelegate>
 
 @property (nonatomic, strong) SWRMessageTableViewController *messageController;
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
@@ -35,6 +35,7 @@
     if (_inputBoxController == nil){
         _inputBoxController = [[SWRInputBoxController alloc] init];
         _inputBoxController.view.y = screenH - _inputBoxController.view.height;
+        _inputBoxController.delegate = self;
     }
     return _inputBoxController;
 }
@@ -79,6 +80,13 @@
 {
     
     [self.inputBoxController resignFirstResponder];
+}
+
+#pragma mark - SWRInputBoxController delegate
+
+- (void)SWRInputBoxController:(SWRInputBoxController *)inputBoxController sendMessage:(SWRMessageFrame *)message
+{
+    [self.messageController addNewMessage:message];
 }
 
 @end

@@ -8,8 +8,10 @@
 
 #import "SWRInputBoxController.h"
 #import "SWRInputBox.h"
+#import "SWRMessageFrame.h"
+#import "SWRMessageModel.h"
 
-@interface SWRInputBoxController ()
+@interface SWRInputBoxController () <SWRInputBoxDelegate>
 
 @property (nonatomic, strong) SWRInputBox *inputBox;
 
@@ -21,6 +23,7 @@
 {
     if (_inputBox == nil){
         _inputBox = [[SWRInputBox alloc] initWithFrame:CGRectMake(0, 0, screenW, navigationbarH)];
+        _inputBox.delegate = self;
     }
     return _inputBox;
 }
@@ -42,10 +45,23 @@
 
 - (BOOL)resignFirstResponder
 {
-    MyLog(@"resign");
     [self.view endEditing:YES];
     return [super resignFirstResponder];
 }
+
+#pragma mark - SWRInputBox delegate
+
+- (void)SWRInputBox:(SWRInputBox *)inputBox sendMessage:(NSString *)messageString
+{
+    SWRMessageModel *messageModel = [[SWRMessageModel alloc] initWithUser:@"Me" textMessage:messageString senderType:SWRMessageSenderTypeSelf];
+    SWRMessageFrame *message = [[SWRMessageFrame alloc] init];
+    message.messageModel = messageModel;
+    if ([self.delegate respondsToSelector:@selector(SWRInputBoxController:sendMessage:)]){
+        [self.delegate SWRInputBoxController:self sendMessage:message];
+    }
+}
+
+
 
 
 

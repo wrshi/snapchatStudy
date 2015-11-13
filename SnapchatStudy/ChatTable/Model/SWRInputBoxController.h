@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 @class SWRInputBoxController;
+@class SWRMessageFrame;
 
 @protocol SWRInputBoxControllerDelegate <NSObject>
 
 @optional
+- (void)SWRInputBoxController:(SWRInputBoxController *)inputBoxController sendMessage:(SWRMessageFrame *)message;
 
 @end
 
 @interface SWRInputBoxController : UIViewController
 
 @property (nonatomic, weak) id<SWRInputBoxControllerDelegate> delegate;
+
+- (void)sendMessage:(SWRMessageFrame *)message;
 
 @end
