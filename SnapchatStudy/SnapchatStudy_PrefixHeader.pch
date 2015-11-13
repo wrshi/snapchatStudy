@@ -29,6 +29,8 @@
 
 #define screenW ([UIScreen mainScreen].bounds.size.width)
 #define screenH ([UIScreen mainScreen].bounds.size.height)
+#define statusbarH 20
+#define navigationbarH 44
 
 
 //RGB color

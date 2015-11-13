@@ -8,10 +8,12 @@
 
 #import "SWRChatViewController.h"
 #import "SWRMessageTableViewController.h"
+#import "SWRInputBoxController.h"
 
-@interface SWRChatViewController ()
+@interface SWRChatViewController () <SWRMessageTableViewControllerDelegate>
 
 @property (nonatomic, strong) SWRMessageTableViewController *messageController;
+@property (nonatomic, strong) SWRInputBoxController *inputBoxController;
 
 @end
 
@@ -21,10 +23,22 @@
 {
     if (_messageController == nil){
         _messageController = [[SWRMessageTableViewController alloc] init];
-        _messageController.view.y = 66;
+       
+        _messageController.view.y = statusbarH + navigationbarH;
+        _messageController.delegate = self;
     }
     return _messageController;
 }
+
+- (SWRInputBoxController *)inputBoxController
+{
+    if (_inputBoxController == nil){
+        _inputBoxController = [[SWRInputBoxController alloc] init];
+        _inputBoxController.view.y = screenH - _inputBoxController.view.height;
+    }
+    return _inputBoxController;
+}
+
 
 - (void)setUser:(PFUser *)user
 {
@@ -36,7 +50,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.messageController.view];
+    [self.view addSubview:self.inputBoxController.view];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,14 +66,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)keyboardDidChangeFrame:(NSNotification *)notification
+{
+    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.inputBoxController.view.transform = CGAffineTransformMakeTranslation(0, frame.origin.y - screenH);
 }
-*/
+
+#pragma mark - SWRMessageTableViewController delegate
+
+- (void)SWRMessageTableViewConrtroller:(SWRMessageTableViewController *)messageTableViewController didTappedOnView:(UIView *)tappedView
+{
+    
+    [self.inputBoxController resignFirstResponder];
+}
 
 @end

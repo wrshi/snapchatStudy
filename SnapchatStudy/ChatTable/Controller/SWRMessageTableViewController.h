@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SWRMessageTableViewController;
+
+@protocol SWRMessageTableViewControllerDelegate <NSObject>
+
+@optional
+- (void)SWRMessageTableViewConrtroller:(SWRMessageTableViewController *)messageTableViewController didTappedOnView:(UIView *)tappedView;
+
+@end
 
 @interface SWRMessageTableViewController : UITableViewController
+
+@property (nonatomic, weak) id<SWRMessageTableViewControllerDelegate> delegate;
 
 @end

@@ -28,6 +28,9 @@ static NSString *const messageCellIdentifier = @"messageCell";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView registerClass:[SWRMessageCell class] forCellReuseIdentifier:messageCellIdentifier];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnView)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,6 +38,15 @@ static NSString *const messageCellIdentifier = @"messageCell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)tappedOnView
+{
+    if ([self.delegate respondsToSelector:@selector(SWRMessageTableViewConrtroller:didTappedOnView:)]){
+        [self.delegate SWRMessageTableViewConrtroller:self didTappedOnView:self.view];
+    }
+}
+
+
 
 #pragma mark - Table view data source
 
