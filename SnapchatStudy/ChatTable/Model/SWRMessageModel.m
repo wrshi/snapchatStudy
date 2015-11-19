@@ -26,8 +26,8 @@
 {
     PFObject *newMessage = [PFObject objectWithClassName:@"message"];
     [newMessage setObject:self.text forKey:@"text"];
-    [newMessage setObject:self.fromUser.username forKey:@"fromUsername"];
-    [newMessage setObject:self.fromUser.objectId forKey:@"senderId"];
+    [newMessage setObject:self.fromUser forKey:@"fromUser"];
+    [newMessage setObject:self.toUser forKey:@"toUser"];
     [newMessage saveInBackground];
 }
 

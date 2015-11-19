@@ -58,7 +58,7 @@
 - (void)setConversation:(SWRConversationModel *)conversation
 {
     _conversation = conversation;
-    self.friendNameLabel.text = conversation.friendName;
+    self.friendNameLabel.text = conversation.friendUser.username;
     if (conversation.isUnread){
         self.unreadSymbol.image = [UIImage imageNamed:@"open_box_purple"];
     }

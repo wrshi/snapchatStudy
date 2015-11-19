@@ -42,11 +42,10 @@
     return _inputBoxController;
 }
 
-
-- (void)setUser:(PFUser *)user
+- (void)setFriendUser:(PFUser *)friendUser
 {
-    _user = user;
-    self.navigationItem.title = user.username;
+    _friendUser = friendUser;
+    self.navigationItem.title = friendUser.username;
 }
 
 - (void)viewDidLoad {
@@ -89,6 +88,7 @@
 - (void)SWRInputBoxController:(SWRInputBoxController *)inputBoxController sendMessage:(SWRMessageFrame *)message
 {
     [self.messageController addNewMessage:message];
+    message.messageModel.toUser = self.friendUser;
     [message.messageModel saveMessageModel];
 }
 

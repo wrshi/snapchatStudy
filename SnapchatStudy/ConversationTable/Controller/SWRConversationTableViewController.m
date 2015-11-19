@@ -15,6 +15,7 @@
 
 @interface SWRConversationTableViewController () <UIGestureRecognizerDelegate>
 
+@property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
 
@@ -32,8 +33,6 @@
     [self setBackgroundImage];
     
     [self addRightSwipeGestureRecognizer];
-    
-    self.conversations = [self getTestData];
     
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
     
@@ -150,42 +149,67 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if (_chatViewController == nil){
-        _chatViewController = [[SWRChatViewController alloc] init];
-    }
-    [self.navigationController pushViewController:_chatViewController animated:YES];
+    SWRConversationModel *conversationModel = self.conversations[indexPath.row];
+    MyLog(@"%@", conversationModel.friendUser.username);
+    self.chatViewController.friendUser = conversationModel.friendUser;
+    [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
 #pragma mark - private methods
 
-- (NSMutableArray *)getTestData
+//- (NSMutableArray *)getTestData
+//{
+//    NSMutableArray *models = [NSMutableArray array];
+//    
+//    SWRConversationModel *item1 = [[SWRConversationModel alloc] init];
+//    item1.friendName = @"陆毅";
+//    item1.unread = YES;
+//    [models addObject:item1];
+//    
+//    SWRConversationModel *item2 = [[SWRConversationModel alloc] init];
+//    item2.friendName = @"陈道明";
+//    item2.unread = NO;
+//    [models addObject:item2];
+//    
+//    
+//    return models;
+//}
+
+- (NSMutableArray *)conversations
 {
-    NSMutableArray *models = [NSMutableArray array];
-    
-    SWRConversationModel *item1 = [[SWRConversationModel alloc] init];
-    item1.friendName = @"陆毅";
-    item1.unread = YES;
-    [models addObject:item1];
-    
-    SWRConversationModel *item2 = [[SWRConversationModel alloc] init];
-    item2.friendName = @"陈道明";
-    item2.unread = NO;
-    [models addObject:item2];
-    
-    
-    return models;
+    if (_conversations == nil){
+        _conversations = [NSMutableArray array];
+        
+//        PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
+//        [conversationQuery whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+//        NSArray *messageArray = [conversationQuery findObjects];
+//        for (PFObject *message in messageArray){
+//            SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
+//            conversation.friendUser = message[@"toUser"];
+//            conversation.unread = NO;
+//            [_conversations addObject:conversation];
+//        }
+        
+        // get all friends
+        PFQuery *friendsQuery = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
+        NSArray *friends = [friendsQuery findObjects];
+        for (PFUser *friend in friends){
+            SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
+            conversation.friendUser = friend;
+            conversation.unread = NO;
+            [_conversations addObject:conversation];
+        }
+    }
+    return _conversations;
 }
 
-//- (NSMutableArray *)conversations
-//{
-//    if (_conversations == nil){
-//        _conversations = [NSMutableArray array];
-//        PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
-//        [conversationQuery whereKey:@"senderId" equalTo:[PFUser currentUser].objectId];
-//        [_conversations addObjectsFromArray:[conversationQuery findObjects]];
-//    }
-//    return _conversations;
-//}
+- (SWRChatViewController *)chatViewController
+{
+    if (_chatViewController == nil){
+        _chatViewController = [[SWRChatViewController alloc] init];
+    }
+    return _chatViewController;
+}
 
 @end
 

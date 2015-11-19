@@ -383,39 +383,12 @@
                     <connections>
                         <outlet property="passwordText" destination="5LX-Pl-c2P" id="QnB-Cb-uTx"/>
                         <outlet property="userNameText" destination="26j-0P-aNH" id="eGa-Bv-kfg"/>
-                        <segue destination="bm1-CF-0zm" kind="push" identifier="login2content" id="PZ4-5D-kCC"/>
                         <segue destination="6HP-Dk-hAC" kind="push" identifier="login2Conversations" id="SoK-KC-lic"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTE-3g-ryx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="387.5" y="-346.5"/>
-        </scene>
-        <!--Page Content View Controller-->
-        <scene sceneID="nuL-Ut-zug">
-            <objects>
-                <viewController id="bm1-CF-0zm" customClass="SWRPageContentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QhZ-Pv-xF5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="eKe-Ro-EDp"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h5B-BV-u2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="869.5" y="-756.5"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="4nh-eE-w8s">
-            <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="fJa-fU-TAl" customClass="SWRPageViewController" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bz8-4f-pMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="869.5" y="-1520.5"/>
         </scene>
     </scenes>
     <resources>

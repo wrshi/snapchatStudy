@@ -10,6 +10,6 @@
 
 @interface SWRChatViewController : UIViewController
 
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) PFUser *friendUser;
 
 @end

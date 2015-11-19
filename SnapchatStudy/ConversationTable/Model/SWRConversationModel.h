@@ -10,7 +10,7 @@
 
 @interface SWRConversationModel : NSObject
 
-@property (nonatomic, copy) NSString *friendName;
+@property (nonatomic, strong) PFUser *friendUser;
 @property (nonatomic, assign, getter=isUnread) BOOL unread;
 
 @end

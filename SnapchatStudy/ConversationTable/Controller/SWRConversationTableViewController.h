@@ -10,6 +10,7 @@
 
 @interface SWRConversationTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *conversations;
+
+
 
 @end
