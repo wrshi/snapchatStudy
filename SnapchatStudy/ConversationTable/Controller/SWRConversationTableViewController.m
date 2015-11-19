@@ -111,23 +111,7 @@
     
 }
 
-- (NSMutableArray *)getTestData
-{
-    NSMutableArray *models = [NSMutableArray array];
-    
-    SWRConversationModel *item1 = [[SWRConversationModel alloc] init];
-    item1.friendName = @"陆毅";
-    item1.unread = YES;
-    [models addObject:item1];
-    
-    SWRConversationModel *item2 = [[SWRConversationModel alloc] init];
-    item2.friendName = @"陈道明";
-    item2.unread = NO;
-    [models addObject:item2];
-    
-    
-    return models;
-}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.background.y = scrollView.contentOffset.y;
@@ -171,6 +155,37 @@
     }
     [self.navigationController pushViewController:_chatViewController animated:YES];
 }
+
+#pragma mark - private methods
+
+- (NSMutableArray *)getTestData
+{
+    NSMutableArray *models = [NSMutableArray array];
+    
+    SWRConversationModel *item1 = [[SWRConversationModel alloc] init];
+    item1.friendName = @"陆毅";
+    item1.unread = YES;
+    [models addObject:item1];
+    
+    SWRConversationModel *item2 = [[SWRConversationModel alloc] init];
+    item2.friendName = @"陈道明";
+    item2.unread = NO;
+    [models addObject:item2];
+    
+    
+    return models;
+}
+
+//- (NSMutableArray *)conversations
+//{
+//    if (_conversations == nil){
+//        _conversations = [NSMutableArray array];
+//        PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
+//        [conversationQuery whereKey:@"senderId" equalTo:[PFUser currentUser].objectId];
+//        [_conversations addObjectsFromArray:[conversationQuery findObjects]];
+//    }
+//    return _conversations;
+//}
 
 @end
 

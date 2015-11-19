@@ -89,15 +89,15 @@ static NSString *const messageCellIdentifier = @"messageCell";
     if (_messages == nil){
         _messages = [NSMutableArray array];
         
-        SWRMessageModel *model1 = [[SWRMessageModel alloc] initWithUser:@"Lu Yi" textMessage:@"Hello, you are so beautiful! May I have dinner with you tonight?" senderType:SWRMessageSenderTypeFriend];
-        SWRMessageFrame *message1 = [[SWRMessageFrame alloc] init];
-        message1.messageModel = model1;
-        [_messages addObject:message1];
-        
-        SWRMessageModel *model2 = [[SWRMessageModel alloc] initWithUser:@"Me" textMessage:@"Sure. See you. " senderType:SWRMessageSenderTypeSelf];
-        SWRMessageFrame *message2 = [[SWRMessageFrame alloc] init];
-        message2.messageModel = model2;
-        [_messages addObject:message2];
+//        SWRMessageModel *model1 = [[SWRMessageModel alloc] initWithUser:@"Lu Yi" textMessage:@"Hello, you are so beautiful! May I have dinner with you tonight?" senderType:SWRMessageSenderTypeFriend];
+//        SWRMessageFrame *message1 = [[SWRMessageFrame alloc] init];
+//        message1.messageModel = model1;
+//        [_messages addObject:message1];
+//        
+//        SWRMessageModel *model2 = [[SWRMessageModel alloc] initWithUser:@"Me" textMessage:@"Sure. See you. " senderType:SWRMessageSenderTypeSelf];
+//        SWRMessageFrame *message2 = [[SWRMessageFrame alloc] init];
+//        message2.messageModel = model2;
+//        [_messages addObject:message2];
         
     }
     return _messages;

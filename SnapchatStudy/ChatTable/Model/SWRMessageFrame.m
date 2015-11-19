@@ -18,7 +18,7 @@ const CGFloat cellPadding = 2;
 {
     _messageModel = messageModel;
     
-    NSString *username = messageModel.from;
+    NSString *username = messageModel.fromUser.username;
     UIFont *usernameFont = [UIFont systemFontOfSize:12.0f];
     CGFloat fromX = leftMargin;
     CGFloat fromY = cellPadding;

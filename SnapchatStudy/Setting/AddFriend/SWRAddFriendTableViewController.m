@@ -7,7 +7,7 @@
 //
 
 #import "SWRAddFriendTableViewController.h"
-#import <Parse/Parse.h>
+
 
 @interface SWRAddFriendTableViewController ()
 

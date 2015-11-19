@@ -21,6 +21,5 @@
 
 @property (nonatomic, weak) id<SWRInputBoxControllerDelegate> delegate;
 
-- (void)sendMessage:(SWRMessageFrame *)message;
 
 @end

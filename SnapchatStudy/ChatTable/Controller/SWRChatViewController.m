@@ -9,6 +9,8 @@
 #import "SWRChatViewController.h"
 #import "SWRMessageTableViewController.h"
 #import "SWRInputBoxController.h"
+#import "SWRMessageModel.h"
+#import "SWRMessageFrame.h"
 
 @interface SWRChatViewController () <SWRMessageTableViewControllerDelegate, SWRInputBoxControllerDelegate>
 
@@ -87,6 +89,7 @@
 - (void)SWRInputBoxController:(SWRInputBoxController *)inputBoxController sendMessage:(SWRMessageFrame *)message
 {
     [self.messageController addNewMessage:message];
+    [message.messageModel saveMessageModel];
 }
 
 @end
