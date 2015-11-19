@@ -15,6 +15,9 @@
 @property (nonatomic, strong) NSMutableArray *alphabetsArray;
 @property (nonatomic, strong) NSMutableArray *nameArray;
 @property (nonatomic, strong) PFUser *currentUser;
+@property (nonatomic, strong) NSMutableArray *friendsId;
+
+
 
 @end
 
@@ -48,6 +51,19 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     return _alphabetsArray;
 }
 
+- (NSMutableArray *)friendsId
+{
+    if (_friendsId == nil){
+        _friendsId = [NSMutableArray array];
+        PFQuery *friendsQuery = [[self.currentUser relationForKey:@"FriendsRelation"] query];
+        // use synchronous query.
+        // is there a better way??
+        NSArray *objects = [friendsQuery findObjects];
+        _friendsId = [NSMutableArray arrayWithArray:[objects valueForKeyPath:@"objectId"]];
+    }
+    return _friendsId;
+}
+
 
 #pragma mark -
 
@@ -56,11 +72,20 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     
     [self setNavigationBar];
     
+    
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     self.currentUser = [PFUser currentUser];
     
-    PFQuery *query = [PFUser query];
-    [query orderByAscending:@"username"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    PFQuery *userQuery = [PFUser query];
+    [userQuery orderByAscending:@"username"];
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
             self.allUsers = objects;
@@ -73,8 +98,10 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
         }
     }];
     
-}
+   
 
+    
+}
 
 
 - (void)setNavigationBar
@@ -113,10 +140,13 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return [self.allUsers count];
 }
 
@@ -125,27 +155,33 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
     PFUser *user = self.allUsers[indexPath.row];
     cell.textLabel.text = user.username;
-    
-    PFQuery *query = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
-    [query whereKey:@"objectId" equalTo:user.objectId];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if ([objects count] > 0){
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        }
-        else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }];
+
+    if ([self.friendsId containsObject:user.objectId]){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     return cell;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PFRelation *friendsRelation = [self.currentUser relationForKey:@"FriendsRelation"];
     PFUser *user = self.allUsers[indexPath.row];
-    [friendsRelation addObject:user];
+    if ([self.friendsId containsObject:user.objectId]){
+        [friendsRelation removeObject:user];
+        [self.friendsId removeObject:user.objectId];
+    }
+    else{
+        [friendsRelation addObject:user];
+        [self.friendsId addObject:user.objectId];
+    }
+    
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (error){
             MyLog(@"Error: %@ %@", error, [error userInfo]);
@@ -172,6 +208,8 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     }
     return 0;
 }
+
+#pragma mark - private methods
 
 
 

@@ -10,6 +10,6 @@
 
 @interface SWRAddFriendTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *friends;
+
 
 @end
