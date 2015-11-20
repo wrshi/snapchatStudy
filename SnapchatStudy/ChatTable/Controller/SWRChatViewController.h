@@ -11,5 +11,6 @@
 @interface SWRChatViewController : UIViewController
 
 @property (nonatomic, strong) PFUser *friendUser;
+@property (nonatomic, strong) NSMutableArray *chatMessageArray;
 
 @end

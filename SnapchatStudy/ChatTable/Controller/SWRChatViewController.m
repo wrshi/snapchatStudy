@@ -45,7 +45,7 @@
 - (void)setFriendUser:(PFUser *)friendUser
 {
     _friendUser = friendUser;
-    self.navigationItem.title = friendUser.username;
+    self.navigationItem.title = friendUser.objectId;
 }
 
 - (void)viewDidLoad {

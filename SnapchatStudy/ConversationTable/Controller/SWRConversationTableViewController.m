@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
+@property (nonatomic, strong) NSMutableDictionary *conversationDict;
 
 @end
 
@@ -150,57 +151,41 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     SWRConversationModel *conversationModel = self.conversations[indexPath.row];
-    MyLog(@"%@", conversationModel.friendUser.username);
     self.chatViewController.friendUser = conversationModel.friendUser;
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
 #pragma mark - private methods
 
-//- (NSMutableArray *)getTestData
-//{
-//    NSMutableArray *models = [NSMutableArray array];
-//    
-//    SWRConversationModel *item1 = [[SWRConversationModel alloc] init];
-//    item1.friendName = @"陆毅";
-//    item1.unread = YES;
-//    [models addObject:item1];
-//    
-//    SWRConversationModel *item2 = [[SWRConversationModel alloc] init];
-//    item2.friendName = @"陈道明";
-//    item2.unread = NO;
-//    [models addObject:item2];
-//    
-//    
-//    return models;
-//}
-
 - (NSMutableArray *)conversations
 {
     if (_conversations == nil){
         _conversations = [NSMutableArray array];
         
-//        PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
-//        [conversationQuery whereKey:@"fromUser" equalTo:[PFUser currentUser]];
-//        NSArray *messageArray = [conversationQuery findObjects];
-//        for (PFObject *message in messageArray){
+        PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
+        NSArray *messageArray = [conversationQuery findObjects];
+        MyLog(@"%@", messageArray);
+        [self classifyMessages:messageArray];
+        
+//        // get all friends
+//        PFQuery *friendsQuery = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
+//        NSArray *friends = [friendsQuery findObjects];
+//        for (PFUser *friend in friends){
 //            SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
-//            conversation.friendUser = message[@"toUser"];
+//            conversation.friendUser = friend;
 //            conversation.unread = NO;
 //            [_conversations addObject:conversation];
 //        }
-        
-        // get all friends
-        PFQuery *friendsQuery = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
-        NSArray *friends = [friendsQuery findObjects];
-        for (PFUser *friend in friends){
-            SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
-            conversation.friendUser = friend;
-            conversation.unread = NO;
-            [_conversations addObject:conversation];
-        }
     }
     return _conversations;
+}
+
+- (NSMutableDictionary *)conversationDict
+{
+    if (_conversationDict == nil){
+        _conversationDict = [NSMutableDictionary dictionary];
+    }
+    return _conversationDict;
 }
 
 - (SWRChatViewController *)chatViewController
@@ -209,6 +194,45 @@
         _chatViewController = [[SWRChatViewController alloc] init];
     }
     return _chatViewController;
+}
+
+- (void)classifyMessages:(NSArray *)messageArray
+{
+    for (PFObject *message in messageArray){
+        PFUser *fromUser = message[@"fromUser"];
+        PFUser *toUser = message[@"toUser"];
+        NSString *fromUsername = fromUser.objectId;
+        NSString *toUsername = toUser.objectId;
+        NSString *currentUsername = [PFUser currentUser].objectId;
+        if ([fromUsername isEqualToString:currentUsername]){
+            if ([self.conversationDict objectForKey:toUsername] == nil){
+                SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
+                conversation.friendUser = toUser;
+                conversation.unread = NO;
+                [_conversations addObject:conversation];
+                
+                NSMutableArray *newChat = [NSMutableArray array];
+                [self.conversationDict setObject:newChat forKey:toUsername];
+            }
+            NSMutableArray *chat = [self.conversationDict objectForKey:toUsername];
+            [chat addObject:message];
+            
+        }
+        else if ([toUsername isEqualToString:currentUsername]){
+            if ([self.conversationDict objectForKey:fromUsername] == nil){
+                SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
+                conversation.friendUser = fromUser;
+                conversation.unread = YES;
+                [_conversations addObject:conversation];
+                
+                NSMutableArray *newChat = [NSMutableArray array];
+                [self.conversationDict setObject:newChat forKey:fromUsername];
+            }
+            NSMutableArray *chat = [self.conversationDict objectForKey:fromUsername];
+            [chat addObject:message];
+        }
+    }
+    NSLog(@"%@", self.conversationDict);
 }
 
 @end
