@@ -10,25 +10,29 @@
 
 @implementation SWRMessageModel
 
-- (instancetype)initWithUser:(PFUser *)fromUser textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType
+- (instancetype)initWithUser:(PFUser *)fromUser textMessage:(NSString *)text
 {
     if (self = [super init]){
         self.fromUser = fromUser;
         self.text = text;
-        self.senderType = senderType;
     }
     return self;
 }
 
++ (instancetype)initWithPFObject:(PFObject *)message
+{
+    return [[self alloc] initWithUser:message[@"fromUser"] textMessage:message[@"text"]];
+}
 
 
-- (void)saveMessageModel
+- (PFObject *)saveMessageModel
 {
     PFObject *newMessage = [PFObject objectWithClassName:@"message"];
     [newMessage setObject:self.text forKey:@"text"];
     [newMessage setObject:self.fromUser forKey:@"fromUser"];
     [newMessage setObject:self.toUser forKey:@"toUser"];
     [newMessage saveInBackground];
+    return newMessage;
 }
 
 

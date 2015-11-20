@@ -20,8 +20,9 @@ typedef NS_ENUM(NSUInteger, SWRMessageSenderType) {
 @property (nonatomic, strong) PFUser *toUser;
 @property (nonatomic, assign) SWRMessageSenderType senderType;
 
-- (instancetype)initWithUser:(PFUser *)fromUser textMessage:(NSString *)text senderType:(SWRMessageSenderType)senderType;
+- (instancetype)initWithUser:(PFUser *)fromUser textMessage:(NSString *)text;
++ (instancetype)initWithPFObject:(PFObject *)message;
 
-- (void)saveMessageModel;
+- (PFObject *)saveMessageModel;
 
 @end

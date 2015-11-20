@@ -12,6 +12,7 @@
 #import "SWRConversationModel.h"
 #import "SWRConversationTableViewCell.h"
 #import "SWRChatViewController.h"
+#import "SWRMessageTableViewController.h"
 
 @interface SWRConversationTableViewController () <UIGestureRecognizerDelegate>
 
@@ -152,6 +153,8 @@
     
     SWRConversationModel *conversationModel = self.conversations[indexPath.row];
     self.chatViewController.friendUser = conversationModel.friendUser;
+    
+    self.chatViewController.messageController.chatMessageArray = self.conversationDict[conversationModel.friendUser.objectId];
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
@@ -164,18 +167,8 @@
         
         PFQuery *conversationQuery = [PFQuery queryWithClassName:@"message"];
         NSArray *messageArray = [conversationQuery findObjects];
-        MyLog(@"%@", messageArray);
         [self classifyMessages:messageArray];
         
-//        // get all friends
-//        PFQuery *friendsQuery = [[[PFUser currentUser] relationForKey:@"FriendsRelation"] query];
-//        NSArray *friends = [friendsQuery findObjects];
-//        for (PFUser *friend in friends){
-//            SWRConversationModel *conversation = [[SWRConversationModel alloc] init];
-//            conversation.friendUser = friend;
-//            conversation.unread = NO;
-//            [_conversations addObject:conversation];
-//        }
     }
     return _conversations;
 }
@@ -232,7 +225,6 @@
             [chat addObject:message];
         }
     }
-    NSLog(@"%@", self.conversationDict);
 }
 
 @end

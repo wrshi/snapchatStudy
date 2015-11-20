@@ -14,7 +14,6 @@
 
 @interface SWRChatViewController () <SWRMessageTableViewControllerDelegate, SWRInputBoxControllerDelegate>
 
-@property (nonatomic, strong) SWRMessageTableViewController *messageController;
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
 
 @end
@@ -57,6 +56,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
 }
+
 
 - (void)dealloc
 {

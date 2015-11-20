@@ -20,6 +20,9 @@ static NSString *const messageCellIdentifier = @"messageCell";
 
 @implementation SWRMessageTableViewController
 
+@synthesize chatMessageArray = _chatMessageArray;
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -32,6 +35,8 @@ static NSString *const messageCellIdentifier = @"messageCell";
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnView)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -46,11 +51,7 @@ static NSString *const messageCellIdentifier = @"messageCell";
     }
 }
 
-- (void)addNewMessage:(SWRMessageFrame *)message
-{
-    [self.messages addObject:message];
-    [self.tableView reloadData];
-}
+
 
 
 
@@ -82,25 +83,59 @@ static NSString *const messageCellIdentifier = @"messageCell";
     return message.cellHeight;
 }
 
-#pragma mark - get fake data
+#pragma mark - private methods
+
+
+- (NSMutableArray *)chatMessageArray
+{
+    if (_chatMessageArray == nil){
+        _chatMessageArray = [NSMutableArray array];
+    }
+    return _chatMessageArray;
+}
 
 - (NSMutableArray *)messages
 {
     if (_messages == nil){
         _messages = [NSMutableArray array];
-        
-//        SWRMessageModel *model1 = [[SWRMessageModel alloc] initWithUser:@"Lu Yi" textMessage:@"Hello, you are so beautiful! May I have dinner with you tonight?" senderType:SWRMessageSenderTypeFriend];
-//        SWRMessageFrame *message1 = [[SWRMessageFrame alloc] init];
-//        message1.messageModel = model1;
-//        [_messages addObject:message1];
-//        
-//        SWRMessageModel *model2 = [[SWRMessageModel alloc] initWithUser:@"Me" textMessage:@"Sure. See you. " senderType:SWRMessageSenderTypeSelf];
-//        SWRMessageFrame *message2 = [[SWRMessageFrame alloc] init];
-//        message2.messageModel = model2;
-//        [_messages addObject:message2];
-        
     }
     return _messages;
 }
+
+- (void)setChatMessageArray:(NSMutableArray *)chatMessageArray
+{
+    _chatMessageArray = chatMessageArray;
+    [self getCurrentMessages:chatMessageArray];
+}
+
+- (void)getCurrentMessages:(NSMutableArray *)chatMessageArray
+{
+    [self.messages removeAllObjects];
+    for (PFObject *message in chatMessageArray){
+        PFUser *fromUser = message[@"fromUser"];
+        NSString *fromUsername = fromUser.objectId;
+        NSString *currentUsername = [PFUser currentUser].objectId;
+        SWRMessageModel *messageModel = [SWRMessageModel initWithPFObject:message];
+        if ([fromUsername isEqualToString:currentUsername]){
+            messageModel.senderType = SWRMessageSenderTypeSelf;
+        }
+        else{
+            messageModel.senderType = SWRMessageSenderTypeFriend;
+        }
+        SWRMessageFrame *messageFrame = [[SWRMessageFrame alloc] init];
+        messageFrame.messageModel = messageModel;
+        [self.messages addObject:messageFrame];
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - public methods
+
+- (void)addNewMessage:(SWRMessageFrame *)message
+{
+    [self.messages addObject:message];
+    [self.tableView reloadData];
+}
+
 
 @end

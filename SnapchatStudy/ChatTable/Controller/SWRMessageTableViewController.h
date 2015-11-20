@@ -20,6 +20,7 @@
 @interface SWRMessageTableViewController : UITableViewController
 
 @property (nonatomic, weak) id<SWRMessageTableViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray *chatMessageArray;
 
 - (void)addNewMessage:(SWRMessageFrame *)message;
 

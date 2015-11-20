@@ -53,7 +53,8 @@
 
 - (void)SWRInputBox:(SWRInputBox *)inputBox sendMessage:(NSString *)messageString
 {
-    SWRMessageModel *messageModel = [[SWRMessageModel alloc] initWithUser:[PFUser currentUser] textMessage:messageString senderType:SWRMessageSenderTypeSelf];
+    SWRMessageModel *messageModel = [[SWRMessageModel alloc] initWithUser:[PFUser currentUser] textMessage:messageString];
+    messageModel.senderType = SWRMessageSenderTypeSelf;
     SWRMessageFrame *message = [[SWRMessageFrame alloc] init];
     message.messageModel = messageModel;
     if ([self.delegate respondsToSelector:@selector(SWRInputBoxController:sendMessage:)]){

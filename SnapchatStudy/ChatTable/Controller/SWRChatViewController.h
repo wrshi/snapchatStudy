@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SWRMessageTableViewController;
 
 @interface SWRChatViewController : UIViewController
 
 @property (nonatomic, strong) PFUser *friendUser;
-@property (nonatomic, strong) NSMutableArray *chatMessageArray;
+@property (nonatomic, strong) SWRMessageTableViewController *messageController;
+
 
 @end
