@@ -118,13 +118,23 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     PFUser *user = self.myFriends[indexPath.row];
     cell.textLabel.text = user.username;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PFUser *user = self.myFriends[indexPath.row];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(SWRMyFriendTableViewController:didSelectUser:)]){
+            [self.delegate SWRMyFriendTableViewController:self didSelectUser:user];
+        }
+    }];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView

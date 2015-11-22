@@ -250,7 +250,7 @@
         <!--My Friend Table View Controller-->
         <scene sceneID="oll-4a-2XM">
             <objects>
-                <tableViewController id="WuO-uY-jAX" customClass="SWRMyFriendTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SWRMyFriendTableViewController" id="WuO-uY-jAX" customClass="SWRMyFriendTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gvN-Vg-ZOq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

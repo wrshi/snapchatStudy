@@ -13,8 +13,9 @@
 #import "SWRConversationTableViewCell.h"
 #import "SWRChatViewController.h"
 #import "SWRMessageTableViewController.h"
+#import "SWRMyFriendTableViewController.h"
 
-@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate>
+@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
@@ -104,6 +105,12 @@
 
 - (void)clickFindFriendButton
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SWRMyFriendTableViewController *myfriendViewController = [storyboard instantiateViewControllerWithIdentifier:@"SWRMyFriendTableViewController"];
+    myfriendViewController.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myfriendViewController];
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navController animated:YES completion:NULL];
 
 }
 
@@ -156,6 +163,13 @@
     
     self.chatViewController.messageController.chatMessageArray = self.conversationDict[conversationModel.friendUser.objectId];
     [self.navigationController pushViewController:self.chatViewController animated:YES];
+}
+
+#pragma mark - SWRMyFriendTableViewController delegate
+
+- (void)SWRMyFriendTableViewController:(SWRMyFriendTableViewController *)myFriendTableViewController didSelectUser:(PFUser *)user
+{
+    MyLog(@"%@", user.username);
 }
 
 #pragma mark - private methods

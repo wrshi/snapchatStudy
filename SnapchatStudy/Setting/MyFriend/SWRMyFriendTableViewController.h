@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SWRMyFriendTableViewController;
+
+@protocol SWRMyFriendTableViewControllerDelegate <NSObject>
+
+@optional
+- (void)SWRMyFriendTableViewController:(SWRMyFriendTableViewController *)myFriendTableViewController didSelectUser:(PFUser *)user;
+
+@end
 
 @interface SWRMyFriendTableViewController : UITableViewController
+
+@property (nonatomic, weak) id<SWRMyFriendTableViewControllerDelegate> delegate;
 
 @end
