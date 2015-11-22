@@ -13,4 +13,7 @@
 @property (nonatomic, strong) PFUser *friendUser;
 @property (nonatomic, assign, getter=isUnread) BOOL unread;
 
+- (instancetype)initWithUser:(PFUser *)friendUser unread:(BOOL)unread;
++ (instancetype)SWRConversationModelWithUser:(PFUser *)friendUser unread:(BOOL)unread;
+
 @end

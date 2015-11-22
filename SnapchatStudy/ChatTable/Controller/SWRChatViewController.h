@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) PFUser *friendUser;
 @property (nonatomic, strong) SWRMessageTableViewController *messageController;
+@property (nonatomic, strong) PFUser *currentUser;
 
 
 @end

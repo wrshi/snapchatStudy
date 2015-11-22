@@ -15,6 +15,8 @@
 @interface SWRChatViewController () <SWRMessageTableViewControllerDelegate, SWRInputBoxControllerDelegate>
 
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
+@property (nonatomic, strong) PFRelation *conversationRelation;
+
 
 @end
 
@@ -90,6 +92,14 @@
     [self.messageController addNewMessage:message];
     message.messageModel.toUser = self.friendUser;
     [message.messageModel saveMessageModel];
+    
+    self.conversationRelation = [self.currentUser relationForKey:@"conversationRelation"];
+    [self.conversationRelation addObject:message.messageModel.toUser];
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (error){
+            MyLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
 }
 
 @end

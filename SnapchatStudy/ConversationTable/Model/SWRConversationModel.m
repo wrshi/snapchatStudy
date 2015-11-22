@@ -10,6 +10,19 @@
 
 @implementation SWRConversationModel
 
+- (instancetype)initWithUser:(PFUser *)friendUser unread:(BOOL)unread
+{
+    if (self = [super init]){
+        self.friendUser = friendUser;
+        self.unread = unread;
+    }
+    return self;
+}
+
++ (instancetype)SWRConversationModelWithUser:(PFUser *)friendUser unread:(BOOL)unread
+{
+    return [[self alloc] initWithUser:friendUser unread:unread];
+}
 
 
 @end
