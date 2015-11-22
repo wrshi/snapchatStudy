@@ -20,12 +20,6 @@
     
     [Parse setApplicationId:@"EO3BabazmkWm5QWl8SkXgyHJ1VckkZj6Jx83ctFm"
                   clientKey:@"s6tLMGx5VEmDKRFJx5KBmn7iJ95fA4y7aKPXhO4u"];
-
-    
-    NSMutableDictionary *allConversations = [NSMutableDictionary dictionary];
-    PFObject *allConversationsObj = [PFObject objectWithClassName:@"allConversations"];
-    allConversationsObj[@"allConversations"] = allConversations;
-    [allConversationsObj saveInBackground];
     
     return YES;
 }

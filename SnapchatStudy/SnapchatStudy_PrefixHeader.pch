@@ -42,6 +42,8 @@
 #define tintBlueColor Color(50, 162, 219)
 #define tintRedColor Color(234, 0, 69)
 
+//key
+#define allConversationsClass @"allConversations"
 
 
 

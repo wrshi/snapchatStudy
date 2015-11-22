@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
 @property (nonatomic, strong) NSMutableDictionary *conversationDict;
+@property (nonatomic, strong) PFUser *currentUser;
 
 @end
 
@@ -40,8 +41,8 @@
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
     
     
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
+    self.currentUser = [PFUser currentUser];
+    if (self.currentUser) {
         
     }
     else {
@@ -167,9 +168,20 @@
 
 #pragma mark - SWRMyFriendTableViewController delegate
 
+// save new convesation
 - (void)SWRMyFriendTableViewController:(SWRMyFriendTableViewController *)myFriendTableViewController didSelectUser:(PFUser *)user
 {
-    MyLog(@"%@", user.username);
+    PFRelation *conversationRelation = [self.currentUser relationForKey:@"conversationRelation"];
+    [conversationRelation addObject:user];
+    
+    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+        if (error){
+            MyLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    self.chatViewController.friendUser = user;
+    [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
 #pragma mark - private methods
