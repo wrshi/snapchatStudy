@@ -20,9 +20,6 @@ static NSString *const messageCellIdentifier = @"messageCell";
 
 @implementation SWRMessageTableViewController
 
-@synthesize chatMessageArray = _chatMessageArray;
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,6 +31,11 @@ static NSString *const messageCellIdentifier = @"messageCell";
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnView)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 
@@ -85,15 +87,6 @@ static NSString *const messageCellIdentifier = @"messageCell";
 
 #pragma mark - private methods
 
-
-- (NSMutableArray *)chatMessageArray
-{
-    if (_chatMessageArray == nil){
-        _chatMessageArray = [NSMutableArray array];
-    }
-    return _chatMessageArray;
-}
-
 - (NSMutableArray *)messages
 {
     if (_messages == nil){
@@ -102,32 +95,28 @@ static NSString *const messageCellIdentifier = @"messageCell";
     return _messages;
 }
 
-- (void)setChatMessageArray:(NSMutableArray *)chatMessageArray
-{
-    _chatMessageArray = chatMessageArray;
-    [self getCurrentMessages:chatMessageArray];
-}
-
-- (void)getCurrentMessages:(NSMutableArray *)chatMessageArray
+- (void)setMessageObjs:(NSMutableArray *)messageObjs
 {
     [self.messages removeAllObjects];
-    for (PFObject *message in chatMessageArray){
-        PFUser *fromUser = message[@"fromUser"];
-        NSString *fromUsername = fromUser.objectId;
-        NSString *currentUsername = [PFUser currentUser].objectId;
-        SWRMessageModel *messageModel = [SWRMessageModel initWithPFObject:message];
-        if ([fromUsername isEqualToString:currentUsername]){
+    NSString *currentUserId = [PFUser currentUser].objectId;
+    for (PFObject *messageObj in messageObjs){
+        PFUser *fromUser = messageObj[@"fromUser"];
+        PFUser *toUser = messageObj[@"toUser"];
+        SWRMessageModel *messageModel = [SWRMessageModel initWithPFObject:messageObj];
+        if ([fromUser.objectId isEqualToString:currentUserId]){
             messageModel.senderType = SWRMessageSenderTypeSelf;
         }
-        else{
+        else if ([toUser.objectId isEqualToString:currentUserId]){
             messageModel.senderType = SWRMessageSenderTypeFriend;
         }
-        SWRMessageFrame *messageFrame = [[SWRMessageFrame alloc] init];
-        messageFrame.messageModel = messageModel;
-        [self.messages addObject:messageFrame];
-        [self.tableView reloadData];
+        SWRMessageFrame *message = [[SWRMessageFrame alloc] init];
+        message.messageModel = messageModel;
+        [self.messages addObject:message];
     }
+    [self.tableView reloadData];
 }
+
+
 
 #pragma mark - public methods
 

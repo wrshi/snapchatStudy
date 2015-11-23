@@ -14,40 +14,16 @@
 
 @interface SWRChatViewController () <SWRMessageTableViewControllerDelegate, SWRInputBoxControllerDelegate>
 
+@property (nonatomic, strong) SWRMessageTableViewController *messageController;
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
 @property (nonatomic, strong) PFRelation *conversationRelation;
-
+@property (nonatomic, strong) PFUser *currentUser;
+@property (nonatomic, strong) NSMutableArray *messages;
 
 @end
 
 @implementation SWRChatViewController
 
-- (SWRMessageTableViewController *)messageController
-{
-    if (_messageController == nil){
-        _messageController = [[SWRMessageTableViewController alloc] init];
-       
-        _messageController.view.y = statusbarH + navigationbarH;
-        _messageController.delegate = self;
-    }
-    return _messageController;
-}
-
-- (SWRInputBoxController *)inputBoxController
-{
-    if (_inputBoxController == nil){
-        _inputBoxController = [[SWRInputBoxController alloc] init];
-        _inputBoxController.view.y = screenH - _inputBoxController.view.height;
-        _inputBoxController.delegate = self;
-    }
-    return _inputBoxController;
-}
-
-- (void)setFriendUser:(PFUser *)friendUser
-{
-    _friendUser = friendUser;
-    self.navigationItem.title = friendUser.objectId;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,8 +31,27 @@
     [self.view addSubview:self.messageController.view];
     [self.view addSubview:self.inputBoxController.view];
     
+    self.currentUser = [PFUser currentUser];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self setNavigationBar];
+    [self getCurrentMessages];
+}
+
+
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if ([self.delegate respondsToSelector:@selector(SWRChatViewController:didFinishChatWithFriend:)]){
+        [self.delegate SWRChatViewController:self didFinishChatWithFriend:self.friendUser];
+    }
 }
 
 
@@ -95,11 +90,77 @@
     
     self.conversationRelation = [self.currentUser relationForKey:@"conversationRelation"];
     [self.conversationRelation addObject:message.messageModel.toUser];
+    
     [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (error){
             MyLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
 }
+
+#pragma mark - private methods
+- (SWRMessageTableViewController *)messageController
+{
+    if (_messageController == nil){
+        _messageController = [[SWRMessageTableViewController alloc] init];
+        
+        _messageController.view.y = statusbarH + navigationbarH;
+        _messageController.delegate = self;
+        _messageController.friendUser = self.friendUser;
+    }
+    return _messageController;
+}
+
+- (SWRInputBoxController *)inputBoxController
+{
+    if (_inputBoxController == nil){
+        _inputBoxController = [[SWRInputBoxController alloc] init];
+        _inputBoxController.view.y = screenH - _inputBoxController.view.height;
+        _inputBoxController.delegate = self;
+    }
+    return _inputBoxController;
+}
+
+- (NSMutableArray *)messages
+{
+    if (_messages == nil){
+        _messages = [NSMutableArray array];
+    }
+    return _messages;
+}
+
+- (void)setFriendUser:(PFUser *)friendUser
+{
+    _friendUser = friendUser;
+    self.navigationItem.title = friendUser.objectId;
+}
+
+- (void)setNavigationBar
+{
+    self.navigationItem.title = self.friendUser.username;
+}
+
+- (void)getCurrentMessages
+{
+    [self.messages removeAllObjects];
+    PFQuery *messageQuery = [PFQuery queryWithClassName:@"message"];
+    [messageQuery includeKey:@"toUser"];
+    [messageQuery includeKey:@"fromUser"];
+    [messageQuery addAscendingOrder:@"createdAt"];
+    
+    NSArray *allMessages = [messageQuery findObjects];
+    NSString *friendUserId = self.friendUser.objectId;
+    NSString *currentUserId = self.currentUser.objectId;
+    for (PFObject *message in allMessages){
+        PFUser *fromUser = message[@"fromUser"];
+        PFUser *toUser = message[@"toUser"];
+        if (([fromUser.objectId isEqualToString:friendUserId] && [toUser.objectId isEqualToString:currentUserId]) || ([fromUser.objectId isEqualToString:currentUserId] && [toUser.objectId isEqualToString:friendUserId])){
+            [self.messages addObject:message];
+        }
+    }
+    self.messageController.messageObjs = self.messages;
+
+}
+
 
 @end

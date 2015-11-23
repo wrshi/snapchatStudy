@@ -15,7 +15,7 @@
 #import "SWRMessageTableViewController.h"
 #import "SWRMyFriendTableViewController.h"
 
-@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate>
+@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate, SWRChatViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) PFRelation *conversationRelation;
@@ -53,7 +53,11 @@
     }
     
     [self getCurrentConversation];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)addRightSwipeGestureRecognizer
@@ -114,7 +118,6 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myfriendViewController];
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentViewController:navController animated:YES completion:NULL];
-
 }
 
 - (void)clickCameraButton
@@ -163,8 +166,7 @@
     
     SWRConversationModel *conversationModel = self.conversations[indexPath.row];
     self.chatViewController.friendUser = conversationModel.friendUser;
-    self.chatViewController.currentUser = self.currentUser;
-    
+    self.chatViewController.delegate = self;
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
@@ -174,6 +176,15 @@
 {
     self.chatViewController.friendUser = user;
     [self.navigationController pushViewController:self.chatViewController animated:YES];
+}
+
+#pragma mark - SWRChatViewController delegate
+
+- (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser
+{
+    [self getCurrentConversation];
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - private methods
@@ -218,7 +229,7 @@
                 if ([toUser.objectId isEqualToString:currentUserId]){
                     if (![conversationIds containsObject:fromUser.objectId]){
                         SWRConversationModel *conversation = [SWRConversationModel SWRConversationModelWithUser:fromUser unread:YES];
-                        [self.conversations addObject:conversation];
+                        [self.conversations insertObject:conversation atIndex:0];
                     }
                 }
             }

@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 @class SWRMessageTableViewController;
+@class SWRChatViewController;
+
+@protocol SWRChatViewControllerDelegate <NSObject>
+
+@optional
+- (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser;
+
+@end
 
 @interface SWRChatViewController : UIViewController
 
-@property (nonatomic, strong) PFUser *friendUser;
-@property (nonatomic, strong) SWRMessageTableViewController *messageController;
-@property (nonatomic, strong) PFUser *currentUser;
 
+@property (nonatomic, strong) PFUser *friendUser;
+@property (nonatomic, weak) id<SWRChatViewControllerDelegate> delegate;
 
 @end
