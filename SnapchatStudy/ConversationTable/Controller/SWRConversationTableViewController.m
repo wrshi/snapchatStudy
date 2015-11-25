@@ -222,8 +222,11 @@
         
     }
     
-    [conversationQuery whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
-    currentConversations = [conversationQuery findObjects];
+    PFQuery *conversationQuery2 = [PFQuery queryWithClassName:@"Conversation"];
+    [conversationQuery2 includeKey:@"toUser"];
+    [conversationQuery2 includeKey:@"fromUser"];
+    [conversationQuery2 whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
+    currentConversations = [conversationQuery2 findObjects];
     for (PFObject *conversation in currentConversations)
     {
         SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"toUser"] unread:NO];

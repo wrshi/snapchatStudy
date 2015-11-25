@@ -14,9 +14,11 @@
 
 @property (nonatomic, strong) NSMutableArray *messages;
 
+
 @end
 
 static NSString *const messageCellIdentifier = @"messageCell";
+
 
 @implementation SWRMessageTableViewController
 
@@ -36,6 +38,7 @@ static NSString *const messageCellIdentifier = @"messageCell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
 }
 
 
@@ -97,6 +100,7 @@ static NSString *const messageCellIdentifier = @"messageCell";
 
 - (void)setMessageObjs:(NSMutableArray *)messageObjs
 {
+    MyLog(@"setMessage");
     [self.messages removeAllObjects];
     NSString *currentUserId = [PFUser currentUser].objectId;
     for (PFObject *messageObj in messageObjs){
@@ -115,7 +119,6 @@ static NSString *const messageCellIdentifier = @"messageCell";
     }
     [self.tableView reloadData];
 }
-
 
 
 #pragma mark - public methods

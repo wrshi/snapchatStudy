@@ -33,6 +33,7 @@
     [newMessage setObject:self.toUser forKey:@"toUser"];
     [newMessage setObject:self.fromUser.objectId forKey:@"fromUserId"];
     [newMessage setObject:self.toUser.objectId forKey:@"toUserId"];
+    [newMessage setObject:@"yes" forKey:@"unread"];
     [newMessage saveInBackground];
     return newMessage;
 }

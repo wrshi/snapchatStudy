@@ -18,8 +18,12 @@
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *messages;
+@property (nonatomic, strong) NSTimer *timer;
+
 
 @end
+
+static const NSTimeInterval secondBeforeDelete = 10.0;
 
 @implementation SWRChatViewController
 
@@ -42,6 +46,8 @@
     [self setNavigationBar];
     [self getCurrentMessages];
     [self deleteCurrentConversation];
+    [self startTimer];
+    
 }
 
 
@@ -51,6 +57,7 @@
     if ([self.delegate respondsToSelector:@selector(SWRChatViewController:didFinishChatWithFriend:)]){
         [self.delegate SWRChatViewController:self didFinishChatWithFriend:self.friendUser];
     }
+    [self.timer invalidate];
 }
 
 
@@ -160,9 +167,28 @@
     [messageQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
     [messageQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];
     
-    [self.messages addObjectsFromArray:[messageQuery findObjects]];
+    NSArray *currentMessages = [messageQuery findObjects];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        for (PFObject *message in currentMessages){
+            message[@"unread"] = @"no";
+            [message saveInBackground];
+        }
+    });
+    [self.messages addObjectsFromArray:currentMessages];
+    
+    PFQuery *messageQuery2 = [PFQuery queryWithClassName:@"message"];
+    [messageQuery2 includeKey:@"toUser"];
+    [messageQuery2 includeKey:@"fromUser"];
+    [messageQuery2 whereKey:@"toUserId" equalTo:self.friendUser.objectId];
+    [messageQuery2 whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
+    currentMessages = [messageQuery2 findObjects];
+
+    [self.messages addObjectsFromArray:currentMessages];
+
     self.messageController.messageObjs = self.messages;
+    MyLog(@"currentMsg %@", self.messages);
 }
+    
 
 - (void)deleteCurrentConversation
 {
@@ -180,6 +206,36 @@
     }];
     
 }
+
+- (void)startTimer
+{
+    self.timer = [NSTimer timerWithTimeInterval:secondBeforeDelete target:self selector:@selector(deleteMessge) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)deleteMessge
+{
+    
+    
+    PFQuery *messageQuery = [PFQuery queryWithClassName:@"message"];
+    [messageQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
+    [messageQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];
+    [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects){
+                if ([object[@"unread"] isEqualToString:@"no"]){
+                    [object deleteInBackground];
+                }
+            }
+            [self getCurrentMessages];
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+}
+
+
 
 
 @end
