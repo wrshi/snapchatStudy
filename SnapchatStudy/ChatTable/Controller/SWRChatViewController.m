@@ -41,13 +41,13 @@
     [super viewWillAppear:animated];
     [self setNavigationBar];
     [self getCurrentMessages];
+    [self deleteCurrentConversation];
 }
-
-
 
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     if ([self.delegate respondsToSelector:@selector(SWRChatViewController:didFinishChatWithFriend:)]){
         [self.delegate SWRChatViewController:self didFinishChatWithFriend:self.friendUser];
     }
@@ -87,12 +87,25 @@
     message.messageModel.toUser = self.friendUser;
     [message.messageModel saveMessageModel];
     
-    PFObject *conversation = [PFObject objectWithClassName:@"Conversation"];
-    conversation[@"toUserId"] = self.friendUser.objectId;
-    conversation[@"fromUserId"] = self.currentUser.objectId;
-    conversation[@"toUser"] = self.friendUser;
-    conversation[@"fromUser"] = self.currentUser;
-    [conversation saveInBackground];
+    PFQuery *conversationQuery = [PFQuery queryWithClassName:@"Conversation"];
+    [conversationQuery whereKey:@"toUserId" equalTo:self.friendUser.objectId];
+    [conversationQuery whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
+    [conversationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 0){
+                PFObject *conversation = [PFObject objectWithClassName:@"Conversation"];
+                conversation[@"toUserId"] = self.friendUser.objectId;
+                conversation[@"fromUserId"] = self.currentUser.objectId;
+                conversation[@"toUser"] = self.friendUser;
+                conversation[@"fromUser"] = self.currentUser;
+                [conversation saveInBackground];
+            }
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    
 }
 
 #pragma mark - private methods
@@ -149,6 +162,23 @@
     
     [self.messages addObjectsFromArray:[messageQuery findObjects]];
     self.messageController.messageObjs = self.messages;
+}
+
+- (void)deleteCurrentConversation
+{
+    PFQuery *conversationQuery = [PFQuery queryWithClassName:@"Conversation"];
+    [conversationQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
+    [conversationQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];
+    [conversationQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            for (PFObject *object in objects){
+                [object deleteInBackground];
+            }
+        } else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
 }
 
 

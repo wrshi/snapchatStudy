@@ -15,7 +15,7 @@
 #import "SWRMessageTableViewController.h"
 #import "SWRMyFriendTableViewController.h"
 
-@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate, SWRChatViewControllerDelegate>
+@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
@@ -57,6 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self getCurrentConversation];
 }
 
 - (void)addRightSwipeGestureRecognizer
@@ -169,6 +170,7 @@
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
+
 #pragma mark - SWRMyFriendTableViewController delegate
 
 - (void)SWRMyFriendTableViewController:(SWRMyFriendTableViewController *)myFriendTableViewController didSelectUser:(PFUser *)user
@@ -182,9 +184,8 @@
 - (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser
 {
     [self getCurrentConversation];
-    [self.tableView reloadData];
-    
 }
+
 
 #pragma mark - private methods
 
@@ -228,7 +229,6 @@
         SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"toUser"] unread:NO];
         [self.conversations addObject:conversationModel];
     }
-    MyLog(@"conversations %@", self.conversations);
     [self.tableView reloadData];
     
 }
