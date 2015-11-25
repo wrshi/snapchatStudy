@@ -18,7 +18,6 @@
 @interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate, SWRChatViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *conversations;
-@property (nonatomic, strong) PFRelation *conversationRelation;
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
 @property (nonatomic, strong) PFUser *currentUser;
@@ -207,38 +206,30 @@
 
 - (void)getCurrentConversation
 {
-    self.conversationRelation = [self.currentUser relationForKey:@"conversationRelation"];
-    PFQuery *conversationQuery = [self.conversationRelation query];
-    NSArray *conversationUsers = [conversationQuery findObjects];
     [self.conversations removeAllObjects];
-    for (PFUser *user in conversationUsers){
-        SWRConversationModel *conversation = [SWRConversationModel SWRConversationModelWithUser:user unread:NO];
-        [self.conversations addObject:conversation];
+    NSArray *currentConversations = [NSMutableArray array];
+    
+    PFQuery *conversationQuery = [PFQuery queryWithClassName:@"Conversation"];
+    [conversationQuery includeKey:@"toUser"];
+    [conversationQuery includeKey:@"fromUser"];
+    [conversationQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
+    currentConversations = [conversationQuery findObjects];
+    for (PFObject *conversation in currentConversations)
+    {
+        SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"fromUser"] unread:YES];
+        [self.conversations addObject:conversationModel];
+        
     }
     
-    PFQuery *messageQuery = [PFQuery queryWithClassName:@"message"];
-    [messageQuery includeKey:@"toUser"];
-    [messageQuery includeKey:@"fromUser"];
-    [messageQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            NSArray *conversationIds = [conversationUsers valueForKeyPath:@"objectId"];
-            NSString *currentUserId = self.currentUser.objectId;
-            for (PFObject *message in objects){
-                PFUser *fromUser = message[@"fromUser"];
-                PFUser *toUser = message[@"toUser"];
-                if ([toUser.objectId isEqualToString:currentUserId]){
-                    if (![conversationIds containsObject:fromUser.objectId]){
-                        SWRConversationModel *conversation = [SWRConversationModel SWRConversationModelWithUser:fromUser unread:YES];
-                        [self.conversations insertObject:conversation atIndex:0];
-                    }
-                }
-            }
-            [self.tableView reloadData];
-        }
-        else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    [conversationQuery whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
+    currentConversations = [conversationQuery findObjects];
+    for (PFObject *conversation in currentConversations)
+    {
+        SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"toUser"] unread:NO];
+        [self.conversations addObject:conversationModel];
+    }
+    MyLog(@"conversations %@", self.conversations);
+    [self.tableView reloadData];
     
 }
 

@@ -31,6 +31,8 @@
     [newMessage setObject:self.text forKey:@"text"];
     [newMessage setObject:self.fromUser forKey:@"fromUser"];
     [newMessage setObject:self.toUser forKey:@"toUser"];
+    [newMessage setObject:self.fromUser.objectId forKey:@"fromUserId"];
+    [newMessage setObject:self.toUser.objectId forKey:@"toUserId"];
     [newMessage saveInBackground];
     return newMessage;
 }

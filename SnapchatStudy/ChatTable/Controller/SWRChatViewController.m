@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) SWRMessageTableViewController *messageController;
 @property (nonatomic, strong) SWRInputBoxController *inputBoxController;
-@property (nonatomic, strong) PFRelation *conversationRelation;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *messages;
 
@@ -88,14 +87,12 @@
     message.messageModel.toUser = self.friendUser;
     [message.messageModel saveMessageModel];
     
-    self.conversationRelation = [self.currentUser relationForKey:@"conversationRelation"];
-    [self.conversationRelation addObject:message.messageModel.toUser];
-    
-    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-        if (error){
-            MyLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    PFObject *conversation = [PFObject objectWithClassName:@"Conversation"];
+    conversation[@"toUserId"] = self.friendUser.objectId;
+    conversation[@"fromUserId"] = self.currentUser.objectId;
+    conversation[@"toUser"] = self.friendUser;
+    conversation[@"fromUser"] = self.currentUser;
+    [conversation saveInBackground];
 }
 
 #pragma mark - private methods
@@ -147,19 +144,11 @@
     [messageQuery includeKey:@"toUser"];
     [messageQuery includeKey:@"fromUser"];
     [messageQuery addAscendingOrder:@"createdAt"];
+    [messageQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
+    [messageQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];
     
-    NSArray *allMessages = [messageQuery findObjects];
-    NSString *friendUserId = self.friendUser.objectId;
-    NSString *currentUserId = self.currentUser.objectId;
-    for (PFObject *message in allMessages){
-        PFUser *fromUser = message[@"fromUser"];
-        PFUser *toUser = message[@"toUser"];
-        if (([fromUser.objectId isEqualToString:friendUserId] && [toUser.objectId isEqualToString:currentUserId]) || ([fromUser.objectId isEqualToString:currentUserId] && [toUser.objectId isEqualToString:friendUserId])){
-            [self.messages addObject:message];
-        }
-    }
+    [self.messages addObjectsFromArray:[messageQuery findObjects]];
     self.messageController.messageObjs = self.messages;
-
 }
 
 
