@@ -39,6 +39,7 @@ static NSString *const messageCellIdentifier = @"messageCell";
 {
     [super viewWillAppear:animated];
     
+    
 }
 
 
@@ -100,7 +101,6 @@ static NSString *const messageCellIdentifier = @"messageCell";
 
 - (void)setMessageObjs:(NSMutableArray *)messageObjs
 {
-    MyLog(@"setMessage");
     [self.messages removeAllObjects];
     NSString *currentUserId = [PFUser currentUser].objectId;
     for (PFObject *messageObj in messageObjs){
@@ -119,6 +119,8 @@ static NSString *const messageCellIdentifier = @"messageCell";
     }
     [self.tableView reloadData];
 }
+
+
 
 
 #pragma mark - public methods

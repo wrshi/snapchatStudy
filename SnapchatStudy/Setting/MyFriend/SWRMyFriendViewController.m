@@ -1,15 +1,17 @@
 //
-//  SWRMyFriendTableViewController.m
+//  SWRMyFriendViewController.m
 //  SnapchatStudy
 //
-//  Created by Weiran Shi on 2015-11-10.
+//  Created by Weiran Shi on 2015-11-25.
 //  Copyright (c) 2015 Vera Shi. All rights reserved.
 //
 
-#import "SWRMyFriendTableViewController.h"
-#import <Parse/Parse.h>
+#import "SWRMyFriendViewController.h"
+#import "SWRMyFriendTableViewCell.h"
 
-@interface SWRMyFriendTableViewController ()
+@interface SWRMyFriendViewController ()
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) NSArray *myFriends;
@@ -21,7 +23,7 @@
 
 static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
-@implementation SWRMyFriendTableViewController
+@implementation SWRMyFriendViewController
 
 #pragma mark - lazy load
 
@@ -75,14 +77,15 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
 - (void)setNavigationBar
 {
-    self.navigationItem.title = @"My Friend";
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"My Friends" leftButton:leftButtonItem rightButton:nil];
 }
 
 - (void)clickBackButton
@@ -119,10 +122,10 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier forIndexPath:indexPath];
+    SWRMyFriendTableViewCell *cell = [SWRMyFriendTableViewCell SWRMyFriendCellWithTableView:tableView];
     
     PFUser *user = self.myFriends[indexPath.row];
-    cell.textLabel.text = user.username;
+    cell.friendUser = user;
     
     return cell;
 }
@@ -131,8 +134,8 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
 {
     PFUser *user = self.myFriends[indexPath.row];
     [self dismissViewControllerAnimated:YES completion:^{
-        if ([self.delegate respondsToSelector:@selector(SWRMyFriendTableViewController:didSelectUser:)]){
-            [self.delegate SWRMyFriendTableViewController:self didSelectUser:user];
+        if ([self.delegate respondsToSelector:@selector(SWRMyFriendViewController:didSelectUser:)]){
+            [self.delegate SWRMyFriendViewController:self didSelectUser:user];
         }
     }];
 }
@@ -154,8 +157,5 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
     }
     return 0;
 }
-
-
-
 
 @end

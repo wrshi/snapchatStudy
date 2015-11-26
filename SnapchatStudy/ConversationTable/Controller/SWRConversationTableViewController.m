@@ -29,15 +29,17 @@
 
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self setNavigationBar];
+    [super viewDidLoad];    
     
     [self setBackgroundImage];
     
     [self addRightSwipeGestureRecognizer];
     
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
+    
+    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];
+    statusBarView.backgroundColor = [UIColor yellowColor];
+    [self.navigationController.navigationBar addSubview:statusBarView];
     
     
     self.currentUser = [PFUser currentUser];
@@ -57,7 +59,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    [self setNavigationBar];
     [self getCurrentConversation];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)addRightSwipeGestureRecognizer
@@ -83,24 +91,23 @@
 
 - (void)setNavigationBar
 {
-    self.navigationItem.title = @"snapchat";
-    SWRGreenNavigationBar *navBar = [[SWRGreenNavigationBar alloc] init];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    // hide the existing nav bar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *findFriendButton = [[UIButton alloc] init];
     [findFriendButton setImage:[UIImage imageNamed:@"profile_mycontacts_icon"] forState:UIControlStateNormal];
     findFriendButton.bounds = CGRectMake(0, 0, 40, 40);
     [findFriendButton addTarget:self action:@selector(clickFindFriendButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:findFriendButton];
-    self.navigationItem.leftBarButtonItem = leftButtonItem;
     
     UIButton *cameraButton = [[UIButton alloc] init];
     [cameraButton setImage:[UIImage imageNamed:@"SC_All_BackToCamera_Button"] forState:UIControlStateNormal];
     cameraButton.bounds = CGRectMake(0, 0, 40, 40);
     [cameraButton addTarget:self action:@selector(clickCameraButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:tintGreenColor textColor:[UIColor whiteColor] title:@"snapchat" leftButton:leftButtonItem rightButton:rightButtonItem];
+
 }
 
 

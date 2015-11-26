@@ -15,7 +15,7 @@
 
 #import <Parse/Parse.h>
 #import "UIView+Extension.h"
-
+#import "UINavigationBar+CustomizedBar.h"
 
 
 #ifdef DEBUG

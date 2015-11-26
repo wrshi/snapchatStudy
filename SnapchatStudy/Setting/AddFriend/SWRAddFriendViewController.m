@@ -1,29 +1,28 @@
 //
-//  SWRAddFriendTableViewController.m
+//  SWRAddFriendViewController.m
 //  SnapchatStudy
 //
-//  Created by Weiran Shi on 2015-11-10.
+//  Created by Weiran Shi on 2015-11-25.
 //  Copyright (c) 2015 Vera Shi. All rights reserved.
 //
 
-#import "SWRAddFriendTableViewController.h"
+#import "SWRAddFriendViewController.h"
+#import "SWRAddFriendTableViewCell.h"
 
-
-@interface SWRAddFriendTableViewController ()
+@interface SWRAddFriendViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSArray *allUsers;
 @property (nonatomic, strong) NSMutableArray *alphabetsArray;
 @property (nonatomic, strong) NSMutableArray *nameArray;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *friendsId;
-
-
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 static NSString * const cellReuseIdentifier = @"addFriendCell";
 
-@implementation SWRAddFriendTableViewController
+@implementation SWRAddFriendViewController
 
 #pragma mark - lazy load
 
@@ -65,15 +64,12 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 }
 
 
-#pragma mark -
+#pragma mark - private methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setNavigationBar];
-    
-    
-    
     
 }
 
@@ -98,22 +94,27 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
         }
     }];
     
-   
-
+    
+    
     
 }
 
 
 - (void)setNavigationBar
 {
-    self.navigationItem.title = @"Add Friend";
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"Add Friend" leftButton:leftButtonItem rightButton:nil];
+    
+    self.tableView.y = 64;
+    
+    MyLog(@"%f", self.tableView.y);
 }
 
 - (void)clickBackButton
@@ -140,25 +141,25 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+    
     
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    
     return [self.allUsers count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuseIdentifier forIndexPath:indexPath];
+    SWRAddFriendTableViewCell *cell = [SWRAddFriendTableViewCell SWRAddFriendCellWithTableView:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
     PFUser *user = self.allUsers[indexPath.row];
-    cell.textLabel.text = user.username;
-
+    cell.friendUser = user;
+    
     if ([self.friendsId containsObject:user.objectId]){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -187,7 +188,7 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
             MyLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-
+    
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
@@ -210,9 +211,5 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 }
 
 #pragma mark - private methods
-
-
-
-
 
 @end

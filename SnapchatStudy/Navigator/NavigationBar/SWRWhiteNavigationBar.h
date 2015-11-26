@@ -10,4 +10,6 @@
 
 @interface SWRWhiteNavigationBar : UINavigationBar
 
+@property (nonatomic, copy) NSString *title;
+
 @end

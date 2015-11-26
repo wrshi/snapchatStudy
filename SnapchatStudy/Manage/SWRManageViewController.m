@@ -19,12 +19,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
     UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(leftSwipeHandle:)];
     leftRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [leftRecognizer setNumberOfTouchesRequired:1];
     leftRecognizer.delegate = self;
     [self.view addGestureRecognizer:leftRecognizer];
     [self.view setUserInteractionEnabled:YES];
+    
 }
 
 - (void)leftSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -41,12 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
-    [super viewWillDisappear:animated];
-    
 }
 
 /*

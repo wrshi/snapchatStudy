@@ -22,4 +22,11 @@
     return self;
 }
 
+
+
+- (void)setNavTitle:(NSString *)navTitle
+{
+    _navTitle = navTitle;
+}
+
 @end

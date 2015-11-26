@@ -10,4 +10,6 @@
 
 @interface SWRGreenNavigationBar : UINavigationBar
 
+@property (nonatomic, copy) NSString *navTitle;
+
 @end

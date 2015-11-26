@@ -54,6 +54,7 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    
     if ([self.delegate respondsToSelector:@selector(SWRChatViewController:didFinishChatWithFriend:)]){
         [self.delegate SWRChatViewController:self didFinishChatWithFriend:self.friendUser];
     }
@@ -64,6 +65,10 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -154,8 +159,23 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
 
 - (void)setNavigationBar
 {
-    self.navigationItem.title = self.friendUser.username;
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, 15, 20);
+    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    UINavigationBar *navBar = [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintBlueColor title:self.friendUser.username leftButton:leftButtonItem rightButton:nil];
+    navBar.y = navBar.y + 64;
 }
+
+- (void)clickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)getCurrentMessages
 {
@@ -186,7 +206,6 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self.messages addObjectsFromArray:currentMessages];
 
     self.messageController.messageObjs = self.messages;
-    MyLog(@"currentMsg %@", self.messages);
 }
     
 
