@@ -14,6 +14,11 @@
 		7F078B321C06B90300B3B2A4 /* SWRMyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B311C06B90300B3B2A4 /* SWRMyFriendViewController.m */; };
 		7F078B371C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */; };
 		7F078B381C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */; };
+		7F078B3D1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */; };
+		7F078B411C06BE0000B3B2A4 /* SWRMoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */; };
+		7F078B421C06BE0000B3B2A4 /* SWRMoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */; };
+		7F078B4B1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */; };
+		7F078B4C1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */; };
 		7FA580951BF02693005BED24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580941BF02693005BED24 /* main.m */; };
 		7FA580981BF02693005BED24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580971BF02693005BED24 /* AppDelegate.m */; };
 		7FA5809E1BF02693005BED24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5809C1BF02693005BED24 /* Main.storyboard */; };
@@ -40,7 +45,6 @@
 		7FA580F31BF04E20005BED24 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FA580F21BF04E20005BED24 /* libsqlite3.dylib */; };
 		7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */; };
 		7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */; };
-		7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */; };
 		7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */; };
 		7FA581291BF434FF005BED24 /* SWRConversationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581281BF434FF005BED24 /* SWRConversationTableViewController.m */; };
 		7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5812D1BF4353A005BED24 /* SWRConversationModel.m */; };
@@ -78,6 +82,14 @@
 		7F078B341C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMyFriendTableViewCell.h; sourceTree = "<group>"; };
 		7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMyFriendTableViewCell.m; sourceTree = "<group>"; };
 		7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMyFriendTableViewCell.xib; sourceTree = "<group>"; };
+		7F078B3B1C06BDE100B3B2A4 /* SWRMoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingViewController.h; sourceTree = "<group>"; };
+		7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingViewController.m; sourceTree = "<group>"; };
+		7F078B3E1C06BE0000B3B2A4 /* SWRMoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingCell.h; sourceTree = "<group>"; };
+		7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingCell.m; sourceTree = "<group>"; };
+		7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingCell.xib; sourceTree = "<group>"; };
+		7F078B481C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingHeaderView.h; sourceTree = "<group>"; };
+		7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingHeaderView.m; sourceTree = "<group>"; };
+		7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingHeaderView.xib; sourceTree = "<group>"; };
 		7FA5808F1BF02693005BED24 /* SnapchatStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapchatStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA580931BF02693005BED24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA580941BF02693005BED24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -118,8 +130,6 @@
 		7FA580F71BF066DC005BED24 /* SWRLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRLoginViewController.m; sourceTree = "<group>"; };
 		7FA580F91BF066FC005BED24 /* SWRManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRManageViewController.h; sourceTree = "<group>"; };
 		7FA580FA1BF066FC005BED24 /* SWRManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRManageViewController.m; sourceTree = "<group>"; };
-		7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSettingTableViewController.h; sourceTree = "<group>"; };
-		7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSettingTableViewController.m; sourceTree = "<group>"; };
 		7FA581101BF1B8D8005BED24 /* SWRRightToLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRightToLeftSegue.h; sourceTree = "<group>"; };
 		7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRightToLeftSegue.m; sourceTree = "<group>"; };
 		7FA581271BF434FF005BED24 /* SWRConversationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRConversationTableViewController.h; sourceTree = "<group>"; };
@@ -193,6 +203,29 @@
 				7F078B341C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.h */,
 				7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */,
 				7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F078B391C06BD9A00B3B2A4 /* MoreSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7F078B3A1C06BD9A00B3B2A4 /* View */,
+				7F078B3B1C06BDE100B3B2A4 /* SWRMoreSettingViewController.h */,
+				7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */,
+			);
+			path = MoreSetting;
+			sourceTree = "<group>";
+		};
+		7F078B3A1C06BD9A00B3B2A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F078B3E1C06BE0000B3B2A4 /* SWRMoreSettingCell.h */,
+				7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */,
+				7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */,
+				7F078B481C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.h */,
+				7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */,
+				7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -352,8 +385,7 @@
 		7FA580FC1BF067B5005BED24 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				7FA580FD1BF067C9005BED24 /* SWRSettingTableViewController.h */,
-				7FA580FE1BF067C9005BED24 /* SWRSettingTableViewController.m */,
+				7F078B391C06BD9A00B3B2A4 /* MoreSetting */,
 				7FA581151BF2E6A6005BED24 /* AddFriend */,
 				7FA581191BF30705005BED24 /* MyFriend */,
 			);
@@ -545,7 +577,9 @@
 				7F078B381C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib in Resources */,
 				7FA580A31BF02693005BED24 /* LaunchScreen.xib in Resources */,
 				7F078B2F1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib in Resources */,
+				7F078B421C06BE0000B3B2A4 /* SWRMoreSettingCell.xib in Resources */,
 				7FA580A01BF02693005BED24 /* Images.xcassets in Resources */,
+				7F078B4C1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,11 +597,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F078B411C06BE0000B3B2A4 /* SWRMoreSettingCell.m in Sources */,
 				7FA580C31BF02D3C005BED24 /* SWRWhiteNavigationBar.m in Sources */,
+				7F078B4B1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m in Sources */,
 				7FA5813E1BF46317005BED24 /* SWRMessageFrame.m in Sources */,
 				7FA581291BF434FF005BED24 /* SWRConversationTableViewController.m in Sources */,
 				7F078B2E1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m in Sources */,
 				7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */,
+				7F078B3D1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m in Sources */,
 				7FA581311BF4365D005BED24 /* SWRConversationTableViewCell.m in Sources */,
 				7FA581821BF5710E005BED24 /* SWRChatViewController.m in Sources */,
 				7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */,
@@ -585,7 +622,6 @@
 				7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */,
 				7FA581731BF47644005BED24 /* SWRMessageCell.m in Sources */,
 				7FA580BF1BF02CF1005BED24 /* SWRNavigationController.m in Sources */,
-				7FA580FF1BF067C9005BED24 /* SWRSettingTableViewController.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,
 				7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */,
 				7FA580C61BF02D53005BED24 /* SWRGreenNavigationBar.m in Sources */,

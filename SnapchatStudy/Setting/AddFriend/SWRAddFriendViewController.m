@@ -110,11 +110,8 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"Add Friend" leftButton:leftButtonItem rightButton:nil];
-    
-    self.tableView.y = 64;
-    
-    MyLog(@"%f", self.tableView.y);
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"添加好友" leftButton:leftButtonItem rightButton:nil];
+
 }
 
 - (void)clickBackButton
@@ -154,7 +151,7 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SWRAddFriendTableViewCell *cell = [SWRAddFriendTableViewCell SWRAddFriendCellWithTableView:tableView];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     
     PFUser *user = self.allUsers[indexPath.row];

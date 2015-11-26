@@ -85,7 +85,7 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"My Friends" leftButton:leftButtonItem rightButton:nil];
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"我的好友" leftButton:leftButtonItem rightButton:nil];
 }
 
 - (void)clickBackButton

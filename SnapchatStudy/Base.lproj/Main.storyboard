@@ -174,7 +174,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="0Tt-iu-sX5" kind="push" id="B5P-Sd-spX"/>
+                                    <segue destination="zY1-5t-TsT" kind="push" id="mdb-UF-QN6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="M6L-4b-lNR">
@@ -236,7 +236,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="contentInset" minX="0.0" minY="-20" maxX="0.0" maxY="0.0"/>
+                                <inset key="contentInset" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
                                 <connections>
                                     <outlet property="dataSource" destination="7U2-6a-9zZ" id="Sb7-7d-gkq"/>
                                     <outlet property="delegate" destination="7U2-6a-9zZ" id="7Lt-c1-zbQ"/>
@@ -258,7 +258,7 @@
         <!--My Friend View Controller-->
         <scene sceneID="hvx-6J-w7f">
             <objects>
-                <viewController id="Vqs-LV-O8X" customClass="SWRMyFriendViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SWRMyFriendViewController" id="Vqs-LV-O8X" customClass="SWRMyFriendViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DtL-Y7-djY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -284,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ge3-sh-8lv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332.5" y="919.5"/>
+            <point key="canvasLocation" x="1819.5" y="953.5"/>
         </scene>
         <!--Setting Table View Controller-->
         <scene sceneID="pCH-iF-3Ns">
@@ -344,7 +344,38 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f5W-It-mdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1830.5" y="-564.5"/>
+            <point key="canvasLocation" x="2258" y="-560"/>
+        </scene>
+        <!--More Setting View Controller-->
+        <scene sceneID="KIH-uS-dwe">
+            <objects>
+                <viewController id="zY1-5t-TsT" customClass="SWRMoreSettingViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cwq-vJ-lgc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kyf-fh-Fx1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="contentInset" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="zY1-5t-TsT" id="Vxf-A0-tSi"/>
+                                    <outlet property="delegate" destination="zY1-5t-TsT" id="i2x-be-bs5"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GsV-gr-2Cx"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="kyf-fh-Fx1" id="s6N-9g-i3w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zvT-FT-tJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1819.5" y="-560.5"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="w2S-1q-yNp">

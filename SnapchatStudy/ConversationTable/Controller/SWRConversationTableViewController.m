@@ -13,9 +13,9 @@
 #import "SWRConversationTableViewCell.h"
 #import "SWRChatViewController.h"
 #import "SWRMessageTableViewController.h"
-#import "SWRMyFriendTableViewController.h"
+#import "SWRMyFriendViewController.h"
 
-@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendTableViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
+@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
@@ -120,7 +120,7 @@
 - (void)clickFindFriendButton
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SWRMyFriendTableViewController *myfriendViewController = [storyboard instantiateViewControllerWithIdentifier:@"SWRMyFriendTableViewController"];
+    SWRMyFriendViewController *myfriendViewController = [storyboard instantiateViewControllerWithIdentifier:@"SWRMyFriendViewController"];
     myfriendViewController.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myfriendViewController];
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -180,7 +180,7 @@
 
 #pragma mark - SWRMyFriendTableViewController delegate
 
-- (void)SWRMyFriendTableViewController:(SWRMyFriendTableViewController *)myFriendTableViewController didSelectUser:(PFUser *)user
+- (void)SWRMyFriendTableViewController:(SWRMyFriendViewController *)myFriendViewController didSelectUser:(PFUser *)user
 {
     self.chatViewController.friendUser = user;
     [self.navigationController pushViewController:self.chatViewController animated:YES];
