@@ -108,52 +108,44 @@
                     <connections>
                         <outlet property="passwordText" destination="GGm-h5-sT0" id="JIU-hw-N6P"/>
                         <outlet property="userNameText" destination="Ao3-vO-DcH" id="Lsf-06-Te3"/>
-                        <segue destination="6HP-Dk-hAC" kind="push" identifier="signup2Conversations" id="D2S-cL-nUG"/>
+                        <segue destination="DR8-UZ-Ojv" kind="push" identifier="signup2Conversations" id="0yr-J7-jdo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vON-4G-r1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="387.5" y="432.5"/>
         </scene>
-        <!--Conversation Table View Controller-->
-        <scene sceneID="Mcl-RW-b5Z">
+        <!--Conversation View Controller-->
+        <scene sceneID="hXm-Xo-4RV">
             <objects>
-                <tableViewController storyboardIdentifier="ConversationTableViewController" id="6HP-Dk-hAC" customClass="SWRConversationTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QBV-Tc-uzB">
+                <viewController id="DR8-UZ-Ojv" customClass="SWRConversationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W9X-k0-03M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="p8U-Da-Bjt">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentInset" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DR8-UZ-Ojv" id="97l-Gj-2L7"/>
+                                    <outlet property="delegate" destination="DR8-UZ-Ojv" id="SbK-qZ-ssr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="contentInset" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
-                        <inset key="scrollIndicatorInsets" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="IyR-dn-Cyt">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vAw-wx-fPF">
-                                <rect key="frame" x="0.0" y="66" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vAw-wx-fPF" id="E19-ib-A4h">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="6HP-Dk-hAC" id="o6w-dn-28P"/>
-                            <outlet property="delegate" destination="6HP-Dk-hAC" id="u6z-C3-sZB"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="ncZ-le-C9z"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Las-rX-tkq"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="ULu-hS-iC9" kind="push" identifier="conversation2Manage" id="fBg-kr-6yG"/>
+                        <outlet property="tableView" destination="p8U-Da-Bjt" id="Xf5-SQ-okX"/>
+                        <segue destination="ULu-hS-iC9" kind="push" identifier="conversation2Manage" id="Zrm-g7-UNb"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ygG-oB-QvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cMw-5H-h3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877.5" y="70.5"/>
+            <point key="canvasLocation" x="876.5" y="70.5"/>
         </scene>
         <!--Manage View Controller-->
         <scene sceneID="GAK-tL-G23">
@@ -217,7 +209,7 @@
                     <navigationItem key="navigationItem" id="G3y-BF-mYh"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="6HP-Dk-hAC" kind="custom" identifier="manage2Conversation" customClass="SWRRightToLeftSegue" id="auJ-Pl-IMC"/>
+                        <segue destination="DR8-UZ-Ojv" kind="custom" identifier="manage2Conversation" customClass="SWRRightToLeftSegue" id="QA8-9C-EDF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="811-Ri-WBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -423,7 +415,7 @@
                     <connections>
                         <outlet property="passwordText" destination="5LX-Pl-c2P" id="QnB-Cb-uTx"/>
                         <outlet property="userNameText" destination="26j-0P-aNH" id="eGa-Bv-kfg"/>
-                        <segue destination="6HP-Dk-hAC" kind="push" identifier="login2Conversations" id="SoK-KC-lic"/>
+                        <segue destination="DR8-UZ-Ojv" kind="push" identifier="login2Conversations" id="uZX-Te-HRY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTE-3g-ryx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -446,6 +438,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="auJ-Pl-IMC"/>
+        <segue reference="QA8-9C-EDF"/>
     </inferredMetricsTieBreakers>
 </document>

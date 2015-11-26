@@ -7,7 +7,7 @@
 //
 
 #import "SWRManageViewController.h"
-#import "SWRConversationTableViewController.h"
+#import "SWRConversationViewController.h"
 
 @interface SWRManageViewController () <UIGestureRecognizerDelegate>
 

@@ -1,12 +1,13 @@
 //
-//  SWRConversationTableViewController.m
+//  SWRConversationViewController.m
 //  SnapchatStudy
 //
-//  Created by Weiran Shi on 2015-11-08.
+//  Created by Weiran Shi on 2015-11-25.
 //  Copyright (c) 2015 Vera Shi. All rights reserved.
 //
 
-#import "SWRConversationTableViewController.h"
+#import "SWRConversationViewController.h"
+#import "SWRConversationViewController.h"
 #import "SWRGreenNavigationBar.h"
 #import "SWRManageViewController.h"
 #import "SWRConversationModel.h"
@@ -15,8 +16,9 @@
 #import "SWRMessageTableViewController.h"
 #import "SWRMyFriendViewController.h"
 
-@interface SWRConversationTableViewController () <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
+@interface SWRConversationViewController ()  <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *conversations;
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
@@ -24,23 +26,16 @@
 
 @end
 
-
-@implementation SWRConversationTableViewController
-
+@implementation SWRConversationViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];    
+    [super viewDidLoad];
     
     [self setBackgroundImage];
     
     [self addRightSwipeGestureRecognizer];
     
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
-    
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 22)];
-    statusBarView.backgroundColor = [UIColor yellowColor];
-    [self.navigationController.navigationBar addSubview:statusBarView];
-    
     
     self.currentUser = [PFUser currentUser];
     if (self.currentUser) {
@@ -76,7 +71,7 @@
     rightRecognizer.delegate = self;
     [self.view addGestureRecognizer:rightRecognizer];
     [self.view setUserInteractionEnabled:YES];
-
+    
 }
 
 - (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -107,7 +102,7 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
     
     [UINavigationBar customizedBarWithViewController:self backgroundColor:tintGreenColor textColor:[UIColor whiteColor] title:@"snapchat" leftButton:leftButtonItem rightButton:rightButtonItem];
-
+    
 }
 
 
@@ -180,7 +175,7 @@
 
 #pragma mark - SWRMyFriendTableViewController delegate
 
-- (void)SWRMyFriendTableViewController:(SWRMyFriendViewController *)myFriendViewController didSelectUser:(PFUser *)user
+- (void)SWRMyFriendViewController:(SWRMyFriendViewController *)myFriendViewController didSelectUser:(PFUser *)user
 {
     self.chatViewController.friendUser = user;
     [self.navigationController pushViewController:self.chatViewController animated:YES];
@@ -244,14 +239,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-

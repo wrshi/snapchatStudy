@@ -167,8 +167,7 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
-    UINavigationBar *navBar = [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintBlueColor title:self.friendUser.username leftButton:leftButtonItem rightButton:nil];
-    navBar.y = navBar.y + 64;
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintBlueColor title:self.friendUser.username leftButton:leftButtonItem rightButton:nil];
 }
 
 - (void)clickBackButton
