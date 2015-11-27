@@ -8,13 +8,13 @@
 
 #import "SWRConversationViewController.h"
 #import "SWRConversationViewController.h"
-#import "SWRGreenNavigationBar.h"
 #import "SWRManageViewController.h"
 #import "SWRConversationModel.h"
 #import "SWRConversationTableViewCell.h"
 #import "SWRChatViewController.h"
 #import "SWRMessageTableViewController.h"
 #import "SWRMyFriendViewController.h"
+#import "SWRRefreshControl.h"
 
 @interface SWRConversationViewController ()  <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
 
@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) SWRChatViewController *chatViewController;
 @property (nonatomic, strong) PFUser *currentUser;
+@property (nonatomic, strong) SWRRefreshControl *refreshControl;
+@property (nonatomic, assign) BOOL isRefreshAnimating;
 
 @end
 
@@ -34,6 +36,8 @@
     [self setBackgroundImage];
     
     [self addRightSwipeGestureRecognizer];
+    
+    [self setupRefeshControl];
     
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
     
@@ -51,6 +55,38 @@
     [self getCurrentConversation];
 }
 
+- (void)setupRefeshControl
+{
+    [self.tableView addSubview:self.refreshControl];
+    
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    
+}
+
+- (void)animateRefresh
+{
+    self.isRefreshAnimating = YES;
+    static int index = 0;
+    [UIView animateWithDuration:0.7 animations:^{
+        self.refreshControl.backgroundColor = self.refreshControl.backgroundColors[index];
+        index = (index + 1) % self.refreshControl.backgroundColors.count;
+    } completion:^(BOOL finished) {
+        if (self.tableView.contentOffset.y < -64){
+            [self animateRefresh];
+        }
+        else{
+            self.isRefreshAnimating = NO;
+        }
+    }];
+    
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl
+{
+    [self getCurrentConversation];
+    [self.refreshControl endRefreshing];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -63,75 +99,17 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)addRightSwipeGestureRecognizer
-{
-    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
-    rightRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [rightRecognizer setNumberOfTouchesRequired:1];
-    rightRecognizer.delegate = self;
-    [self.view addGestureRecognizer:rightRecognizer];
-    [self.view setUserInteractionEnabled:YES];
-    
-}
 
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
-{
-    [self performSegueWithIdentifier:@"conversation2Manage" sender:nil];
-    
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return true;
-}
-
-- (void)setNavigationBar
-{
-    // hide the existing nav bar
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    UIButton *findFriendButton = [[UIButton alloc] init];
-    [findFriendButton setImage:[UIImage imageNamed:@"profile_mycontacts_icon"] forState:UIControlStateNormal];
-    findFriendButton.bounds = CGRectMake(0, 0, 40, 40);
-    [findFriendButton addTarget:self action:@selector(clickFindFriendButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:findFriendButton];
-    
-    UIButton *cameraButton = [[UIButton alloc] init];
-    [cameraButton setImage:[UIImage imageNamed:@"SC_All_BackToCamera_Button"] forState:UIControlStateNormal];
-    cameraButton.bounds = CGRectMake(0, 0, 40, 40);
-    [cameraButton addTarget:self action:@selector(clickCameraButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
-    
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:tintGreenColor textColor:[UIColor whiteColor] title:@"snapchat" leftButton:leftButtonItem rightButton:rightButtonItem];
-    
-}
-
-
-- (void)setBackgroundImage
-{
-    self.background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"send_still"]];
-    [self.view addSubview:self.background];
-}
-
-- (void)clickFindFriendButton
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SWRMyFriendViewController *myfriendViewController = [storyboard instantiateViewControllerWithIdentifier:@"SWRMyFriendViewController"];
-    myfriendViewController.delegate = self;
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myfriendViewController];
-    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:navController animated:YES completion:NULL];
-}
-
-- (void)clickCameraButton
-{
-    
-}
-
-
+#pragma mark - ScrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.background.y = scrollView.contentOffset.y;
     [self.view bringSubviewToFront:self.background];
+    
+    if (self.tableView.contentOffset.y < -64 && !self.isRefreshAnimating){
+        [self animateRefresh];
+    }
+    
 }
 
 #pragma mark - Table view data source
@@ -188,8 +166,8 @@
     [self getCurrentConversation];
 }
 
+#pragma mark - lazy load
 
-#pragma mark - private methods
 
 - (NSMutableArray *)conversations
 {
@@ -206,6 +184,81 @@
     }
     return _chatViewController;
 }
+
+- (SWRRefreshControl *)refreshControl
+{
+    if (_refreshControl == nil){
+        _refreshControl = [SWRRefreshControl SWRRefreshControl];
+    }
+    return _refreshControl;
+}
+
+#pragma mark - private methods
+
+- (void)addRightSwipeGestureRecognizer
+{
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [rightRecognizer setNumberOfTouchesRequired:1];
+    rightRecognizer.delegate = self;
+    [self.view addGestureRecognizer:rightRecognizer];
+    [self.view setUserInteractionEnabled:YES];
+    
+}
+
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self performSegueWithIdentifier:@"conversation2Manage" sender:nil];
+    
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return true;
+}
+
+- (void)setNavigationBar
+{
+    // hide the existing nav bar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *findFriendButton = [[UIButton alloc] init];
+    [findFriendButton setImage:[UIImage imageNamed:@"profile_mycontacts_icon"] forState:UIControlStateNormal];
+    findFriendButton.bounds = CGRectMake(0, 0, 40, 40);
+    [findFriendButton addTarget:self action:@selector(clickFindFriendButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:findFriendButton];
+    
+    UIButton *cameraButton = [[UIButton alloc] init];
+    [cameraButton setImage:[UIImage imageNamed:@"SC_All_BackToCamera_Button"] forState:UIControlStateNormal];
+    cameraButton.bounds = CGRectMake(0, 0, 40, 40);
+    [cameraButton addTarget:self action:@selector(clickCameraButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:tintGreenColor textColor:[UIColor whiteColor] title:@"snapchat" leftButton:leftButtonItem rightButton:rightButtonItem];
+    
+}
+
+
+- (void)setBackgroundImage
+{
+    self.background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"send_still"]];
+    [self.tableView addSubview:self.background];
+}
+
+- (void)clickFindFriendButton
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    SWRMyFriendViewController *myfriendViewController = [storyboard instantiateViewControllerWithIdentifier:@"SWRMyFriendViewController"];
+    myfriendViewController.delegate = self;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:myfriendViewController];
+    navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:navController animated:YES completion:NULL];
+}
+
+- (void)clickCameraButton
+{
+    
+}
+
 
 - (void)getCurrentConversation
 {

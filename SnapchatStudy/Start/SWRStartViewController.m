@@ -7,8 +7,6 @@
 //
 
 #import "SWRStartViewController.h"
-#import "SWRNavigationController.h"
-#import "SWRWhiteNavigationBar.h"
 #import "SWRLoginViewController.h"
 
 #import <Parse/Parse.h>
@@ -43,13 +41,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (IBAction)loginButtonClick:(id)sender {
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//    VSLoginViewController *loginVc = [sb instantiateViewControllerWithIdentifier:@"VSLoginViewController"];
-//    VSWhiteNavigationBar *navBar = [[VSWhiteNavigationBar alloc] init];
-//    [loginVc.navigationController setValue:navBar forKeyPath:@"navigationBar"];
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    window.rootViewController = loginVc;
-//}
 
 @end

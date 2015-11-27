@@ -7,8 +7,6 @@
 //
 
 #import "SWRLoginViewController.h"
-#import "SWRNavigationController.h"
-#import "SWRWhiteNavigationBar.h"
 
 @interface SWRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
@@ -23,23 +21,34 @@
     // Do any additional setup after loading the view.
     
     
-    self.navigationItem.title = @"登录";
-    
-    SWRWhiteNavigationBar *navBar = [[SWRWhiteNavigationBar alloc] init];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
-    
-    UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
-    backButton.bounds = CGRectMake(0, 0, 15, 20);
-    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    
     
     [self.userNameText becomeFirstResponder];
     
     [self addLoginButton];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setNavigationBar];
+}
+
+- (void)setNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, 15, 20);
+    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"登录" leftButton:leftButtonItem rightButton:nil];
+}
+
+- (void)clickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,11 +63,6 @@
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
-}
-
-- (void)clickBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickLoginButton

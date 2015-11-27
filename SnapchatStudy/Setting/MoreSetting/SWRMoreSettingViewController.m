@@ -65,7 +65,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_green"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];

@@ -7,7 +7,6 @@
 //
 
 #import "SWRSignupViewController.h"
-#import "SWRWhiteNavigationBar.h"
 
 @interface SWRSignupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
@@ -21,26 +20,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"注册";
-    
-    UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
-    backButton.bounds = CGRectMake(0, 0, 15, 20);
-    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-    
-    SWRWhiteNavigationBar *navBar = [[SWRWhiteNavigationBar alloc] init];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    [self setNavigationBar];
     
     [self.userNameText becomeFirstResponder];
     
     [self addSignUpButton];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, 15, 20);
+    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"注册" leftButton:leftButtonItem rightButton:nil];
+    
+}
+
+- (void)clickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)addSignUpButton
@@ -50,11 +53,6 @@
     [signUpButton setTitle:@"注册" forState:UIControlStateNormal];
     [signUpButton addTarget:self action:@selector(clickSignUpButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
-}
-
-- (void)clickBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickSignUpButton

@@ -12,7 +12,8 @@
 
 + (UINavigationBar *)customizedBarWithViewController:(UIViewController *)controller backgroundColor:(UIColor *)backgroundColor textColor:(UIColor *)textColor title:(NSString *)title leftButton:(UIBarButtonItem *)leftButton rightButton:(UIBarButtonItem *)rightButton
 {
-    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 20, CGRectGetWidth(controller.view.bounds), 44.0)];
+    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(controller.view.bounds), 64.0)];
+    newNavBar.translucent = NO;
     newNavBar.barTintColor = backgroundColor;
     newNavBar.titleTextAttributes = @{
                                  NSFontAttributeName : [UIFont systemFontOfSize:24],

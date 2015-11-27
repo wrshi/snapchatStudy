@@ -50,7 +50,6 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -61,14 +60,9 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self.timer invalidate];
 }
 
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -162,7 +156,7 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_black"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_blue"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
