@@ -16,7 +16,7 @@
 #import "SWRMyFriendViewController.h"
 #import "SWRRefreshControl.h"
 
-@interface SWRConversationViewController ()  <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, UINavigationControllerDelegate>
+@interface SWRConversationViewController ()  <UIGestureRecognizerDelegate, SWRMyFriendViewControllerDelegate, SWRChatViewControllerDelegate, SWRConversationTableViewCellProtocol, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *conversations;
@@ -36,6 +36,8 @@
     [self setBackgroundImage];
     
     [self addRightSwipeGestureRecognizer];
+    
+    [self addLeftSwipeGestureRecognizer];
     
     [self setupRefeshControl];
     
@@ -127,10 +129,17 @@
     return UITableViewCellEditingStyleNone;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SWRConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell" forIndexPath:indexPath];
     cell.conversation = self.conversations[indexPath.row];
+    cell.delegate = self;
+    
     return cell;
 }
 
@@ -144,10 +153,13 @@
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    SWRConversationModel *conversationModel = self.conversations[indexPath.row];
-    self.chatViewController.friendUser = conversationModel.friendUser;
-    self.chatViewController.delegate = self;
-    [self.navigationController pushViewController:self.chatViewController animated:YES];
+   
+}
+
+#pragma mark - UIGestureRecognizer delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 
@@ -164,6 +176,16 @@
 - (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser
 {
     [self getCurrentConversation];
+}
+
+#pragma mark - SWRConversationTableViewCell delegate
+
+- (void)cellfinishedAnimationAtIndexPath:(NSIndexPath *)indexPath
+{
+    SWRConversationModel *conversationModel = self.conversations[indexPath.row];
+    self.chatViewController.friendUser = conversationModel.friendUser;
+    self.chatViewController.delegate = self;
+    [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
 #pragma mark - lazy load
@@ -195,10 +217,21 @@
 
 #pragma mark - private methods
 
+- (void)addLeftSwipeGestureRecognizer
+{
+    UISwipeGestureRecognizer *leftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandle:)];
+    leftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [leftRecognizer setNumberOfTouchesRequired:1];
+    leftRecognizer.delegate = self;
+    [self.view addGestureRecognizer:leftRecognizer];
+    [self.view setUserInteractionEnabled:YES];
+    
+}
+
 - (void)addRightSwipeGestureRecognizer
 {
-    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
-    rightRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    UISwipeGestureRecognizer *rightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandle:)];
+    rightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
     [rightRecognizer setNumberOfTouchesRequired:1];
     rightRecognizer.delegate = self;
     [self.view addGestureRecognizer:rightRecognizer];
@@ -206,15 +239,33 @@
     
 }
 
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+- (void)swipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft){
+        [self leftSwipeHandle:gestureRecognizer];
+    }
+    if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight){
+        [self rightSwipeHandle:gestureRecognizer];
+    }
+}
+
+- (void)leftSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     [self performSegueWithIdentifier:@"conversation2Manage" sender:nil];
     
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return true;
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    CGPoint currentPoint = [gestureRecognizer locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:currentPoint];
+    SWRConversationTableViewCell *cell = (SWRConversationTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+
+    [cell cellAnimationWhenSwiped:gestureRecognizer indexPath:indexPath];
+    
 }
+    
+    
 
 - (void)setNavigationBar
 {
