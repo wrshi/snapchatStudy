@@ -8,7 +8,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Cmg-IV-l02">
             <objects>
-                <navigationController id="l1P-XV-MQl" customClass="SWRNavigationController" sceneMemberID="viewController">
+                <navigationController id="l1P-XV-MQl" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7C7-SI-xlT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -377,7 +377,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="zya" placeholder="用户名" minimumFontSize="20" id="26j-0P-aNH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Shi Vera" placeholder="用户名" minimumFontSize="20" id="26j-0P-aNH">
                                 <rect key="frame" x="16" y="77" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -405,7 +405,7 @@
                                 <rect key="frame" x="16" y="134" width="343" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -438,6 +438,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QA8-9C-EDF"/>
+        <segue reference="uZX-Te-HRY"/>
     </inferredMetricsTieBreakers>
 </document>

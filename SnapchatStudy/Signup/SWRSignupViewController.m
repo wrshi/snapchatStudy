@@ -20,11 +20,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setNavigationBar];
-    
     [self.userNameText becomeFirstResponder];
     
     [self addSignUpButton];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self setNavigationBar];
 }
 
 - (void)setNavigationBar

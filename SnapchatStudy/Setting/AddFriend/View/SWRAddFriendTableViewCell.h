@@ -11,6 +11,7 @@
 @interface SWRAddFriendTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) PFUser *friendUser;
+@property (nonatomic, copy) NSString *friendName;
 
 + (instancetype)SWRAddFriendCellWithTableView:(UITableView *)tableView;
 

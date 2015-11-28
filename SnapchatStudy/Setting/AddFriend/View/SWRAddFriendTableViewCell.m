@@ -21,6 +21,12 @@
     self.textLabel.text = friendUser.username;
 }
 
+- (void)setFriendName:(NSString *)friendName
+{
+    _friendName = friendName;
+    self.textLabel.text = friendName;
+}
+
 - (void)awakeFromNib {
     // Initialization code
 }

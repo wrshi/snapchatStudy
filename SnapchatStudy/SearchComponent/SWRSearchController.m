@@ -7,7 +7,7 @@
 //
 
 #import "SWRSearchController.h"
-#import "SWRSearchBar.h"
+
 
 @interface SWRSearchController ()
 
@@ -22,9 +22,16 @@
         customSearchBar.barTintColor = tintColor;
         customSearchBar.tintColor = color;
         customSearchBar.showsBookmarkButton = NO;
-        customSearchBar.showsCancelButton = YES;
+        customSearchBar.showsCancelButton = NO;
+        self.customSearchBar = customSearchBar;
+        self.customSearchBar.delegate = self;
     }
     return self;
+}
+
+- (void)terminateSearch
+{
+    [self.customSearchBar resignFirstResponder];
 }
 
 - (void)viewDidLoad {
@@ -37,14 +44,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UISearchBar delegate
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    if ([self.delegate respondsToSelector:@selector(didStartSearching)]){
+        [self.delegate didStartSearching];
+    }
 }
-*/
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.customSearchBar resignFirstResponder];
+    if ([self.delegate respondsToSelector:@selector(didTapOnSearchButton)]){
+        [self.delegate didTapOnSearchButton];
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.customSearchBar resignFirstResponder];
+    if ([self.delegate respondsToSelector:@selector(didTapOnCancelButton)]){
+        [self.delegate didTapOnCancelButton];
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if ([self.delegate respondsToSelector:@selector(didChangeSearchText:)]){
+        [self.delegate didChangeSearchText:searchText];
+    }
+}
 
 @end

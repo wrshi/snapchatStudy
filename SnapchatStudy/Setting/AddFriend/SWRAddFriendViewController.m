@@ -8,15 +8,20 @@
 
 #import "SWRAddFriendViewController.h"
 #import "SWRAddFriendTableViewCell.h"
+#import "SWRSearchController.h"
 
-@interface SWRAddFriendViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SWRAddFriendViewController () <UITableViewDataSource, UITableViewDelegate, SWRSearchControllerDelegate>
 
 @property (nonatomic, strong) NSArray *allUsers;
 @property (nonatomic, strong) NSMutableArray *alphabetsArray;
 @property (nonatomic, strong) NSMutableArray *nameArray;
 @property (nonatomic, strong) PFUser *currentUser;
 @property (nonatomic, strong) NSMutableArray *friendsId;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) SWRSearchController *customSearchController;
+@property (nonatomic, assign) BOOL shouldShowSearchResults;
+@property (nonatomic, strong) NSArray *filteredArray;
 
 @end
 
@@ -63,6 +68,25 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     return _friendsId;
 }
 
+- (SWRSearchController *)customSearchController
+{
+    if (_customSearchController == nil){
+        _customSearchController = [[SWRSearchController alloc] initWithSearchResultsController:self searchBarFrame:CGRectMake(0, 0, screenW, 44.0) searchBarFont:[UIFont systemFontOfSize:15.0] searchBarTextColor:[UIColor blackColor] searchBarTintColor:[UIColor whiteColor]];
+        _customSearchController.customSearchBar.placeholder = @"搜索";
+        _customSearchController.delegate = self;
+        
+    }
+    return _customSearchController;
+}
+
+- (NSArray *)filteredArray
+{
+    if (_filteredArray == nil){
+        _filteredArray = [NSArray array];
+    }
+    return _filteredArray;
+}
+
 
 #pragma mark - private methods
 
@@ -70,6 +94,8 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     [super viewDidLoad];
     
     [self setNavigationBar];
+    
+    self.tableView.tableHeaderView = self.customSearchController.customSearchBar;
     
 }
 
@@ -93,10 +119,6 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
             MyLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    
-    
-    
 }
 
 
@@ -135,17 +157,30 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     // Dispose of any resources that can be recreated.
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.customSearchController terminateSearch];
+    self.shouldShowSearchResults = NO;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     
     
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return [self.allUsers count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.shouldShowSearchResults){
+        return self.filteredArray.count;
+    }
+    else{
+        return self.allUsers.count;
+    }
 }
 
 
@@ -153,8 +188,14 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     SWRAddFriendTableViewCell *cell = [SWRAddFriendTableViewCell SWRAddFriendCellWithTableView:tableView];
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    
-    PFUser *user = self.allUsers[indexPath.row];
+    PFUser *user = nil;
+    if (self.shouldShowSearchResults){
+        user = self.filteredArray[indexPath.row];
+        
+    }
+    else{
+        user = self.allUsers[indexPath.row];
+    }
     cell.friendUser = user;
     
     if ([self.friendsId containsObject:user.objectId]){
@@ -170,7 +211,16 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PFRelation *friendsRelation = [self.currentUser relationForKey:@"FriendsRelation"];
-    PFUser *user = self.allUsers[indexPath.row];
+    
+    PFUser *user = nil;
+    if (self.shouldShowSearchResults){
+        user = self.filteredArray[indexPath.row];
+        
+    }
+    else{
+        user = self.allUsers[indexPath.row];
+    }
+    
     if ([self.friendsId containsObject:user.objectId]){
         [friendsRelation removeObject:user];
         [self.friendsId removeObject:user.objectId];
@@ -205,6 +255,37 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
         }
     }
     return 0;
+}
+
+
+#pragma mark - SWRSearchController delegate
+
+- (void)didStartSearching
+{
+    self.shouldShowSearchResults = YES;
+    [self.tableView reloadData];
+}
+
+- (void)didTapOnSearchButton
+{
+    if (!self.shouldShowSearchResults){
+        self.shouldShowSearchResults = YES;
+        [self.tableView reloadData];
+    }
+}
+
+- (void)didTapOnCancelButton
+{
+    self.shouldShowSearchResults = NO;
+    [self.tableView reloadData];
+}
+
+- (void)didChangeSearchText:(NSString *)searchText
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.username BEGINSWITH [CD] %@", searchText];
+    self.filteredArray = [self.allUsers filteredArrayUsingPredicate:predicate];
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - private methods

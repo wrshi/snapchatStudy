@@ -31,10 +31,14 @@
     int index = [self indexOfSearchFieldInSubviews];
     UIView *searchBarView = self.subviews[0];
     UITextField *searchField = searchBarView.subviews[index];
-    searchField.frame = CGRectMake(5.0, 5.0, self.frame.size.width - 10.0, self.frame.size.height - 10.0);
+    searchField.frame = CGRectMake(10.0, 6.0, self.frame.size.width, self.frame.size.height);
     searchField.font = self.preferredFont;
     searchField.backgroundColor = self.barTintColor;
     searchField.textColor = self.preferredTextColor;
+    searchField.textAlignment = NSTextAlignmentLeft;
+    UIImageView *iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 14, 18)];
+    iconView.image = [UIImage imageNamed:@"friend_tab_bar_search_normal"];
+    searchField.leftView = iconView;
     
     [super drawRect:rect];
     
@@ -50,8 +54,5 @@
     }
     return 0;
 }
-
-
-
 
 @end
