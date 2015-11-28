@@ -38,7 +38,7 @@
     SWRMessageModel *messageModel = messageFrame.messageModel;
     
     self.fromLabel.frame = messageFrame.fromFrame;
-    self.fromLabel.text = messageModel.fromUser.objectId;
+    self.fromLabel.text = messageModel.fromUser.username;
 
     self.messageTextLabel.frame = messageFrame.textFrame;
     self.messageTextLabel.text = messageModel.text;

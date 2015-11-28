@@ -24,7 +24,7 @@
         self.tintColor = [UIColor clearColor];
         
         self.imageView = [[UIImageView alloc] init];
-        self.imageView.image = [UIImage imageNamed:@"Blocked_Snapchatters"];
+        
         
         [self addSubview:self.imageView];
         
@@ -43,6 +43,18 @@
     self.imageView.bounds = CGRectMake(0, 0, 50, 50);
     self.imageView.x = (screenW - self.imageView.width) / 2;
     self.imageView.y = 8;
+    
+}
+
+- (void)setShowImage:(BOOL)showImage
+{
+    _showImage = showImage;
+    if (showImage){
+        self.imageView.image = [UIImage imageNamed:@"Blocked_Snapchatters"];
+    }
+    else{
+        self.imageView.image = nil;
+    }
 }
 
 

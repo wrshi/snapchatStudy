@@ -11,6 +11,7 @@
 @interface SWRRefreshControl : UIRefreshControl
 
 @property (nonatomic, strong) NSArray *backgroundColors;
+@property (nonatomic, assign) BOOL showImage;
 
 + (instancetype)SWRRefreshControl;
 

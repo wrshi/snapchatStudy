@@ -67,6 +67,9 @@
 
 - (void)animateRefresh
 {
+    if (self.tableView.contentOffset.y < -74){
+        self.refreshControl.showImage = YES;
+    }
     self.isRefreshAnimating = YES;
     static int index = 0;
     [UIView animateWithDuration:0.7 animations:^{
@@ -111,7 +114,11 @@
     if (self.tableView.contentOffset.y < -64 && !self.isRefreshAnimating){
         [self animateRefresh];
     }
-    
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    self.refreshControl.showImage = NO;
 }
 
 #pragma mark - Table view data source
@@ -139,6 +146,7 @@
     SWRConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell" forIndexPath:indexPath];
     cell.conversation = self.conversations[indexPath.row];
     cell.delegate = self;
+    cell.userInteractionEnabled = NO;
     
     return cell;
 }
@@ -147,13 +155,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-   
 }
 
 #pragma mark - UIGestureRecognizer delegate
@@ -168,6 +169,13 @@
 - (void)SWRMyFriendViewController:(SWRMyFriendViewController *)myFriendViewController didSelectUser:(PFUser *)user
 {
     self.chatViewController.friendUser = user;
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
@@ -185,7 +193,14 @@
     SWRConversationModel *conversationModel = self.conversations[indexPath.row];
     self.chatViewController.friendUser = conversationModel.friendUser;
     self.chatViewController.delegate = self;
-    [self.navigationController pushViewController:self.chatViewController animated:YES];
+    
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    
+    [self.navigationController pushViewController:self.chatViewController animated:NO];
 }
 
 #pragma mark - lazy load
@@ -264,8 +279,6 @@
     [cell cellAnimationWhenSwiped:gestureRecognizer indexPath:indexPath];
     
 }
-    
-    
 
 - (void)setNavigationBar
 {

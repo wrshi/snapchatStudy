@@ -11,6 +11,7 @@
 @interface SWRSignupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (nonatomic, strong) UIButton *signupButton;
 
 @end
 
@@ -22,7 +23,28 @@
     
     [self.userNameText becomeFirstResponder];
     
+    [self.userNameText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
     [self addSignUpButton];
+    [self textChange];
+}
+
+- (void)textChange
+{
+    if (self.userNameText.text.length && self.passwordText.text.length) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.signupButton.x = 0;
+            self.signupButton.alpha = 1;
+        }];
+    }
+    else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.signupButton.x = -screenW;
+            self.signupButton.alpha = 0;
+        }];
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,9 +75,11 @@
 {
     UIButton *signUpButton = [[UIButton alloc] initWithFrame:CGRectMake(0, screenH * 0.4, screenW, 50)];
     signUpButton.backgroundColor = tintGreenColor;
+    signUpButton.alpha = 0;
     [signUpButton setTitle:@"注册" forState:UIControlStateNormal];
     [signUpButton addTarget:self action:@selector(clickSignUpButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
+    self.signupButton = signUpButton;
 }
 
 - (void)clickSignUpButton

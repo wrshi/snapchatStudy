@@ -94,7 +94,7 @@
 {
 
     if (recognizer.state == UIGestureRecognizerStateEnded){
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             self.topView.x = self.height;
         } completion:^(BOOL finished) {
             if ([self.delegate respondsToSelector:@selector(cellfinishedAnimationAtIndexPath:)]){

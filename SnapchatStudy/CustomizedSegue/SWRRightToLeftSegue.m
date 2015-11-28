@@ -17,7 +17,7 @@
     UIViewController *destinationController = (UIViewController*)[self destinationViewController];
     
     CATransition* transition = [CATransition animation];
-    transition.duration = 0.75;
+    transition.duration = 0.4;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionPush; //kCATransitionMoveIn; //, kCATransitionPush, kCATransitionReveal, kCATransitionFade
     transition.subtype = kCATransitionFromLeft; //kCATransitionFromLeft, kCATransitionFromRight, kCATransitionFromTop, kCATransitionFromBottom

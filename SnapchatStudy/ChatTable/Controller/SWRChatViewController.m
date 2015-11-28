@@ -156,17 +156,23 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_blue"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_blue_flipped"] forState:UIControlStateNormal];
     backButton.bounds = CGRectMake(0, 0, 15, 20);
     [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintBlueColor title:self.friendUser.username leftButton:leftButtonItem rightButton:nil];
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintBlueColor title:self.friendUser.username leftButton:nil rightButton:rightButtonItem];
 }
 
 - (void)clickBackButton
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 
@@ -227,8 +233,6 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
 
 - (void)deleteMessge
 {
-    
-    
     PFQuery *messageQuery = [PFQuery queryWithClassName:@"message"];
     [messageQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
     [messageQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];

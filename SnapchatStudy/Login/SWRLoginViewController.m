@@ -11,6 +11,7 @@
 @interface SWRLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (nonatomic, strong) UIButton *loginButton;
 
 @end
 
@@ -20,12 +21,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    
     [self.userNameText becomeFirstResponder];
     
-    [self addLoginButton];
+    [self.userNameText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    [self.passwordText addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
     
+    [self addLoginButton];
+    [self textChange];
+    
+}
+
+- (void)textChange
+{
+    if (self.userNameText.text.length && self.passwordText.text.length) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.loginButton.x = 0;
+            self.loginButton.alpha = 1;
+        }];
+    }
+    else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.loginButton.x = -screenW;
+            self.loginButton.alpha = 0;
+        }];
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -58,11 +78,13 @@
 
 - (void)addLoginButton
 {
-    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(0, screenH * 0.4, screenW, 50)];
+    UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(-screenW, screenH * 0.4, screenW, 50)];
     loginButton.backgroundColor = tintGreenColor;
+    loginButton.alpha = 0;
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
+    self.loginButton = loginButton;
 }
 
 - (void)clickLoginButton
@@ -80,14 +102,6 @@
     
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
