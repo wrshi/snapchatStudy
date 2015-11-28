@@ -20,24 +20,24 @@
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) NSTimer *timer;
 
-
 @end
+
 
 static const NSTimeInterval secondBeforeDelete = 10.0;
 
 @implementation SWRChatViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     [self.view addSubview:self.messageController.view];
     [self.view addSubview:self.inputBoxController.view];
     
     self.currentUser = [PFUser currentUser];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -47,7 +47,6 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self getCurrentMessages];
     [self deleteCurrentConversation];
     [self startTimer];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -65,25 +64,14 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-- (void)keyboardDidChangeFrame:(NSNotification *)notification
-{
-    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    self.inputBoxController.view.transform = CGAffineTransformMakeTranslation(0, frame.origin.y - screenH);
-}
 
 #pragma mark - SWRMessageTableViewController delegate
 
 - (void)SWRMessageTableViewConrtroller:(SWRMessageTableViewController *)messageTableViewController didTappedOnView:(UIView *)tappedView
 {
-    
     [self.inputBoxController resignFirstResponder];
 }
+
 
 #pragma mark - SWRInputBoxController delegate
 
@@ -110,46 +98,12 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
-    
 }
+
 
 #pragma mark - private methods
-- (SWRMessageTableViewController *)messageController
-{
-    if (_messageController == nil){
-        _messageController = [[SWRMessageTableViewController alloc] init];
-        
-        _messageController.view.y = statusbarH + navigationbarH;
-        _messageController.delegate = self;
-        _messageController.friendUser = self.friendUser;
-    }
-    return _messageController;
-}
 
-- (SWRInputBoxController *)inputBoxController
-{
-    if (_inputBoxController == nil){
-        _inputBoxController = [[SWRInputBoxController alloc] init];
-        _inputBoxController.view.y = screenH - _inputBoxController.view.height;
-        _inputBoxController.delegate = self;
-    }
-    return _inputBoxController;
-}
-
-- (NSMutableArray *)messages
-{
-    if (_messages == nil){
-        _messages = [NSMutableArray array];
-    }
-    return _messages;
-}
-
-- (void)setFriendUser:(PFUser *)friendUser
-{
-    _friendUser = friendUser;
-    self.navigationItem.title = friendUser.objectId;
-}
+#pragma mark set exterior
 
 - (void)setNavigationBar
 {
@@ -175,6 +129,13 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [self.navigationController popViewControllerAnimated:NO];
 }
 
+- (void)keyboardDidChangeFrame:(NSNotification *)notification
+{
+    CGRect frame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    self.inputBoxController.view.transform = CGAffineTransformMakeTranslation(0, frame.origin.y - screenH);
+}
+
+#pragma mark update data
 
 - (void)getCurrentMessages
 {
@@ -222,14 +183,8 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
-    
 }
 
-- (void)startTimer
-{
-    self.timer = [NSTimer timerWithTimeInterval:secondBeforeDelete target:self selector:@selector(deleteMessge) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-}
 
 - (void)deleteMessge
 {
@@ -251,7 +206,51 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     
 }
 
+#pragma mark set timer
+
+- (void)startTimer
+{
+    self.timer = [NSTimer timerWithTimeInterval:secondBeforeDelete target:self selector:@selector(deleteMessge) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
 
 
+#pragma mark - lazy load
+
+- (SWRMessageTableViewController *)messageController
+{
+    if (_messageController == nil){
+        _messageController = [[SWRMessageTableViewController alloc] init];
+        
+        _messageController.view.y = statusbarH + navigationbarH;
+        _messageController.delegate = self;
+        _messageController.friendUser = self.friendUser;
+    }
+    return _messageController;
+}
+
+- (SWRInputBoxController *)inputBoxController
+{
+    if (_inputBoxController == nil){
+        _inputBoxController = [[SWRInputBoxController alloc] init];
+        _inputBoxController.view.y = screenH - _inputBoxController.view.height;
+        _inputBoxController.delegate = self;
+    }
+    return _inputBoxController;
+}
+
+- (NSMutableArray *)messages
+{
+    if (_messages == nil){
+        _messages = [NSMutableArray array];
+    }
+    return _messages;
+}
+
+- (void)setFriendUser:(PFUser *)friendUser
+{
+    _friendUser = friendUser;
+    self.navigationItem.title = friendUser.objectId;
+}
 
 @end

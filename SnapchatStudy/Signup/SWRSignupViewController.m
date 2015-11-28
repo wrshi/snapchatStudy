@@ -9,6 +9,7 @@
 #import "SWRSignupViewController.h"
 
 @interface SWRSignupViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (nonatomic, strong) UIButton *signupButton;
@@ -17,9 +18,9 @@
 
 @implementation SWRSignupViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.userNameText becomeFirstResponder];
     
@@ -28,23 +29,6 @@
     
     [self addSignUpButton];
     [self textChange];
-}
-
-- (void)textChange
-{
-    if (self.userNameText.text.length && self.passwordText.text.length) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.signupButton.x = 0;
-            self.signupButton.alpha = 1;
-        }];
-    }
-    else{
-        [UIView animateWithDuration:0.5 animations:^{
-            self.signupButton.x = -screenW;
-            self.signupButton.alpha = 0;
-        }];
-        
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,7 +47,6 @@
     UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     
     [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"注册" leftButton:leftButtonItem rightButton:nil];
-    
 }
 
 - (void)clickBackButton
@@ -80,6 +63,26 @@
     [signUpButton addTarget:self action:@selector(clickSignUpButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signUpButton];
     self.signupButton = signUpButton;
+}
+
+/*
+ check text status and make button animation
+ */
+- (void)textChange
+{
+    if (self.userNameText.text.length && self.passwordText.text.length) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.signupButton.x = 0;
+            self.signupButton.alpha = 1;
+        }];
+    }
+    else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.signupButton.x = -screenW;
+            self.signupButton.alpha = 0;
+        }];
+        
+    }
 }
 
 - (void)clickSignUpButton
@@ -101,15 +104,5 @@
     }];
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

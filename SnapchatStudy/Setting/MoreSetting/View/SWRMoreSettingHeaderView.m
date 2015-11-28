@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 
-
 @end
 
 @implementation SWRMoreSettingHeaderView

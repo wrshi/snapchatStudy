@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F078B261C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B251C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.m */; };
-		7F078B291C0688A200B3B2A4 /* SWRAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B281C0688A200B3B2A4 /* SWRAddFriendViewController.m */; };
-		7F078B2E1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B2C1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m */; };
-		7F078B2F1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B2D1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib */; };
-		7F078B321C06B90300B3B2A4 /* SWRMyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B311C06B90300B3B2A4 /* SWRMyFriendViewController.m */; };
-		7F078B371C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */; };
-		7F078B381C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */; };
-		7F078B3D1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */; };
-		7F078B411C06BE0000B3B2A4 /* SWRMoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */; };
-		7F078B421C06BE0000B3B2A4 /* SWRMoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */; };
-		7F078B4B1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */; };
-		7F078B4C1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */; };
 		7F078B4F1C06DAF300B3B2A4 /* SWRConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B4E1C06DAF300B3B2A4 /* SWRConversationViewController.m */; };
 		7F078B561C08306200B3B2A4 /* SWRRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B551C08306200B3B2A4 /* SWRRefreshControl.m */; };
-		7F078B5A1C091DDC00B3B2A4 /* SWRSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B591C091DDC00B3B2A4 /* SWRSearchBar.m */; };
-		7F078B5D1C0921E200B3B2A4 /* SWRSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F078B5C1C0921E200B3B2A4 /* SWRSearchController.m */; };
+		7F3F13A91C0A30800063CD7F /* SWRSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13A51C0A30800063CD7F /* SWRSearchController.m */; };
+		7F3F13AA1C0A30800063CD7F /* SWRSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13A81C0A30800063CD7F /* SWRSearchBar.m */; };
+		7F3F13C71C0A30BE0063CD7F /* SWRAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13AF1C0A30BE0063CD7F /* SWRAddFriendViewController.m */; };
+		7F3F13CA1C0A30BE0063CD7F /* SWRMoreSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13B71C0A30BE0063CD7F /* SWRMoreSettingViewController.m */; };
+		7F3F13CF1C0A30BE0063CD7F /* SWRMyFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13C21C0A30BE0063CD7F /* SWRMyFriendViewController.m */; };
+		7F3F13DC1C0A32120063CD7F /* SWRMoreSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13D71C0A32120063CD7F /* SWRMoreSettingCell.m */; };
+		7F3F13DD1C0A32120063CD7F /* SWRMoreSettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F13D81C0A32120063CD7F /* SWRMoreSettingCell.xib */; };
+		7F3F13DE1C0A32120063CD7F /* SWRMoreSettingHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13DA1C0A32120063CD7F /* SWRMoreSettingHeaderView.m */; };
+		7F3F13DF1C0A32120063CD7F /* SWRMoreSettingHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F13DB1C0A32120063CD7F /* SWRMoreSettingHeaderView.xib */; };
+		7F3F13E31C0A32250063CD7F /* SWRAddFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13E11C0A32250063CD7F /* SWRAddFriendTableViewCell.m */; };
+		7F3F13E41C0A32250063CD7F /* SWRAddFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F13E21C0A32250063CD7F /* SWRAddFriendTableViewCell.xib */; };
+		7F3F13E81C0A32760063CD7F /* SWRMyFriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13E61C0A32760063CD7F /* SWRMyFriendTableViewCell.m */; };
+		7F3F13E91C0A32760063CD7F /* SWRMyFriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3F13E71C0A32760063CD7F /* SWRMyFriendTableViewCell.xib */; };
+		7F3F13ED1C0A33720063CD7F /* UINavigationBar+CustomizedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13EC1C0A33720063CD7F /* UINavigationBar+CustomizedBar.m */; };
+		7F3F13F11C0A337C0063CD7F /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F3F13F01C0A337C0063CD7F /* UIView+Extension.m */; };
 		7FA580951BF02693005BED24 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580941BF02693005BED24 /* main.m */; };
 		7FA580981BF02693005BED24 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA580971BF02693005BED24 /* AppDelegate.m */; };
 		7FA5809E1BF02693005BED24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5809C1BF02693005BED24 /* Main.storyboard */; };
@@ -49,7 +50,6 @@
 		7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */; };
 		7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5812D1BF4353A005BED24 /* SWRConversationModel.m */; };
 		7FA581311BF4365D005BED24 /* SWRConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581301BF4365D005BED24 /* SWRConversationTableViewCell.m */; };
-		7FA581341BF43F68005BED24 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581331BF43F68005BED24 /* UIView+Extension.m */; };
 		7FA5813B1BF46072005BED24 /* SWRMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5813A1BF46072005BED24 /* SWRMessageModel.m */; };
 		7FA5813E1BF46317005BED24 /* SWRMessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5813D1BF46317005BED24 /* SWRMessageFrame.m */; };
 		7FA581731BF47644005BED24 /* SWRMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FA581721BF47644005BED24 /* SWRMessageCell.m */; };
@@ -70,34 +70,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F078B241C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomizedBar.h"; sourceTree = "<group>"; };
-		7F078B251C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomizedBar.m"; sourceTree = "<group>"; };
-		7F078B271C0688A200B3B2A4 /* SWRAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRAddFriendViewController.h; sourceTree = "<group>"; };
-		7F078B281C0688A200B3B2A4 /* SWRAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRAddFriendViewController.m; sourceTree = "<group>"; };
-		7F078B2B1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRAddFriendTableViewCell.h; sourceTree = "<group>"; };
-		7F078B2C1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRAddFriendTableViewCell.m; sourceTree = "<group>"; };
-		7F078B2D1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRAddFriendTableViewCell.xib; sourceTree = "<group>"; };
-		7F078B301C06B90300B3B2A4 /* SWRMyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMyFriendViewController.h; sourceTree = "<group>"; };
-		7F078B311C06B90300B3B2A4 /* SWRMyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMyFriendViewController.m; sourceTree = "<group>"; };
-		7F078B341C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMyFriendTableViewCell.h; sourceTree = "<group>"; };
-		7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMyFriendTableViewCell.m; sourceTree = "<group>"; };
-		7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMyFriendTableViewCell.xib; sourceTree = "<group>"; };
-		7F078B3B1C06BDE100B3B2A4 /* SWRMoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingViewController.h; sourceTree = "<group>"; };
-		7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingViewController.m; sourceTree = "<group>"; };
-		7F078B3E1C06BE0000B3B2A4 /* SWRMoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingCell.h; sourceTree = "<group>"; };
-		7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingCell.m; sourceTree = "<group>"; };
-		7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingCell.xib; sourceTree = "<group>"; };
-		7F078B481C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingHeaderView.h; sourceTree = "<group>"; };
-		7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingHeaderView.m; sourceTree = "<group>"; };
-		7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingHeaderView.xib; sourceTree = "<group>"; };
 		7F078B4D1C06DAF300B3B2A4 /* SWRConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRConversationViewController.h; sourceTree = "<group>"; };
 		7F078B4E1C06DAF300B3B2A4 /* SWRConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationViewController.m; sourceTree = "<group>"; };
 		7F078B541C08306200B3B2A4 /* SWRRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRRefreshControl.h; sourceTree = "<group>"; };
 		7F078B551C08306200B3B2A4 /* SWRRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRRefreshControl.m; sourceTree = "<group>"; };
-		7F078B581C091DDC00B3B2A4 /* SWRSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSearchBar.h; sourceTree = "<group>"; };
-		7F078B591C091DDC00B3B2A4 /* SWRSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSearchBar.m; sourceTree = "<group>"; };
-		7F078B5B1C0921E200B3B2A4 /* SWRSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSearchController.h; sourceTree = "<group>"; };
-		7F078B5C1C0921E200B3B2A4 /* SWRSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSearchController.m; sourceTree = "<group>"; };
+		7F3F13A41C0A30800063CD7F /* SWRSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSearchController.h; sourceTree = "<group>"; };
+		7F3F13A51C0A30800063CD7F /* SWRSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSearchController.m; sourceTree = "<group>"; };
+		7F3F13A71C0A30800063CD7F /* SWRSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRSearchBar.h; sourceTree = "<group>"; };
+		7F3F13A81C0A30800063CD7F /* SWRSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRSearchBar.m; sourceTree = "<group>"; };
+		7F3F13AE1C0A30BE0063CD7F /* SWRAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRAddFriendViewController.h; sourceTree = "<group>"; };
+		7F3F13AF1C0A30BE0063CD7F /* SWRAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRAddFriendViewController.m; sourceTree = "<group>"; };
+		7F3F13B61C0A30BE0063CD7F /* SWRMoreSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingViewController.h; sourceTree = "<group>"; };
+		7F3F13B71C0A30BE0063CD7F /* SWRMoreSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingViewController.m; sourceTree = "<group>"; };
+		7F3F13C11C0A30BE0063CD7F /* SWRMyFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMyFriendViewController.h; sourceTree = "<group>"; };
+		7F3F13C21C0A30BE0063CD7F /* SWRMyFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMyFriendViewController.m; sourceTree = "<group>"; };
+		7F3F13D61C0A32120063CD7F /* SWRMoreSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingCell.h; sourceTree = "<group>"; };
+		7F3F13D71C0A32120063CD7F /* SWRMoreSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingCell.m; sourceTree = "<group>"; };
+		7F3F13D81C0A32120063CD7F /* SWRMoreSettingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingCell.xib; sourceTree = "<group>"; };
+		7F3F13D91C0A32120063CD7F /* SWRMoreSettingHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMoreSettingHeaderView.h; sourceTree = "<group>"; };
+		7F3F13DA1C0A32120063CD7F /* SWRMoreSettingHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMoreSettingHeaderView.m; sourceTree = "<group>"; };
+		7F3F13DB1C0A32120063CD7F /* SWRMoreSettingHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMoreSettingHeaderView.xib; sourceTree = "<group>"; };
+		7F3F13E01C0A32250063CD7F /* SWRAddFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRAddFriendTableViewCell.h; sourceTree = "<group>"; };
+		7F3F13E11C0A32250063CD7F /* SWRAddFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRAddFriendTableViewCell.m; sourceTree = "<group>"; };
+		7F3F13E21C0A32250063CD7F /* SWRAddFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRAddFriendTableViewCell.xib; sourceTree = "<group>"; };
+		7F3F13E51C0A32760063CD7F /* SWRMyFriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMyFriendTableViewCell.h; sourceTree = "<group>"; };
+		7F3F13E61C0A32760063CD7F /* SWRMyFriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMyFriendTableViewCell.m; sourceTree = "<group>"; };
+		7F3F13E71C0A32760063CD7F /* SWRMyFriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SWRMyFriendTableViewCell.xib; sourceTree = "<group>"; };
+		7F3F13EB1C0A33720063CD7F /* UINavigationBar+CustomizedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomizedBar.h"; sourceTree = "<group>"; };
+		7F3F13EC1C0A33720063CD7F /* UINavigationBar+CustomizedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomizedBar.m"; sourceTree = "<group>"; };
+		7F3F13EF1C0A337C0063CD7F /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		7F3F13F01C0A337C0063CD7F /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		7FA5808F1BF02693005BED24 /* SnapchatStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapchatStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA580931BF02693005BED24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA580941BF02693005BED24 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,8 +140,6 @@
 		7FA5812D1BF4353A005BED24 /* SWRConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationModel.m; sourceTree = "<group>"; };
 		7FA5812F1BF4365D005BED24 /* SWRConversationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRConversationTableViewCell.h; sourceTree = "<group>"; };
 		7FA581301BF4365D005BED24 /* SWRConversationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRConversationTableViewCell.m; sourceTree = "<group>"; };
-		7FA581321BF43F68005BED24 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
-		7FA581331BF43F68005BED24 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		7FA581391BF46072005BED24 /* SWRMessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageModel.h; sourceTree = "<group>"; };
 		7FA5813A1BF46072005BED24 /* SWRMessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRMessageModel.m; sourceTree = "<group>"; };
 		7FA5813C1BF46317005BED24 /* SWRMessageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRMessageFrame.h; sourceTree = "<group>"; };
@@ -187,49 +187,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F078B2A1C068BC200B3B2A4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B2B1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.h */,
-				7F078B2C1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m */,
-				7F078B2D1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7F078B331C06BA2B00B3B2A4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B341C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.h */,
-				7F078B351C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m */,
-				7F078B361C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		7F078B391C06BD9A00B3B2A4 /* MoreSetting */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B3B1C06BDE100B3B2A4 /* SWRMoreSettingViewController.h */,
-				7F078B3C1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m */,
-				7F078B3A1C06BD9A00B3B2A4 /* View */,
-			);
-			path = MoreSetting;
-			sourceTree = "<group>";
-		};
-		7F078B3A1C06BD9A00B3B2A4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B3E1C06BE0000B3B2A4 /* SWRMoreSettingCell.h */,
-				7F078B3F1C06BE0000B3B2A4 /* SWRMoreSettingCell.m */,
-				7F078B401C06BE0000B3B2A4 /* SWRMoreSettingCell.xib */,
-				7F078B481C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.h */,
-				7F078B491C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m */,
-				7F078B4A1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		7F078B531C08305100B3B2A4 /* Refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,15 +196,155 @@
 			path = Refresh;
 			sourceTree = "<group>";
 		};
-		7F078B571C091DBA00B3B2A4 /* SearchComponent */ = {
+		7F3F139E1C0A30180063CD7F /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				7F078B581C091DDC00B3B2A4 /* SWRSearchBar.h */,
-				7F078B591C091DDC00B3B2A4 /* SWRSearchBar.m */,
-				7F078B5B1C0921E200B3B2A4 /* SWRSearchController.h */,
-				7F078B5C1C0921E200B3B2A4 /* SWRSearchController.m */,
+				7F3F13EA1C0A33720063CD7F /* NavigationBar */,
+				7F3F13EE1C0A337C0063CD7F /* UIView */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		7F3F13A21C0A30800063CD7F /* SearchComponent */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13A31C0A30800063CD7F /* Controller */,
+				7F3F13A61C0A30800063CD7F /* View */,
 			);
 			path = SearchComponent;
+			sourceTree = "<group>";
+		};
+		7F3F13A31C0A30800063CD7F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13A41C0A30800063CD7F /* SWRSearchController.h */,
+				7F3F13A51C0A30800063CD7F /* SWRSearchController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7F3F13A61C0A30800063CD7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13A71C0A30800063CD7F /* SWRSearchBar.h */,
+				7F3F13A81C0A30800063CD7F /* SWRSearchBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F3F13AB1C0A30BE0063CD7F /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13AC1C0A30BE0063CD7F /* AddFriend */,
+				7F3F13B41C0A30BE0063CD7F /* MoreSetting */,
+				7F3F13BF1C0A30BE0063CD7F /* MyFriend */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		7F3F13AC1C0A30BE0063CD7F /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13AD1C0A30BE0063CD7F /* Controller */,
+				7F3F13D21C0A313C0063CD7F /* View */,
+			);
+			path = AddFriend;
+			sourceTree = "<group>";
+		};
+		7F3F13AD1C0A30BE0063CD7F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13AE1C0A30BE0063CD7F /* SWRAddFriendViewController.h */,
+				7F3F13AF1C0A30BE0063CD7F /* SWRAddFriendViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7F3F13B41C0A30BE0063CD7F /* MoreSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13B51C0A30BE0063CD7F /* Controller */,
+				7F3F13D31C0A318E0063CD7F /* View */,
+			);
+			path = MoreSetting;
+			sourceTree = "<group>";
+		};
+		7F3F13B51C0A30BE0063CD7F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13B61C0A30BE0063CD7F /* SWRMoreSettingViewController.h */,
+				7F3F13B71C0A30BE0063CD7F /* SWRMoreSettingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7F3F13BF1C0A30BE0063CD7F /* MyFriend */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13C01C0A30BE0063CD7F /* Controller */,
+				7F3F13C31C0A30BE0063CD7F /* View */,
+			);
+			path = MyFriend;
+			sourceTree = "<group>";
+		};
+		7F3F13C01C0A30BE0063CD7F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13C11C0A30BE0063CD7F /* SWRMyFriendViewController.h */,
+				7F3F13C21C0A30BE0063CD7F /* SWRMyFriendViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7F3F13C31C0A30BE0063CD7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13E51C0A32760063CD7F /* SWRMyFriendTableViewCell.h */,
+				7F3F13E61C0A32760063CD7F /* SWRMyFriendTableViewCell.m */,
+				7F3F13E71C0A32760063CD7F /* SWRMyFriendTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F3F13D21C0A313C0063CD7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13E01C0A32250063CD7F /* SWRAddFriendTableViewCell.h */,
+				7F3F13E11C0A32250063CD7F /* SWRAddFriendTableViewCell.m */,
+				7F3F13E21C0A32250063CD7F /* SWRAddFriendTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F3F13D31C0A318E0063CD7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13D61C0A32120063CD7F /* SWRMoreSettingCell.h */,
+				7F3F13D71C0A32120063CD7F /* SWRMoreSettingCell.m */,
+				7F3F13D81C0A32120063CD7F /* SWRMoreSettingCell.xib */,
+				7F3F13D91C0A32120063CD7F /* SWRMoreSettingHeaderView.h */,
+				7F3F13DA1C0A32120063CD7F /* SWRMoreSettingHeaderView.m */,
+				7F3F13DB1C0A32120063CD7F /* SWRMoreSettingHeaderView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F3F13EA1C0A33720063CD7F /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13EB1C0A33720063CD7F /* UINavigationBar+CustomizedBar.h */,
+				7F3F13EC1C0A33720063CD7F /* UINavigationBar+CustomizedBar.m */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		7F3F13EE1C0A337C0063CD7F /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				7F3F13EF1C0A337C0063CD7F /* UIView+Extension.h */,
+				7F3F13F01C0A337C0063CD7F /* UIView+Extension.m */,
+			);
+			path = UIView;
 			sourceTree = "<group>";
 		};
 		7FA580861BF02693005BED24 = {
@@ -276,18 +373,18 @@
 				7FA5809C1BF02693005BED24 /* Main.storyboard */,
 				7FA580961BF02693005BED24 /* AppDelegate.h */,
 				7FA580971BF02693005BED24 /* AppDelegate.m */,
-				7FA580B81BF02C34005BED24 /* Navigator */,
-				7F078B571C091DBA00B3B2A4 /* SearchComponent */,
+				7F3F13A21C0A30800063CD7F /* SearchComponent */,
 				7FA580BA1BF02C43005BED24 /* Start */,
 				7FA580F51BF066DC005BED24 /* Login */,
 				7FA580B91BF02C43005BED24 /* Signup */,
 				7FA580BB1BF02C56005BED24 /* ConversationTable */,
 				7FA581351BF4604E005BED24 /* ChatTable */,
 				7FA580F41BF066B9005BED24 /* Manage */,
-				7FA580FC1BF067B5005BED24 /* Setting */,
+				7F3F13AB1C0A30BE0063CD7F /* Setting */,
 				7FA5810F1BF1B8D8005BED24 /* CustomizedSegue */,
 				7FA580A11BF02693005BED24 /* LaunchScreen.xib */,
 				7FA5809F1BF02693005BED24 /* Images.xcassets */,
+				7F3F139E1C0A30180063CD7F /* Category */,
 				7FA580921BF02693005BED24 /* Supporting Files */,
 			);
 			path = SnapchatStudy;
@@ -296,8 +393,6 @@
 		7FA580921BF02693005BED24 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				7FA581321BF43F68005BED24 /* UIView+Extension.h */,
-				7FA581331BF43F68005BED24 /* UIView+Extension.m */,
 				7FA580F21BF04E20005BED24 /* libsqlite3.dylib */,
 				7FA580EC1BF04B56005BED24 /* SystemConfiguration.framework */,
 				7FA580EA1BF04B4D005BED24 /* StoreKit.framework */,
@@ -332,15 +427,6 @@
 				7FA580AD1BF02693005BED24 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7FA580B81BF02C34005BED24 /* Navigator */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B241C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.h */,
-				7F078B251C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.m */,
-			);
-			path = Navigator;
 			sourceTree = "<group>";
 		};
 		7FA580B91BF02C43005BED24 /* Signup */ = {
@@ -389,16 +475,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		7FA580FC1BF067B5005BED24 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B391C06BD9A00B3B2A4 /* MoreSetting */,
-				7FA581151BF2E6A6005BED24 /* AddFriend */,
-				7FA581191BF30705005BED24 /* MyFriend */,
-			);
-			path = Setting;
-			sourceTree = "<group>";
-		};
 		7FA5810F1BF1B8D8005BED24 /* CustomizedSegue */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,26 +482,6 @@
 				7FA581111BF1B8D8005BED24 /* SWRRightToLeftSegue.m */,
 			);
 			path = CustomizedSegue;
-			sourceTree = "<group>";
-		};
-		7FA581151BF2E6A6005BED24 /* AddFriend */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B271C0688A200B3B2A4 /* SWRAddFriendViewController.h */,
-				7F078B281C0688A200B3B2A4 /* SWRAddFriendViewController.m */,
-				7F078B2A1C068BC200B3B2A4 /* View */,
-			);
-			path = AddFriend;
-			sourceTree = "<group>";
-		};
-		7FA581191BF30705005BED24 /* MyFriend */ = {
-			isa = PBXGroup;
-			children = (
-				7F078B301C06B90300B3B2A4 /* SWRMyFriendViewController.h */,
-				7F078B311C06B90300B3B2A4 /* SWRMyFriendViewController.m */,
-				7F078B331C06BA2B00B3B2A4 /* View */,
-			);
-			path = MyFriend;
 			sourceTree = "<group>";
 		};
 		7FA581261BF434FF005BED24 /* Controller */ = {
@@ -582,12 +638,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA5809E1BF02693005BED24 /* Main.storyboard in Resources */,
-				7F078B381C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.xib in Resources */,
+				7F3F13E41C0A32250063CD7F /* SWRAddFriendTableViewCell.xib in Resources */,
 				7FA580A31BF02693005BED24 /* LaunchScreen.xib in Resources */,
-				7F078B2F1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.xib in Resources */,
-				7F078B421C06BE0000B3B2A4 /* SWRMoreSettingCell.xib in Resources */,
+				7F3F13DD1C0A32120063CD7F /* SWRMoreSettingCell.xib in Resources */,
+				7F3F13E91C0A32760063CD7F /* SWRMyFriendTableViewCell.xib in Resources */,
+				7F3F13DF1C0A32120063CD7F /* SWRMoreSettingHeaderView.xib in Resources */,
 				7FA580A01BF02693005BED24 /* Images.xcassets in Resources */,
-				7F078B4C1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,35 +661,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F078B411C06BE0000B3B2A4 /* SWRMoreSettingCell.m in Sources */,
-				7F078B4B1C06CDDF00B3B2A4 /* SWRMoreSettingHeaderView.m in Sources */,
+				7F3F13A91C0A30800063CD7F /* SWRSearchController.m in Sources */,
+				7F3F13ED1C0A33720063CD7F /* UINavigationBar+CustomizedBar.m in Sources */,
+				7F3F13C71C0A30BE0063CD7F /* SWRAddFriendViewController.m in Sources */,
+				7F3F13CA1C0A30BE0063CD7F /* SWRMoreSettingViewController.m in Sources */,
 				7FA5813E1BF46317005BED24 /* SWRMessageFrame.m in Sources */,
-				7F078B2E1C068BE800B3B2A4 /* SWRAddFriendTableViewCell.m in Sources */,
 				7FA581121BF1B8D8005BED24 /* SWRRightToLeftSegue.m in Sources */,
-				7F078B3D1C06BDE100B3B2A4 /* SWRMoreSettingViewController.m in Sources */,
 				7FA581311BF4365D005BED24 /* SWRConversationTableViewCell.m in Sources */,
 				7FA581821BF5710E005BED24 /* SWRChatViewController.m in Sources */,
-				7F078B5A1C091DDC00B3B2A4 /* SWRSearchBar.m in Sources */,
+				7F3F13AA1C0A30800063CD7F /* SWRSearchBar.m in Sources */,
 				7FA580FB1BF066FC005BED24 /* SWRManageViewController.m in Sources */,
-				7FA581341BF43F68005BED24 /* UIView+Extension.m in Sources */,
+				7F3F13CF1C0A30BE0063CD7F /* SWRMyFriendViewController.m in Sources */,
 				7F078B4F1C06DAF300B3B2A4 /* SWRConversationViewController.m in Sources */,
+				7F3F13E31C0A32250063CD7F /* SWRAddFriendTableViewCell.m in Sources */,
+				7F3F13E81C0A32760063CD7F /* SWRMyFriendTableViewCell.m in Sources */,
 				7FA5817C1BF55BB8005BED24 /* SWRInputBox.m in Sources */,
 				7FA580981BF02693005BED24 /* AppDelegate.m in Sources */,
+				7F3F13DE1C0A32120063CD7F /* SWRMoreSettingHeaderView.m in Sources */,
 				7FA580CE1BF02E9F005BED24 /* SWRSignupViewController.m in Sources */,
+				7F3F13F11C0A337C0063CD7F /* UIView+Extension.m in Sources */,
 				7FA5813B1BF46072005BED24 /* SWRMessageModel.m in Sources */,
-				7F078B261C0618DD00B3B2A4 /* UINavigationBar+CustomizedBar.m in Sources */,
 				7FA581811BF56AB7005BED24 /* SWRInputBoxController.m in Sources */,
-				7F078B5D1C0921E200B3B2A4 /* SWRSearchController.m in Sources */,
 				7FA581791BF502BB005BED24 /* SWRMessageTableViewController.m in Sources */,
 				7FA580CB1BF02E81005BED24 /* SWRStartViewController.m in Sources */,
-				7F078B321C06B90300B3B2A4 /* SWRMyFriendViewController.m in Sources */,
-				7F078B371C06BA4C00B3B2A4 /* SWRMyFriendTableViewCell.m in Sources */,
 				7FA5812E1BF4353A005BED24 /* SWRConversationModel.m in Sources */,
+				7F3F13DC1C0A32120063CD7F /* SWRMoreSettingCell.m in Sources */,
 				7FA581731BF47644005BED24 /* SWRMessageCell.m in Sources */,
 				7F078B561C08306200B3B2A4 /* SWRRefreshControl.m in Sources */,
 				7FA580951BF02693005BED24 /* main.m in Sources */,
 				7FA580F81BF066DC005BED24 /* SWRLoginViewController.m in Sources */,
-				7F078B291C0688A200B3B2A4 /* SWRAddFriendViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

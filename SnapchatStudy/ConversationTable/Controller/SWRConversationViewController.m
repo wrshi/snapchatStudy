@@ -30,7 +30,8 @@
 
 @implementation SWRConversationViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     [self setBackgroundImage];
@@ -44,52 +45,13 @@
     [self.tableView registerClass:[SWRConversationTableViewCell class] forCellReuseIdentifier:@"conversationCell"];
     
     self.currentUser = [PFUser currentUser];
-    if (self.currentUser) {
-        
-    }
-    else {
-        // show the signup or login screen
+    if (self.currentUser == nil) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry!" message:@"登录不成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     
     [self getCurrentConversation];
-}
-
-- (void)setupRefeshControl
-{
-    [self.tableView addSubview:self.refreshControl];
-    
-    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    
-}
-
-- (void)animateRefresh
-{
-    if (self.tableView.contentOffset.y < -74){
-        self.refreshControl.showImage = YES;
-    }
-    self.isRefreshAnimating = YES;
-    static int index = 0;
-    [UIView animateWithDuration:0.7 animations:^{
-        self.refreshControl.backgroundColor = self.refreshControl.backgroundColors[index];
-        index = (index + 1) % self.refreshControl.backgroundColors.count;
-    } completion:^(BOOL finished) {
-        if (self.tableView.contentOffset.y < -64){
-            [self animateRefresh];
-        }
-        else{
-            self.isRefreshAnimating = NO;
-        }
-    }];
-    
-}
-
-- (void)refresh:(UIRefreshControl *)refreshControl
-{
-    [self getCurrentConversation];
-    [self.refreshControl endRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -100,17 +62,21 @@
     [self getCurrentConversation];
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
     return UIStatusBarStyleLightContent;
 }
 
 
 #pragma mark - ScrollView delegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // make background image stay
     self.background.y = scrollView.contentOffset.y;
     [self.view bringSubviewToFront:self.background];
     
+    // pull to refresh
     if (self.tableView.contentOffset.y < -64 && !self.isRefreshAnimating){
         [self animateRefresh];
     }
@@ -121,15 +87,26 @@
     self.refreshControl.showImage = NO;
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#pragma mark - TableView data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return self.conversations.count;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+
+#pragma make - TableView delegate
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,8 +118,8 @@
     return NO;
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     SWRConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell" forIndexPath:indexPath];
     cell.conversation = self.conversations[indexPath.row];
     cell.delegate = self;
@@ -151,11 +128,6 @@
     return cell;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 60;
-}
 
 #pragma mark - UIGestureRecognizer delegate
 
@@ -179,12 +151,14 @@
     [self.navigationController pushViewController:self.chatViewController animated:YES];
 }
 
+
 #pragma mark - SWRChatViewController delegate
 
 - (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser
 {
     [self getCurrentConversation];
 }
+
 
 #pragma mark - SWRConversationTableViewCell delegate
 
@@ -203,34 +177,10 @@
     [self.navigationController pushViewController:self.chatViewController animated:NO];
 }
 
-#pragma mark - lazy load
-
-
-- (NSMutableArray *)conversations
-{
-    if (_conversations == nil){
-        _conversations = [NSMutableArray array];
-    }
-    return _conversations;
-}
-
-- (SWRChatViewController *)chatViewController
-{
-    if (_chatViewController == nil){
-        _chatViewController = [[SWRChatViewController alloc] init];
-    }
-    return _chatViewController;
-}
-
-- (SWRRefreshControl *)refreshControl
-{
-    if (_refreshControl == nil){
-        _refreshControl = [SWRRefreshControl SWRRefreshControl];
-    }
-    return _refreshControl;
-}
 
 #pragma mark - private methods
+
+#pragma mark set gesture
 
 - (void)addLeftSwipeGestureRecognizer
 {
@@ -280,6 +230,14 @@
     
 }
 
+#pragma mark set exterior
+
+- (void)setBackgroundImage
+{
+    self.background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"send_still"]];
+    [self.tableView addSubview:self.background];
+}
+
 - (void)setNavigationBar
 {
     // hide the existing nav bar
@@ -298,14 +256,6 @@
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cameraButton];
     
     [UINavigationBar customizedBarWithViewController:self backgroundColor:tintGreenColor textColor:[UIColor whiteColor] title:@"snapchat" leftButton:leftButtonItem rightButton:rightButtonItem];
-    
-}
-
-
-- (void)setBackgroundImage
-{
-    self.background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"send_still"]];
-    [self.tableView addSubview:self.background];
 }
 
 - (void)clickFindFriendButton
@@ -323,6 +273,41 @@
     
 }
 
+#pragma mark set refresh
+
+- (void)setupRefeshControl
+{
+    [self.tableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+}
+
+- (void)animateRefresh
+{
+    if (self.tableView.contentOffset.y < -74){
+        self.refreshControl.showImage = YES;
+    }
+    self.isRefreshAnimating = YES;
+    static int index = 0;
+    [UIView animateWithDuration:0.7 animations:^{
+        self.refreshControl.backgroundColor = self.refreshControl.backgroundColors[index];
+        index = (index + 1) % self.refreshControl.backgroundColors.count;
+    } completion:^(BOOL finished) {
+        if (self.tableView.contentOffset.y < -64){
+            [self animateRefresh];
+        }
+        else{
+            self.isRefreshAnimating = NO;
+        }
+    }];
+}
+
+- (void)refresh:(UIRefreshControl *)refreshControl
+{
+    [self getCurrentConversation];
+    [self.refreshControl endRefreshing];
+}
+
+#pragma mark get data
 
 - (void)getCurrentConversation
 {
@@ -352,7 +337,33 @@
         [self.conversations addObject:conversationModel];
     }
     [self.tableView reloadData];
-    
+}
+
+
+#pragma mark - lazy load
+
+- (NSMutableArray *)conversations
+{
+    if (_conversations == nil){
+        _conversations = [NSMutableArray array];
+    }
+    return _conversations;
+}
+
+- (SWRChatViewController *)chatViewController
+{
+    if (_chatViewController == nil){
+        _chatViewController = [[SWRChatViewController alloc] init];
+    }
+    return _chatViewController;
+}
+
+- (SWRRefreshControl *)refreshControl
+{
+    if (_refreshControl == nil){
+        _refreshControl = [SWRRefreshControl SWRRefreshControl];
+    }
+    return _refreshControl;
 }
 
 @end

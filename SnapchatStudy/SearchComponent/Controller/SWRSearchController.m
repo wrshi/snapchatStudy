@@ -8,12 +8,13 @@
 
 #import "SWRSearchController.h"
 
-
-@interface SWRSearchController ()
+@interface SWRSearchController () <UISearchBarDelegate>
 
 @end
 
 @implementation SWRSearchController
+
+#pragma mark - public methods
 
 - (instancetype)initWithSearchResultsController:(UIViewController *)searchResultsController searchBarFrame:(CGRect)frame searchBarFont:(UIFont *)font searchBarTextColor:(UIColor *)color searchBarTintColor:(UIColor *)tintColor
 {
@@ -32,16 +33,6 @@
 - (void)terminateSearch
 {
     [self.customSearchBar resignFirstResponder];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UISearchBar delegate
@@ -74,6 +65,12 @@
     if ([self.delegate respondsToSelector:@selector(didChangeSearchText:)]){
         [self.delegate didChangeSearchText:searchText];
     }
+}
+
+#pragma mark - private methods
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "SWRLoginViewController.h"
 
 @interface SWRLoginViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameText;
 @property (weak, nonatomic) IBOutlet UITextField *passwordText;
 @property (nonatomic, strong) UIButton *loginButton;
@@ -17,9 +18,9 @@
 
 @implementation SWRLoginViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self.userNameText becomeFirstResponder];
     
@@ -29,23 +30,6 @@
     [self addLoginButton];
     [self textChange];
     
-}
-
-- (void)textChange
-{
-    if (self.userNameText.text.length && self.passwordText.text.length) {
-        [UIView animateWithDuration:0.5 animations:^{
-            self.loginButton.x = 0;
-            self.loginButton.alpha = 1;
-        }];
-    }
-    else{
-        [UIView animateWithDuration:0.5 animations:^{
-            self.loginButton.x = -screenW;
-            self.loginButton.alpha = 0;
-        }];
-        
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -71,11 +55,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)addLoginButton
 {
     UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(-screenW, screenH * 0.4, screenW, 50)];
@@ -85,6 +64,26 @@
     [loginButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     self.loginButton = loginButton;
+}
+
+/*
+ check text status and make button animation
+ */
+- (void)textChange
+{
+    if (self.userNameText.text.length && self.passwordText.text.length) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.loginButton.x = 0;
+            self.loginButton.alpha = 1;
+        }];
+    }
+    else{
+        [UIView animateWithDuration:0.5 animations:^{
+            self.loginButton.x = -screenW;
+            self.loginButton.alpha = 0;
+        }];
+        
+    }
 }
 
 - (void)clickLoginButton
@@ -101,7 +100,5 @@
     }];
     
 }
-
-
 
 @end

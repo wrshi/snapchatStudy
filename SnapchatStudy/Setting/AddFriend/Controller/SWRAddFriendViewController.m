@@ -29,74 +29,13 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 
 @implementation SWRAddFriendViewController
 
-#pragma mark - lazy load
-
-- (NSArray *)allUsers
+- (void)viewDidLoad
 {
-    if (_allUsers == nil){
-        _allUsers = [NSArray array];
-    }
-    return _allUsers;
-}
-
-- (NSMutableArray *)nameArray
-{
-    if (_nameArray == nil){
-        _nameArray = [NSMutableArray array];
-    }
-    return _nameArray;
-}
-
-- (NSMutableArray *)alphabetsArray
-{
-    if (_alphabetsArray == nil){
-        _alphabetsArray = [NSMutableArray array];
-    }
-    return _alphabetsArray;
-}
-
-- (NSMutableArray *)friendsId
-{
-    if (_friendsId == nil){
-        _friendsId = [NSMutableArray array];
-        PFQuery *friendsQuery = [[self.currentUser relationForKey:@"FriendsRelation"] query];
-        // use synchronous query.
-        // is there a better way??
-        NSArray *objects = [friendsQuery findObjects];
-        _friendsId = [NSMutableArray arrayWithArray:[objects valueForKeyPath:@"objectId"]];
-    }
-    return _friendsId;
-}
-
-- (SWRSearchController *)customSearchController
-{
-    if (_customSearchController == nil){
-        _customSearchController = [[SWRSearchController alloc] initWithSearchResultsController:self searchBarFrame:CGRectMake(0, 0, screenW, 44.0) searchBarFont:[UIFont systemFontOfSize:15.0] searchBarTextColor:[UIColor blackColor] searchBarTintColor:[UIColor whiteColor]];
-        _customSearchController.customSearchBar.placeholder = @"搜索";
-        _customSearchController.delegate = self;
-        
-    }
-    return _customSearchController;
-}
-
-- (NSArray *)filteredArray
-{
-    if (_filteredArray == nil){
-        _filteredArray = [NSArray array];
-    }
-    return _filteredArray;
-}
-
-
-#pragma mark - private methods
-
-- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setNavigationBar];
     
     self.tableView.tableHeaderView = self.customSearchController.customSearchBar;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -122,40 +61,12 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 }
 
 
-- (void)setNavigationBar
-{
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_purple"] forState:UIControlStateNormal];
-    backButton.bounds = CGRectMake(0, 0, 15, 20);
-    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"添加好友" leftButton:leftButtonItem rightButton:nil];
-
-}
-
-- (void)clickBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)createAlphabetArray {
-    NSMutableArray *tempFirstLetterArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [self.nameArray count]; i++) {
-        NSString *letterString = [[self.nameArray objectAtIndex:i] substringToIndex:1];
-        if (![tempFirstLetterArray containsObject:letterString]) {
-            [tempFirstLetterArray addObject:letterString];
-        }
-    }
-    self.alphabetsArray = tempFirstLetterArray;
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - ScrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -164,7 +75,7 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     [self.tableView reloadData];
 }
 
-#pragma mark - Table view data source
+#pragma mark - TableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -183,6 +94,7 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     }
 }
 
+#pragma mark - TableView delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SWRAddFriendTableViewCell *cell = [SWRAddFriendTableViewCell SWRAddFriendCellWithTableView:tableView];
@@ -191,7 +103,6 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     PFUser *user = nil;
     if (self.shouldShowSearchResults){
         user = self.filteredArray[indexPath.row];
-        
     }
     else{
         user = self.allUsers[indexPath.row];
@@ -215,7 +126,6 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     PFUser *user = nil;
     if (self.shouldShowSearchResults){
         user = self.filteredArray[indexPath.row];
-        
     }
     else{
         user = self.allUsers[indexPath.row];
@@ -289,5 +199,98 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
 }
 
 #pragma mark - private methods
+
+#pragma mark set exterior
+
+- (void)setNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_purple"] forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, 15, 20);
+    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"添加好友" leftButton:leftButtonItem rightButton:nil];
+    
+}
+
+- (void)clickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma set alphabet array
+
+- (void)createAlphabetArray {
+    NSMutableArray *tempFirstLetterArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.nameArray count]; i++) {
+        NSString *letterString = [[self.nameArray objectAtIndex:i] substringToIndex:1];
+        if (![tempFirstLetterArray containsObject:letterString]) {
+            [tempFirstLetterArray addObject:letterString];
+        }
+    }
+    self.alphabetsArray = tempFirstLetterArray;
+}
+
+
+#pragma mark - lazy load
+
+- (NSArray *)allUsers
+{
+    if (_allUsers == nil){
+        _allUsers = [NSArray array];
+    }
+    return _allUsers;
+}
+
+- (NSMutableArray *)nameArray
+{
+    if (_nameArray == nil){
+        _nameArray = [NSMutableArray array];
+    }
+    return _nameArray;
+}
+
+- (NSMutableArray *)alphabetsArray
+{
+    if (_alphabetsArray == nil){
+        _alphabetsArray = [NSMutableArray array];
+    }
+    return _alphabetsArray;
+}
+
+- (NSMutableArray *)friendsId
+{
+    if (_friendsId == nil){
+        _friendsId = [NSMutableArray array];
+        PFQuery *friendsQuery = [[self.currentUser relationForKey:@"FriendsRelation"] query];
+        // use synchronous query.
+        // is there a better way??
+        NSArray *objects = [friendsQuery findObjects];
+        _friendsId = [NSMutableArray arrayWithArray:[objects valueForKeyPath:@"objectId"]];
+    }
+    return _friendsId;
+}
+
+- (SWRSearchController *)customSearchController
+{
+    if (_customSearchController == nil){
+        _customSearchController = [[SWRSearchController alloc] initWithSearchResultsController:self searchBarFrame:CGRectMake(0, 0, screenW, 44.0) searchBarFont:[UIFont systemFontOfSize:15.0] searchBarTextColor:[UIColor blackColor] searchBarTintColor:[UIColor whiteColor]];
+        _customSearchController.customSearchBar.placeholder = @"搜索";
+        _customSearchController.delegate = self;
+        
+    }
+    return _customSearchController;
+}
+
+- (NSArray *)filteredArray
+{
+    if (_filteredArray == nil){
+        _filteredArray = [NSArray array];
+    }
+    return _filteredArray;
+}
 
 @end

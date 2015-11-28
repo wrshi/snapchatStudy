@@ -27,7 +27,11 @@
     return [super initWithCoder:aDecoder];
 }
 
-- (void)drawRect:(CGRect)rect {
+/*
+ customize textField
+ */
+- (void)drawRect:(CGRect)rect
+{
     int index = [self indexOfSearchFieldInSubviews];
     UIView *searchBarView = self.subviews[0];
     UITextField *searchField = searchBarView.subviews[index];
@@ -41,9 +45,11 @@
     searchField.leftView = iconView;
     
     [super drawRect:rect];
-    
 }
 
+/*
+ find the index of textfield in searchBar's hierarchical structure
+ */
 - (int)indexOfSearchFieldInSubviews
 {
     UIView *searchBarView = self.subviews[0];

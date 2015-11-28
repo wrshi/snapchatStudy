@@ -14,13 +14,20 @@
 
 @property (nonatomic, strong) NSMutableArray *messages;
 
-
 @end
+
 
 static NSString *const messageCellIdentifier = @"messageCell";
 
-
 @implementation SWRMessageTableViewController
+
+#pragma mark - public methods
+
+- (void)addNewMessage:(SWRMessageFrame *)message
+{
+    [self.messages addObject:message];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad
 {
@@ -31,37 +38,11 @@ static NSString *const messageCellIdentifier = @"messageCell";
     
     [self.tableView registerClass:[SWRMessageCell class] forCellReuseIdentifier:messageCellIdentifier];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnView)];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    
+    [self setTapGesture];
 }
 
 
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)tappedOnView
-{
-    if ([self.delegate respondsToSelector:@selector(SWRMessageTableViewConrtroller:didTappedOnView:)]){
-        [self.delegate SWRMessageTableViewConrtroller:self didTappedOnView:self.view];
-    }
-}
-
-
-
-
-
-#pragma mark - Table view data source
+#pragma mark - TableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -73,6 +54,8 @@ static NSString *const messageCellIdentifier = @"messageCell";
     return self.messages.count;
 }
 
+
+#pragma mark - TableView delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -89,15 +72,8 @@ static NSString *const messageCellIdentifier = @"messageCell";
     return message.cellHeight;
 }
 
-#pragma mark - private methods
 
-- (NSMutableArray *)messages
-{
-    if (_messages == nil){
-        _messages = [NSMutableArray array];
-    }
-    return _messages;
-}
+#pragma mark - private methods
 
 - (void)setMessageObjs:(NSMutableArray *)messageObjs
 {
@@ -120,16 +96,25 @@ static NSString *const messageCellIdentifier = @"messageCell";
     [self.tableView reloadData];
 }
 
-
-
-
-#pragma mark - public methods
-
-- (void)addNewMessage:(SWRMessageFrame *)message
+- (void)setTapGesture
 {
-    [self.messages addObject:message];
-    [self.tableView reloadData];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedOnView)];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (void)tappedOnView
+{
+    if ([self.delegate respondsToSelector:@selector(SWRMessageTableViewConrtroller:didTappedOnView:)]){
+        [self.delegate SWRMessageTableViewConrtroller:self didTappedOnView:self.view];
+    }
+}
+
+- (NSMutableArray *)messages
+{
+    if (_messages == nil){
+        _messages = [NSMutableArray array];
+    }
+    return _messages;
+}
 
 @end

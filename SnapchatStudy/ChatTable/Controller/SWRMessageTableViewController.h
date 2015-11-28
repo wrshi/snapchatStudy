@@ -21,8 +21,8 @@
 
 @property (nonatomic, weak) id<SWRMessageTableViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *messageObjs;
-
 @property (nonatomic, strong) PFUser *friendUser;
+
 - (void)addNewMessage:(SWRMessageFrame *)message;
 
 @end

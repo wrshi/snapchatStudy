@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 
-
 @end
 
 @implementation SWRRefreshControl
@@ -24,8 +23,6 @@
         self.tintColor = [UIColor clearColor];
         
         self.imageView = [[UIImageView alloc] init];
-        
-        
         [self addSubview:self.imageView];
         
         self.backgroundColors = @[tintPurpleColor, tintRedColor,  tintBlueColor];
@@ -43,7 +40,6 @@
     self.imageView.bounds = CGRectMake(0, 0, 50, 50);
     self.imageView.x = (screenW - self.imageView.width) / 2;
     self.imageView.y = 8;
-    
 }
 
 - (void)setShowImage:(BOOL)showImage
@@ -56,7 +52,5 @@
         self.imageView.image = nil;
     }
 }
-
-
 
 @end

@@ -19,7 +19,6 @@
 
 @interface SWRChatViewController : UIViewController
 
-
 @property (nonatomic, strong) PFUser *friendUser;
 @property (nonatomic, weak) id<SWRChatViewControllerDelegate> delegate;
 

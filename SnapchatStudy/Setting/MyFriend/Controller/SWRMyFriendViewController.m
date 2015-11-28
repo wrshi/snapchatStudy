@@ -21,39 +21,14 @@
 
 @end
 
+
 static NSString * const cellReuseIdentifier = @"MyFriendCell";
 
 @implementation SWRMyFriendViewController
 
-#pragma mark - lazy load
 
-- (NSArray *)myFriends
+- (void)viewDidLoad
 {
-    if (_myFriends == nil){
-        _myFriends = [NSArray array];
-    }
-    return _myFriends;
-}
-
-- (NSMutableArray *)nameArray
-{
-    if (_nameArray == nil){
-        _nameArray = [NSMutableArray array];
-    }
-    return _nameArray;
-}
-
-- (NSMutableArray *)alphabetsArray
-{
-    if (_alphabetsArray == nil){
-        _alphabetsArray = [NSMutableArray array];
-    }
-    return _alphabetsArray;
-}
-
-#pragma mark -
-
-- (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setNavigationBar];
@@ -75,41 +50,13 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
     }];
 }
 
-- (void)setNavigationBar
+- (void)didReceiveMemoryWarning
 {
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    
-    UIButton *backButton = [[UIButton alloc] init];
-    [backButton setImage:[UIImage imageNamed:@"Back_Button_purple"] forState:UIControlStateNormal];
-    backButton.bounds = CGRectMake(0, 0, 15, 20);
-    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
-    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"我的好友" leftButton:leftButtonItem rightButton:nil];
-}
-
-- (void)clickBackButton
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)createAlphabetArray {
-    NSMutableArray *tempFirstLetterArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < [self.nameArray count]; i++) {
-        NSString *letterString = [[self.nameArray objectAtIndex:i] substringToIndex:1];
-        if (![tempFirstLetterArray containsObject:letterString]) {
-            [tempFirstLetterArray addObject:letterString];
-        }
-    }
-    self.alphabetsArray = tempFirstLetterArray;
-}
-
-- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - TableView Datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -119,6 +66,7 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
     return [self.myFriends count];
 }
 
+#pragma mark - TableView delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -156,6 +104,65 @@ static NSString * const cellReuseIdentifier = @"MyFriendCell";
         }
     }
     return 0;
+}
+
+
+#pragma mark - private methods
+
+- (void)setNavigationBar
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"Back_Button_purple"] forState:UIControlStateNormal];
+    backButton.bounds = CGRectMake(0, 0, 15, 20);
+    [backButton addTarget:self action:@selector(clickBackButton) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+    [UINavigationBar customizedBarWithViewController:self backgroundColor:[UIColor whiteColor] textColor:tintPurpleColor title:@"我的好友" leftButton:leftButtonItem rightButton:nil];
+}
+
+- (void)clickBackButton
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)createAlphabetArray {
+    NSMutableArray *tempFirstLetterArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [self.nameArray count]; i++) {
+        NSString *letterString = [[self.nameArray objectAtIndex:i] substringToIndex:1];
+        if (![tempFirstLetterArray containsObject:letterString]) {
+            [tempFirstLetterArray addObject:letterString];
+        }
+    }
+    self.alphabetsArray = tempFirstLetterArray;
+}
+
+
+#pragma mark - lazy load
+
+- (NSArray *)myFriends
+{
+    if (_myFriends == nil){
+        _myFriends = [NSArray array];
+    }
+    return _myFriends;
+}
+
+- (NSMutableArray *)nameArray
+{
+    if (_nameArray == nil){
+        _nameArray = [NSMutableArray array];
+    }
+    return _nameArray;
+}
+
+- (NSMutableArray *)alphabetsArray
+{
+    if (_alphabetsArray == nil){
+        _alphabetsArray = [NSMutableArray array];
+    }
+    return _alphabetsArray;
 }
 
 @end

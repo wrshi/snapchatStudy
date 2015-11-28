@@ -22,7 +22,6 @@
 
 - (void)didChangeSearchText:(NSString *)searchText;
 
-
 @end
 
 @interface SWRSearchController : UISearchController

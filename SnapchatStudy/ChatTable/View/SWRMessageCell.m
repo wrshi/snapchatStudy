@@ -52,8 +52,6 @@
         self.rimLine.backgroundColor = tintBlueColor;
         self.fromLabel.textColor = tintBlueColor;
     }
-
-    
 }
 
 - (UILabel *)fromLabel

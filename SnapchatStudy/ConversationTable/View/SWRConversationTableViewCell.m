@@ -14,14 +14,29 @@
 @property (nonatomic, strong) UIImageView *unreadSymbol;
 @property (nonatomic, strong) UILabel *friendNameLabel;
 @property (nonatomic, strong) UIButton *backgroundButton;
-
-
 @property (nonatomic, assign) CGPoint swipeStartPoint;
 
 @end
 
 
 @implementation SWRConversationTableViewCell
+
+#pragma mark - public methods
+
+- (void)cellAnimationWhenSwiped:(UISwipeGestureRecognizer *)recognizer indexPath:(NSIndexPath *)indexPath
+{
+    if (recognizer.state == UIGestureRecognizerStateEnded){
+        [UIView animateWithDuration:0.3 animations:^{
+            self.topView.x = self.height;
+        } completion:^(BOOL finished) {
+            if ([self.delegate respondsToSelector:@selector(cellfinishedAnimationAtIndexPath:)]){
+                [self.delegate cellfinishedAnimationAtIndexPath:indexPath];
+            }
+        }];
+    }
+}
+
+#pragma mark - private methods
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -51,7 +66,6 @@
     
 }
 
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -74,10 +88,6 @@
     self.friendNameLabel.frame = CGRectMake(friendNameLabelX, friendNameLabelY, friendNameLabelW, friendNameLabelH);
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-
-}
-
 - (void)setConversation:(SWRConversationModel *)conversation
 {
     _conversation = conversation;
@@ -89,25 +99,5 @@
         self.unreadSymbol.image = [UIImage imageNamed:@"open_box_purple"];
     }
 }
-
-- (void)cellAnimationWhenSwiped:(UISwipeGestureRecognizer *)recognizer indexPath:(NSIndexPath *)indexPath
-{
-
-    if (recognizer.state == UIGestureRecognizerStateEnded){
-        [UIView animateWithDuration:0.3 animations:^{
-            self.topView.x = self.height;
-        } completion:^(BOOL finished) {
-            if ([self.delegate respondsToSelector:@selector(cellfinishedAnimationAtIndexPath:)]){
-                [self.delegate cellfinishedAnimationAtIndexPath:indexPath];
-            }
-        }];
-        
-    }
-    
-}
-
-
-
-
 
 @end

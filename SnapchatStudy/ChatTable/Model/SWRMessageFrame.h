@@ -15,7 +15,6 @@
 @property (nonatomic, assign) CGRect fromFrame;
 @property (nonatomic, assign) CGRect textFrame;
 @property (nonatomic, assign) CGRect rimLineFrame;
-
 @property (nonatomic, assign) CGFloat cellHeight;
 
 @end
