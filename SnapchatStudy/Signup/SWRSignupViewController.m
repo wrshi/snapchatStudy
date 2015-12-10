@@ -91,7 +91,6 @@
     user.username = self.userNameText.text;
     user.password = self.passwordText.text;
     
-    //do it in asynchronous way
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             [self performSegueWithIdentifier:@"signup2Conversations" sender:nil];

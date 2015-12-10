@@ -147,25 +147,26 @@ static const NSTimeInterval secondBeforeDelete = 10.0;
     [messageQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
     [messageQuery whereKey:@"fromUserId" equalTo:self.friendUser.objectId];
     
-    NSArray *currentMessages = [messageQuery findObjects];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        for (PFObject *message in currentMessages){
-            message[@"unread"] = @"no";
-            [message saveInBackground];
-        }
-    });
-    [self.messages addObjectsFromArray:currentMessages];
-    
     PFQuery *messageQuery2 = [PFQuery queryWithClassName:@"message"];
     [messageQuery2 includeKey:@"toUser"];
     [messageQuery2 includeKey:@"fromUser"];
     [messageQuery2 whereKey:@"toUserId" equalTo:self.friendUser.objectId];
     [messageQuery2 whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
-    currentMessages = [messageQuery2 findObjects];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSArray *currentMessages = [messageQuery findObjects];
+        [self.messages addObjectsFromArray:currentMessages];
+        for (PFObject *message in currentMessages){
+            message[@"unread"] = @"no";
+            [message saveInBackground];
+        }
+        currentMessages = [messageQuery2 findObjects];
+        [self.messages addObjectsFromArray:currentMessages];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.messageController.messageObjs = self.messages;
+        });
+    });
 
-    [self.messages addObjectsFromArray:currentMessages];
-
-    self.messageController.messageObjs = self.messages;
 }
     
 

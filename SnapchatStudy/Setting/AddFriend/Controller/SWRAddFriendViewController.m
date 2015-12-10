@@ -266,10 +266,13 @@ static NSString * const cellReuseIdentifier = @"addFriendCell";
     if (_friendsId == nil){
         _friendsId = [NSMutableArray array];
         PFQuery *friendsQuery = [[self.currentUser relationForKey:@"FriendsRelation"] query];
-        // use synchronous query.
-        // is there a better way??
-        NSArray *objects = [friendsQuery findObjects];
-        _friendsId = [NSMutableArray arrayWithArray:[objects valueForKeyPath:@"objectId"]];
+
+        [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                _friendsId = [NSMutableArray arrayWithArray:[objects valueForKeyPath:@"objectId"]];
+                [self.tableView reloadData];
+            }
+        }];
     }
     return _friendsId;
 }

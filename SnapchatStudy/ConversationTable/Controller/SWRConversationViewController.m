@@ -50,8 +50,6 @@
         [alertView show];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
-    
-    [self getCurrentConversation];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -156,7 +154,7 @@
 
 - (void)SWRChatViewController:(SWRChatViewController *)chatViewController didFinishChatWithFriend:(PFUser *)friendUser
 {
-    [self getCurrentConversation];
+    // 这里不用再执行刷新操作，viewWillAppear里已经执行了
 }
 
 
@@ -312,31 +310,46 @@
 - (void)getCurrentConversation
 {
     [self.conversations removeAllObjects];
-    NSArray *currentConversations = [NSMutableArray array];
-    
+
     PFQuery *conversationQuery = [PFQuery queryWithClassName:@"Conversation"];
     [conversationQuery includeKey:@"toUser"];
     [conversationQuery includeKey:@"fromUser"];
     [conversationQuery whereKey:@"toUserId" equalTo:self.currentUser.objectId];
-    currentConversations = [conversationQuery findObjects];
-    for (PFObject *conversation in currentConversations)
-    {
-        SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"fromUser"] unread:YES];
-        [self.conversations addObject:conversationModel];
-        
-    }
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        NSArray *currentConversations = [conversationQuery findObjects];
+        for (PFObject *conversation in currentConversations)
+        {
+            SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"fromUser"] unread:YES];
+            [self.conversations addObject:conversationModel];
+            MyLog(@"1%@", conversationModel.friendUser.username);
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
     
     PFQuery *conversationQuery2 = [PFQuery queryWithClassName:@"Conversation"];
     [conversationQuery2 includeKey:@"toUser"];
     [conversationQuery2 includeKey:@"fromUser"];
     [conversationQuery2 whereKey:@"fromUserId" equalTo:self.currentUser.objectId];
-    currentConversations = [conversationQuery2 findObjects];
-    for (PFObject *conversation in currentConversations)
-    {
-        SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"toUser"] unread:NO];
-        [self.conversations addObject:conversationModel];
-    }
-    [self.tableView reloadData];
+
+
+    dispatch_async(queue, ^{
+        NSArray *currentConversations = [conversationQuery2 findObjects];
+        for (PFObject *conversation in currentConversations)
+        {
+            SWRConversationModel *conversationModel = [SWRConversationModel SWRConversationModelWithUser:conversation[@"toUser"] unread:NO];
+            [self.conversations addObject:conversationModel];
+            MyLog(@"2%@", conversationModel.friendUser.username);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
+    
 }
 
 
